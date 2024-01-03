@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/loginscreen.dart';
-class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
+class firstscreen extends StatefulWidget {
+  const firstscreen({Key? key}) : super(key: key);
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<firstscreen> createState() => _firstscreenState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _firstscreenState extends State<firstscreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 5),(){

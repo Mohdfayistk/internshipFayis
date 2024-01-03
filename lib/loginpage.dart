@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intership/bottomnavigation.dart';
+import 'package:intership/homepage.dart';
+import 'package:intership/signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -149,25 +152,30 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: 58.h,),
                       Center(
-                        child: Container(
-                          width: 363.w,
-                          height: 62.h,
-                          decoration: ShapeDecoration(
-                            color: Color(0xFFFFC113),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r),
+                        child: GestureDetector(onTap: (){
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) => BottomNavigation()));
+                        },
+                          child: Container(
+                            width: 363.w,
+                            height: 62.h,
+                            decoration: ShapeDecoration(
+                              color: Color(0xFFFFC113),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
                             ),
-                          ),
-                          child:  Center(
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                color: Color(0xFF264050),
-                                fontSize: 24.sp,
-                                fontFamily: 'Avenir Next',
-                                fontWeight: FontWeight.w500,
-                                height: 0.04,
-                                letterSpacing: -0.30,
+                            child:  Center(
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                  color: Color(0xFF264050),
+                                  fontSize: 24.sp,
+                                  fontFamily: 'Avenir Next',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0.04,
+                                  letterSpacing: -0.30,
+                                ),
                               ),
                             ),
                           ),
@@ -200,32 +208,37 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: 45.h,),
                       Center(
-                        child: Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'Dont have an account? ',
-                                style: TextStyle(
-                                  color: Color(0xFF264050),
-                                  fontSize: 15.sp,
-                                  fontFamily: 'Gadugi',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0.08,
-                                  letterSpacing: -0.30,
+                        child: GestureDetector(onTap: (){
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) => Signup()));
+                        },
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Dont have an account? ',
+                                  style: TextStyle(
+                                    color: Color(0xFF264050),
+                                    fontSize: 15.sp,
+                                    fontFamily: 'Gadugi',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.08,
+                                    letterSpacing: -0.30,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text: 'Sigup',
-                                style: TextStyle(
-                                  color: Color(0xFF264050),
-                                  fontSize: 16.sp,
-                                  fontFamily: 'Gadugi',
-                                  fontWeight: FontWeight.w700,
-                                  height: 0.08,
-                                  letterSpacing: -0.30,
+                                TextSpan(
+                                  text: 'Signup',
+                                  style: TextStyle(
+                                    color: Color(0xFF264050),
+                                    fontSize: 16.sp,
+                                    fontFamily: 'Gadugi',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0.08,
+                                    letterSpacing: -0.30,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
