@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intership/Tv.dart';
 import 'package:intership/trending%20Now.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -259,106 +260,110 @@ class _HomepageState extends State<Homepage> {
                   return SizedBox(
                     child: Padding(
                         padding: EdgeInsets.only(top: 15.w),
-                        child: Container(
-                          width: 149.w,
-                          height: 190.h,
-                          decoration: ShapeDecoration(
-                            color: Color(0xFFEFEEEE),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 10.h,
+                        child: GestureDetector(onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Tv()));
+                        },
+                          child: Container(
+                            width: 149.w,
+                            height: 190.h,
+                            decoration: ShapeDecoration(
+                              color: Color(0xFFEFEEEE),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              Image.asset("assets/TV.png"),
-                              Container(
-                                width: 141.w,
-                                height: 53.h,
-                                decoration: ShapeDecoration(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        width: 1, color: Color(0xFFF3F3F3)),
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Image.asset("assets/TV.png"),
+                                Container(
+                                  width: 141.w,
+                                  height: 53.h,
+                                  decoration: ShapeDecoration(
+                                    color: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          width: 1, color: Color(0xFFF3F3F3)),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 10.w),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 5.h,
-                                        ),
-                                        Text(
-                                          'Samsung Tv',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 13.sp,
-                                            fontFamily: 'hello',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0,
-                                            letterSpacing: -0.30,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 10.w),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: 5.h,
                                           ),
-                                        ),
-                                        Text(
-                                          '32” Full HD',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0xFF999595),
-                                            fontSize: 10.sp,
-                                            fontFamily: 'hello',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0,
-                                            letterSpacing: -0.30,
+                                          Text(
+                                            'Samsung Tv',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 13.sp,
+                                              fontFamily: 'hello',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0,
+                                              letterSpacing: -0.30,
+                                            ),
                                           ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              '45000',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Color(0xFF999595),
-                                                fontSize: 10,
-                                                fontFamily: 'hello',
-                                                fontWeight: FontWeight.w400,
-                                                height: 0,
-                                                letterSpacing: -0.30,
-                                              ),
+                                          Text(
+                                            '32” Full HD',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Color(0xFF999595),
+                                              fontSize: 10.sp,
+                                              fontFamily: 'hello',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0,
+                                              letterSpacing: -0.30,
                                             ),
-                                            SizedBox(
-                                              width: 5.w,
-                                            ),
-                                            Text(
-                                              '40000',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Color(0xFF999595),
-                                                fontSize: 10,
-                                                fontFamily: 'hello',
-                                                fontWeight: FontWeight.w400,
-                                                height: 0,
-                                                letterSpacing: -0.30,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                '45000',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: Color(0xFF999595),
+                                                  fontSize: 10,
+                                                  fontFamily: 'hello',
+                                                  fontWeight: FontWeight.w400,
+                                                  height: 0,
+                                                  letterSpacing: -0.30,
+                                                ),
                                               ),
-                                            )
-                                          ],
-                                        )
-                                      ],
+                                              SizedBox(
+                                                width: 5.w,
+                                              ),
+                                              Text(
+                                                '40000',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: Color(0xFF999595),
+                                                  fontSize: 10,
+                                                  fontFamily: 'hello',
+                                                  fontWeight: FontWeight.w400,
+                                                  height: 0,
+                                                  letterSpacing: -0.30,
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
                         )),
                   );
