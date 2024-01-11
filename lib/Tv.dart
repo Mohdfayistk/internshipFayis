@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intership/Orderpage.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Tv extends StatefulWidget {
@@ -389,25 +390,29 @@ class _TvState extends State<Tv> {
           height: 5.h,
         ),
         Center(
-          child: Container(
-            width: 343.w,
-            height: 63.h,
-            decoration: ShapeDecoration(
-              color: Color(0xFFFFC113),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(19.r),
+          child: GestureDetector(onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (_)=> OrderPage()));
+          },
+            child: Container(
+              width: 343.w,
+              height: 63.h,
+              decoration: ShapeDecoration(
+                color: Color(0xFFFFC113),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(19.r),
+                ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                'BUY NOW',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.sp,
-                  fontFamily: 'hello',
-                  fontWeight: FontWeight.w500,
-                  height: 0.06,
+              child: Center(
+                child: Text(
+                  'BUY NOW',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 17.sp,
+                    fontFamily: 'hello',
+                    fontWeight: FontWeight.w500,
+                    height: 0.06,
+                  ),
                 ),
               ),
             ),
