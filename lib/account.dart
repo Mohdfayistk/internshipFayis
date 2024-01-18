@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/manageaccount.dart';
+import 'package:intership/orderaccount.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -74,44 +75,48 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 33.w,
               ),
-              Container(
-                width: 170.w,
-                height: 55.h,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1.w, color: Color(0xFFEEEEEE)),
-                    borderRadius: BorderRadius.circular(4),
+              GestureDetector(onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>OrderAccount()));
+              },
+                child: Container(
+                  width: 170.w,
+                  height: 55.h,
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 1.w, color: Color(0xFFEEEEEE)),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                   ),
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 18.w,
-                    ),
-                    SizedBox(
-                        width: 24.w,
-                        height: 24.h,
-                        child: Image.asset("assets/19.png")),
-                    SizedBox(
-                      width: 22.w,
-                    ),
-                    Text(
-                      'Orders',
-                      style: TextStyle(
-                        color: Color(0xFF463507),
-                        fontSize: 16.sp,
-                        fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w600,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 18.w,
                       ),
-                    ),
-                    SizedBox(
-                      width: 22.w,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 16.sp,
-                    ),
-                  ],
+                      SizedBox(
+                          width: 24.w,
+                          height: 24.h,
+                          child: Image.asset("assets/19.png")),
+                      SizedBox(
+                        width: 22.w,
+                      ),
+                      Text(
+                        'Orders',
+                        style: TextStyle(
+                          color: Color(0xFF463507),
+                          fontSize: 16.sp,
+                          fontFamily: 'Open Sans',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 22.w,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16.sp,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
