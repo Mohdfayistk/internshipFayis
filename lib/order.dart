@@ -31,7 +31,7 @@ body: SingleChildScrollView(
             style: TextStyle(
               color: Color(0xFF463507),
               fontSize: 20.sp,
-              fontFamily: 'Open Sans',
+              fontFamily: 'hello',
               fontWeight: FontWeight.w600,
             ),
           )
@@ -54,7 +54,7 @@ body: SingleChildScrollView(
                    style: TextStyle(
                      color: Color(0xFFB3B3B3),
                      fontSize: 14.sp,
-                     fontFamily: 'Open Sans',
+                     fontFamily: 'hello',
                      fontWeight: FontWeight.w600,
                    ),
                  ),
@@ -63,7 +63,7 @@ body: SingleChildScrollView(
                    style: TextStyle(
                      color: Color(0xFFC1C1C1),
                      fontSize: 10.sp,
-                     fontFamily: 'Open Sans',
+                     fontFamily: 'hello',
                      fontWeight: FontWeight.w400,
                    ),
                  )
@@ -95,7 +95,7 @@ body: SingleChildScrollView(
                     style: TextStyle(
                       color: Color(0xFF1D1D1B),
                       fontSize: 16.sp,
-                      fontFamily: 'Brandon Grotesque',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w400,
 
                     ),
@@ -105,7 +105,7 @@ body: SingleChildScrollView(
                     style: TextStyle(
                       color: Color(0xFF7C7C7C),
                       fontSize: 14.sp,
-                      fontFamily: 'Brandon Grotesque',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w400,
 
                     ),
@@ -136,7 +136,7 @@ body: SingleChildScrollView(
                 style: TextStyle(
                   color: Color(0xFFC1C1C1),
                   fontSize: 15.sp,
-                  fontFamily: 'Open Sans',
+                  fontFamily: 'hello',
                   fontWeight: FontWeight.w400,
 
                 ),
@@ -173,7 +173,7 @@ body: SingleChildScrollView(
                 style: TextStyle(
                   color: Color(0xFF006404),
                   fontSize: 14.sp,
-                  fontFamily: 'Open Sans',
+                  fontFamily: 'hello',
                   fontWeight: FontWeight.w600,
 
                 ),
@@ -183,7 +183,7 @@ body: SingleChildScrollView(
                 style: TextStyle(
                   color: Color(0xFFC1C1C1),
                   fontSize: 10.sp,
-                  fontFamily: 'Open Sans',
+                  fontFamily: 'hello',
                   fontWeight: FontWeight.w400,
 
                 ),
@@ -216,7 +216,7 @@ body: SingleChildScrollView(
                     style: TextStyle(
                       color: Color(0xFF1D1D1B),
                       fontSize: 16.sp,
-                      fontFamily: 'Brandon Grotesque',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w400,
 
                     ),
@@ -226,7 +226,7 @@ body: SingleChildScrollView(
             style: TextStyle(
               color: Color(0xFF7C7C7C),
               fontSize: 14.sp,
-              fontFamily: 'Brandon Grotesque',
+              fontFamily: 'hello',
               fontWeight: FontWeight.w400,
 
           ),
@@ -258,7 +258,7 @@ body: SingleChildScrollView(
                 style: TextStyle(
                   color: Color(0xFFC1C1C1),
                   fontSize: 15.sp,
-                  fontFamily: 'Open Sans',
+                  fontFamily: 'hello',
                   fontWeight: FontWeight.w400,
 
                 ),
@@ -305,7 +305,7 @@ body: SingleChildScrollView(
                 style: TextStyle(
                   color: Color(0xFFA60202),
                   fontSize: 14.sp,
-                  fontFamily: 'Open Sans',
+                  fontFamily: 'hello',
                   fontWeight: FontWeight.w600,
 
                 ),
@@ -315,7 +315,7 @@ body: SingleChildScrollView(
                 style: TextStyle(
                   color: Color(0xFFC1C1C1),
                   fontSize: 10.sp,
-                  fontFamily: 'Open Sans',
+                  fontFamily: 'hello',
                   fontWeight: FontWeight.w400,
 
                 ),
@@ -348,7 +348,7 @@ SizedBox(width: 20.w,),
                     style: TextStyle(
                       color: Color(0xFF1D1D1B),
                       fontSize: 16.sp,
-                      fontFamily: 'Brandon Grotesque',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w400,
 
                     ),
@@ -358,7 +358,7 @@ SizedBox(width: 20.w,),
                     style: TextStyle(
                       color: Color(0xFF7C7C7C),
                       fontSize: 14.sp,
-                      fontFamily: 'Brandon Grotesque',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w400,
 
                     ),
@@ -390,7 +390,7 @@ SizedBox(width: 20.w,),
                 style: TextStyle(
                   color: Color(0xFFC1C1C1),
                   fontSize: 15.sp,
-                  fontFamily: 'Open Sans',
+                  fontFamily: 'hello',
                   fontWeight: FontWeight.w400,
 
                 ),

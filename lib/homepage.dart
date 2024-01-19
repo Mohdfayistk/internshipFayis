@@ -486,7 +486,7 @@ class _HomepageState extends State<Homepage> {
                                           style: TextStyle(
                                             color: Color(0xFF293744),
                                             fontSize: 12,
-                                            fontFamily: 'Trirong',
+                                            fontFamily: 'hello',
                                             fontWeight: FontWeight.w600,
                                             height: 0,
                                             letterSpacing: -0.30,
@@ -510,7 +510,7 @@ class _HomepageState extends State<Homepage> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 10,
-                                  fontFamily: 'Gadugi',
+                                  fontFamily: 'hello',
                                   fontWeight: FontWeight.w700,
                                   height: 0,
                                   letterSpacing: -0.30,

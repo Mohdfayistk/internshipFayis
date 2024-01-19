@@ -27,7 +27,7 @@ class _AccountState extends State<Account> {
               style: TextStyle(
                 color: Color(0xFF463507),
                 fontSize: 15.sp,
-                fontFamily: 'Open Sans',
+                fontFamily: 'hello',
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -60,7 +60,7 @@ class _AccountState extends State<Account> {
                   style: TextStyle(
                     color: Color(0xFF463507),
                     fontSize: 24.sp,
-                    fontFamily: 'Open Sans',
+                    fontFamily: 'hello',
                     fontWeight: FontWeight.w600,
                   ),
                 )
@@ -104,7 +104,7 @@ class _AccountState extends State<Account> {
                         style: TextStyle(
                           color: Color(0xFF463507),
                           fontSize: 16.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -148,7 +148,7 @@ class _AccountState extends State<Account> {
                       style: TextStyle(
                         color: Color(0xFF463507),
                         fontSize: 16.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -198,7 +198,7 @@ class _AccountState extends State<Account> {
                       style: TextStyle(
                         color: Color(0xFF463507),
                         fontSize: 16.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -234,7 +234,7 @@ class _AccountState extends State<Account> {
                       style: TextStyle(
                         color: Color(0xFF463507),
                         fontSize: 16.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -289,7 +289,7 @@ class _AccountState extends State<Account> {
                           style: TextStyle(
                             color: Color(0xFF463507),
                             fontSize: 20.sp,
-                            fontFamily: 'Open Sans',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -298,7 +298,7 @@ class _AccountState extends State<Account> {
                           style: TextStyle(
                             color: Color(0xFFC9C9C9),
                             fontSize: 14.sp,
-                            fontFamily: 'Open Sans',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
                           ),
                         )
@@ -354,7 +354,7 @@ class _AccountState extends State<Account> {
                     style: TextStyle(
                       color: Color(0xFF104363),
                       fontSize: 17.sp,
-                      fontFamily: 'Open Sans',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -365,7 +365,7 @@ class _AccountState extends State<Account> {
                         style: TextStyle(
                           color: Color(0xFF104363),
                           fontSize: 15.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -374,7 +374,7 @@ class _AccountState extends State<Account> {
                         style: TextStyle(
                           color: Color(0xFF104363),
                           fontSize: 15.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -405,7 +405,7 @@ class _AccountState extends State<Account> {
                     style: TextStyle(
                       color: Color(0xFF104363),
                       fontSize: 15.sp,
-                      fontFamily: 'Open Sans',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -423,7 +423,7 @@ class _AccountState extends State<Account> {
               style: TextStyle(
                 color: Color(0xFF463507),
                 fontSize: 15.sp,
-                fontFamily: 'Open Sans',
+                fontFamily: 'hello',
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -438,7 +438,7 @@ class _AccountState extends State<Account> {
               style: TextStyle(
                 color: Color(0xFF463507),
                 fontSize: 15.sp,
-                fontFamily: 'Open Sans',
+                fontFamily: 'hello',
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -453,7 +453,7 @@ class _AccountState extends State<Account> {
               style: TextStyle(
                 color: Color(0xFF463507),
                 fontSize: 15.sp,
-                fontFamily: 'Open Sans',
+                fontFamily: 'hello',
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -468,7 +468,7 @@ class _AccountState extends State<Account> {
               style: TextStyle(
                 color: Color(0xFF463507),
                 fontSize: 15.sp,
-                fontFamily: 'Open Sans',
+                fontFamily: 'hello',
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -492,7 +492,7 @@ class _AccountState extends State<Account> {
                   style: TextStyle(
                     color: Color(0xFFFFC113),
                     fontSize: 16.sp,
-                    fontFamily: 'Open Sans',
+                    fontFamily: 'hello',
                     fontWeight: FontWeight.w700,
                   ),
                 ),

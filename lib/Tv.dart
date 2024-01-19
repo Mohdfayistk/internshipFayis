@@ -59,7 +59,8 @@ class _TvState extends State<Tv> {
                     viewportFraction: 1.0,
                   ),
                   itemCount: 3,
-                  itemBuilder: (BuildContext context, int index, int realIndex) {
+                  itemBuilder:
+                      (BuildContext context, int index, int realIndex) {
                     return Container(
                       margin: EdgeInsets.all(6.0),
                       decoration: BoxDecoration(
@@ -91,7 +92,6 @@ class _TvState extends State<Tv> {
             ),
           ),
         ),
-
         Row(
           children: [
             Padding(
@@ -390,9 +390,11 @@ class _TvState extends State<Tv> {
           height: 5.h,
         ),
         Center(
-          child: GestureDetector(onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (_)=> OrderPage()));
-          },
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => OrderPage()));
+            },
             child: Container(
               width: 343.w,
               height: 63.h,

@@ -70,7 +70,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       style: TextStyle(
                         color: Color(0xFF626262),
                         fontSize: 20.sp,
-                        fontFamily: 'Gadugi',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -137,7 +137,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF626262),
                           fontSize: 20.sp,
-                          fontFamily: 'Gadugi',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -178,7 +178,7 @@ class _PaymentPageState extends State<PaymentPage> {
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 15.sp,
-                            fontFamily: 'Gadugi',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
                           ),
                         )
@@ -206,7 +206,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       style: TextStyle(
                         color: Color(0xFF525252),
                         fontSize: 14.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -239,7 +239,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF6A6969),
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -252,7 +252,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF6A6969),
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       )
@@ -271,7 +271,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF6A6969),
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -284,7 +284,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF0A8200),
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       )
@@ -303,7 +303,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF6A6969),
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -316,7 +316,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF0A8200),
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       )
@@ -335,7 +335,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF6A6969),
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -348,7 +348,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Color(0xFF006404),
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       )
@@ -382,7 +382,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 14,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w600,
                           height: 0.09,
                           letterSpacing: 0.10,
@@ -397,7 +397,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 14.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w600,
                         ),
                       )
@@ -424,7 +424,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 27,
-                      fontFamily: 'Open Sans',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -447,7 +447,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 21.sp,
-                          fontFamily: 'Open Sans',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w700,
                         ),
                       ),

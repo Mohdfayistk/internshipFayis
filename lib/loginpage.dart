@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                                 style: TextStyle(
                                   color: Color(0xFF264050),
                                   fontSize: 24.sp,
-                                  fontFamily: 'Avenir Next',
+                                  fontFamily: 'hello',
                                   fontWeight: FontWeight.w500,
                                   height: 0.04,
                                   letterSpacing: -0.30,
@@ -189,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             color: Color(0xFF264050),
                             fontSize: 15,
-                            fontFamily: 'Gadugi',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
                             height: 0.08,
                             letterSpacing: -0.30,
@@ -220,7 +220,7 @@ class _LoginPageState extends State<LoginPage> {
                                   style: TextStyle(
                                     color: Color(0xFF264050),
                                     fontSize: 15.sp,
-                                    fontFamily: 'Gadugi',
+                                    fontFamily: 'hello',
                                     fontWeight: FontWeight.w400,
                                     height: 0.08,
                                     letterSpacing: -0.30,
@@ -231,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                                   style: TextStyle(
                                     color: Color(0xFF264050),
                                     fontSize: 16.sp,
-                                    fontFamily: 'Gadugi',
+                                    fontFamily: 'hello',
                                     fontWeight: FontWeight.w700,
                                     height: 0.08,
                                     letterSpacing: -0.30,

@@ -103,7 +103,7 @@ class _TrendingNowState extends State<TrendingNow> {
                                 style: TextStyle(
                                   color: Color(0xFF1D1D1B),
                                   fontSize: 14.sp,
-                                  fontFamily: 'Brandon Grotesque',
+                                  fontFamily: 'hello',
                                   fontWeight: FontWeight.w400,
                                   height: 0.09,
                                   letterSpacing: 0.10,
@@ -127,7 +127,7 @@ class _TrendingNowState extends State<TrendingNow> {
                             style: TextStyle(
                               color: Color(0xFF7C7C7C),
                               fontSize: 14.sp,
-                              fontFamily: 'Brandon Grotesque',
+                              fontFamily: 'hello',
                               fontWeight: FontWeight.w400,
                               height: 0.09,
                             ),

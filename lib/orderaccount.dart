@@ -1,3 +1,4 @@
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class OrderAccount extends StatefulWidget {
@@ -38,7 +39,7 @@ class _OrderAccountState extends State<OrderAccount> {
                   style: TextStyle(
                     color: Color(0xFF463507),
                     fontSize: 20.sp,
-                    fontFamily: 'Open Sans',
+                    fontFamily: 'hello',
                     fontWeight: FontWeight.w600,
                   ),
                 )
@@ -61,7 +62,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFFB3B3B3),
                         fontSize: 14.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -70,7 +71,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFFC1C1C1),
                         fontSize: 10.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
                       ),
                     )
@@ -102,7 +103,7 @@ class _OrderAccountState extends State<OrderAccount> {
                           style: TextStyle(
                             color: Color(0xFF1D1D1B),
                             fontSize: 16.sp,
-                            fontFamily: 'Brandon Grotesque',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
 
                           ),
@@ -112,7 +113,7 @@ class _OrderAccountState extends State<OrderAccount> {
                           style: TextStyle(
                             color: Color(0xFF7C7C7C),
                             fontSize: 14.sp,
-                            fontFamily: 'Brandon Grotesque',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
 
                           ),
@@ -143,7 +144,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFFC1C1C1),
                         fontSize: 15.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
 
                       ),
@@ -180,7 +181,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFF006404),
                         fontSize: 14.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w600,
 
                       ),
@@ -190,7 +191,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFFC1C1C1),
                         fontSize: 10.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
 
                       ),
@@ -223,7 +224,7 @@ class _OrderAccountState extends State<OrderAccount> {
                           style: TextStyle(
                             color: Color(0xFF1D1D1B),
                             fontSize: 16.sp,
-                            fontFamily: 'Brandon Grotesque',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
 
                           ),
@@ -233,7 +234,7 @@ class _OrderAccountState extends State<OrderAccount> {
                           style: TextStyle(
                             color: Color(0xFF7C7C7C),
                             fontSize: 14.sp,
-                            fontFamily: 'Brandon Grotesque',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
 
                           ),
@@ -265,7 +266,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFFC1C1C1),
                         fontSize: 15.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
 
                       ),
@@ -312,7 +313,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFFA60202),
                         fontSize: 14.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w600,
 
                       ),
@@ -322,7 +323,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFFC1C1C1),
                         fontSize: 10.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
 
                       ),
@@ -355,7 +356,7 @@ class _OrderAccountState extends State<OrderAccount> {
                           style: TextStyle(
                             color: Color(0xFF1D1D1B),
                             fontSize: 16.sp,
-                            fontFamily: 'Brandon Grotesque',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
 
                           ),
@@ -365,7 +366,7 @@ class _OrderAccountState extends State<OrderAccount> {
                           style: TextStyle(
                             color: Color(0xFF7C7C7C),
                             fontSize: 14.sp,
-                            fontFamily: 'Brandon Grotesque',
+                            fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
 
                           ),
@@ -397,7 +398,7 @@ class _OrderAccountState extends State<OrderAccount> {
                       style: TextStyle(
                         color: Color(0xFFC1C1C1),
                         fontSize: 15.sp,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
 
                       ),
@@ -409,10 +410,9 @@ class _OrderAccountState extends State<OrderAccount> {
               ),
             ),
             SizedBox(height: 50.h,),
-          ],
-        ),
-      ),
 
-    );
+      ]),
+
+    ));
   }
 }

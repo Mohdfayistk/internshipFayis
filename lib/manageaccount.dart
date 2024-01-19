@@ -46,7 +46,7 @@ class _ManageAccountState extends State<ManageAccount> {
                   style: TextStyle(
                     color: Color(0xFF463507),
                     fontSize: 20.sp,
-                    fontFamily: 'Open Sans',
+                    fontFamily: 'hello',
                     fontWeight: FontWeight.w600,
                   ),
                 )
@@ -168,7 +168,7 @@ class _ManageAccountState extends State<ManageAccount> {
                     style: TextStyle(
                       color: Color(0xFF463507),
                       fontSize: 15.sp,
-                      fontFamily: 'Open Sans',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -285,7 +285,7 @@ class _ManageAccountState extends State<ManageAccount> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 15.sp,
-                      fontFamily: 'Open Sans',
+                      fontFamily: 'hello',
                       fontWeight: FontWeight.w700,
                     ),
                   ),
