@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/Tv.dart';
+import 'package:intership/searchpage.dart';
 import 'package:intership/trending%20Now.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -13,7 +14,7 @@ class Homepage extends StatefulWidget {
   State<Homepage> createState() => _HomepageState();
 }
 
-TextEditingController search = TextEditingController();
+
 int currentIndex = 0;
 
 class _HomepageState extends State<Homepage> {
@@ -44,56 +45,59 @@ class _HomepageState extends State<Homepage> {
           ),
           Padding(
             padding: EdgeInsets.only(left: 16.w),
-            child: Container(
-              width: 397.w,
-              height: 49.h,
-              decoration: ShapeDecoration(
-                color: Color(0xFFF3F3F3),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1, color: Color(0xFFE7E7E7)),
-                  borderRadius: BorderRadius.circular(10.r),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => SearchPage()));
+              },
+              child: Container(
+                width: 397.w,
+                height: 49.h,
+                decoration: ShapeDecoration(
+                  color: Color(0xFFF3F3F3),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 1, color: Color(0xFFE7E7E7)),
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
                 ),
-              ),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 15.w,
-                  ),
-                  Icon(
-                    Icons.search_rounded,
-                    color: Color(0xff828282),
-                  ),
-                  SizedBox(
-                    width: 20.w,
-                  ),
-                  SizedBox(
-                    width: 200.w,
-                    child: TextFormField(
-                      style: TextStyle(color: Color(0xff767676)),
-                      controller: search,
-                      autofocus: false,
-                      decoration: InputDecoration(
-                        hintText: 'Search',
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    Icon(
+                      Icons.search_rounded,
+                      color: Color(0xff828282),
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      'Search',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFFA4A4A4),
+                        fontSize: 16.sp,
+                        fontFamily: 'hello',
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 40.w,
-                  ),
-                  Icon(
-                    Icons.mic_none_outlined,
-                    color: Color(0xff828282),
-                  ),
-                  SizedBox(
-                    width: 15.w,
-                  ),
-                  Icon(
-                    Icons.photo_camera_outlined,
-                    color: Color(0xff828282),
-                  ),
-                ],
+                    SizedBox(
+                      width: 180.w,
+                    ),
+                    Icon(
+                      Icons.mic_none_outlined,
+                      color: Color(0xff828282),
+                    ),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    Icon(
+                      Icons.photo_camera_outlined,
+                      color: Color(0xff828282),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -102,36 +106,43 @@ class _HomepageState extends State<Homepage> {
           ),
           Stack(
             children: [
-              CarouselSlider.builder(
-                //Slider Container properties
-                options: CarouselOptions(
-                  onPageChanged: (index, a) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                  height: 200.h,
-                  enlargeCenterPage: true,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  autoPlay: true,
-                  aspectRatio: 16 / 9,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: Duration(milliseconds: 300),
-                  viewportFraction: 1.0,
-                ),
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index, int realIndex) {
-                  return Container(
-                    margin: EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      image: DecorationImage(
-                        image: AssetImage("assets/12.png"),
-                      ),
-                    ),
-                  );
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => Tv()));
                 },
+                child: CarouselSlider.builder(
+                  //Slider Container properties
+                  options: CarouselOptions(
+                    onPageChanged: (index, a) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
+                    height: 200.h,
+                    enlargeCenterPage: true,
+                    enlargeStrategy: CenterPageEnlargeStrategy.height,
+                    autoPlay: true,
+                    aspectRatio: 16 / 9,
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enableInfiniteScroll: true,
+                    autoPlayAnimationDuration: Duration(milliseconds: 300),
+                    viewportFraction: 1.0,
+                  ),
+                  itemCount: 5,
+                  itemBuilder:
+                      (BuildContext context, int index, int realIndex) {
+                    return Container(
+                      margin: EdgeInsets.all(6.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        image: DecorationImage(
+                          image: AssetImage("assets/12.png"),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 180.h),
@@ -222,9 +233,11 @@ class _HomepageState extends State<Homepage> {
               SizedBox(
                 width: 195.w,
               ),
-              TextButton(onPressed:(){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=> TrendingNow()));
-              } ,
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => TrendingNow()));
+                },
                 child: Text(
                   'See all',
                   textAlign: TextAlign.center,
@@ -260,9 +273,11 @@ class _HomepageState extends State<Homepage> {
                   return SizedBox(
                     child: Padding(
                         padding: EdgeInsets.only(top: 15.w),
-                        child: GestureDetector(onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Tv()));
-                        },
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (_) => Tv()));
+                          },
                           child: Container(
                             width: 149.w,
                             height: 190.h,
@@ -426,154 +441,160 @@ class _HomepageState extends State<Homepage> {
                   itemCount: 8,
                   itemBuilder: (context, position) {
                     return SizedBox(
-                        child: Stack(
-                          children: [
-                            Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(14.r),
-                                    topLeft: Radius.circular(14.r),
-                                  ),
-                                  child: Image.asset(
-                                    "assets/TV1.png",
-                                    width: 145.w,
-                                    height: 130.h,
-                                  ),
+                        child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) => Tv()));
+                      },
+                      child: Stack(
+                        children: [
+                          Column(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(14.r),
+                                  topLeft: Radius.circular(14.r),
                                 ),
-                                Container(
-                                  width: 146.w,
-                                  height: 3.h,
-                                  decoration:
-                                      BoxDecoration(color: Color(0xFFFFC113)),
-                                ),
-                                Container(
-                                  width: 146.w,
-                                  height: 55.h,
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFE2E2E2),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                    ),
-                                  ),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        Text(
-                                          'Big Deals',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0xFFFF6700),
-                                            fontSize: 12.sp,
-                                            fontFamily: 'hello',
-                                            fontWeight: FontWeight.w700,
-                                            height: 0,
-                                            letterSpacing: -0.30,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5.h,
-                                        ),
-                                        Text(
-                                          'Starrting @ 20000/-',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0xFF293744),
-                                            fontSize: 12,
-                                            fontFamily: 'hello',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0,
-                                            letterSpacing: -0.30,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 20.h, left: .5.w),
-                              child: Image.asset("assets/13.png"),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 10.w, top: 24.h),
-                              child: Text(
-                                '10% Off',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontFamily: 'hello',
-                                  fontWeight: FontWeight.w700,
-                                  height: 0,
-                                  letterSpacing: -0.30,
+                                child: Image.asset(
+                                  "assets/TV1.png",
+                                  width: 145.w,
+                                  height: 130.h,
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 115.h, left: 9.w),
-                              child: Container(
-                                width: 128.w,
-                                height: 26.h,
+                              Container(
+                                width: 146.w,
+                                height: 3.h,
+                                decoration:
+                                    BoxDecoration(color: Color(0xFFFFC113)),
+                              ),
+                              Container(
+                                width: 146.w,
+                                height: 55.h,
                                 decoration: ShapeDecoration(
-                                  color:
-                                      Colors.black.withOpacity(0.800000011920929),
+                                  color: Color(0xFFE2E2E2),
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                  ),
                                 ),
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 10.w,
-                                    ),
-                                    Text(
-                                      'Television',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12.sp,
-                                        fontFamily: 'hello',
-                                        fontWeight: FontWeight.w400,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 10.h,
                                       ),
+                                      Text(
+                                        'Big Deals',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFFFF6700),
+                                          fontSize: 12.sp,
+                                          fontFamily: 'hello',
+                                          fontWeight: FontWeight.w700,
+                                          height: 0,
+                                          letterSpacing: -0.30,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      Text(
+                                        'Starrting @ 20000/-',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF293744),
+                                          fontSize: 12,
+                                          fontFamily: 'hello',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0,
+                                          letterSpacing: -0.30,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 20.h, left: .5.w),
+                            child: Image.asset("assets/13.png"),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 10.w, top: 24.h),
+                            child: Text(
+                              '10% Off',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontFamily: 'hello',
+                                fontWeight: FontWeight.w700,
+                                height: 0,
+                                letterSpacing: -0.30,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 115.h, left: 9.w),
+                            child: Container(
+                              width: 128.w,
+                              height: 26.h,
+                              decoration: ShapeDecoration(
+                                color:
+                                    Colors.black.withOpacity(0.800000011920929),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  Text(
+                                    'Television',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12.sp,
+                                      fontFamily: 'hello',
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    SizedBox(
-                                      width: 10.w,
-                                    ),
-                                    SizedBox(
-                                      height: 12.h,
-                                      child: Container(
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            side: BorderSide(
-                                              width: 0.50,
-                                              strokeAlign:
-                                                  BorderSide.strokeAlignCenter,
-                                              color: Color(0xFFFFC113),
-                                            ),
+                                  ),
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                    child: Container(
+                                      decoration: ShapeDecoration(
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            width: 0.50,
+                                            strokeAlign:
+                                                BorderSide.strokeAlignCenter,
+                                            color: Color(0xFFFFC113),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 18.w,
-                                    ),
-                                    SizedBox(
-                                        width: 16.w,
-                                        height: 16.h,
-                                        child: Image.asset("assets/14.png")),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(
+                                    width: 18.w,
+                                  ),
+                                  SizedBox(
+                                      width: 16.w,
+                                      height: 16.h,
+                                      child: Image.asset("assets/14.png")),
+                                ],
                               ),
-                            )
-                          ],
-                        ));
+                            ),
+                          )
+                        ],
+                      ),
+                    ));
                   }),
             ),
           ),
