@@ -189,14 +189,16 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         height: 20.h,
                       ),
-                      Text(
-                        '₹ 50,000',
-                        style: TextStyle(
-                          color: Color(0xFF7C7C7C),
-                          fontSize: 14.sp,
-                          fontFamily: 'hello',
-                          fontWeight: FontWeight.w400,
-                          height: 0.09,
+                      SizedBox(width: 80.w,
+                        child: Text(
+                          'SAR 50,000',
+                          style: TextStyle(
+                            color: Color(0xFF7C7C7C),
+                            fontSize: 14.sp,
+                            fontFamily: 'hello',
+                            fontWeight: FontWeight.w400,
+                            height: 0.09,
+                          ),
                         ),
                       ),
                     ],
@@ -264,16 +266,18 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 300.w,
+                        width: 260.w,
                       ),
-                      Text(
-                        '₹ 50,000',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Color(0xFF6A6969),
-                          fontSize: 14.sp,
-                          fontFamily: 'hello',
-                          fontWeight: FontWeight.w400,
+                      SizedBox(width: 100.w,
+                        child: Text(
+                          'SAR 50,000',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Color(0xFF6A6969),
+                            fontSize: 14.sp,
+                            fontFamily: 'hello',
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       )
                     ],
@@ -296,16 +300,18 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 273.w,
+                        width: 235.w,
                       ),
-                      Text(
-                        '-  ₹ 2,000',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Color(0xFF0A8200),
-                          fontSize: 14.sp,
-                          fontFamily: 'hello',
-                          fontWeight: FontWeight.w400,
+                      SizedBox(width: 100.w,
+                        child: Text(
+                          '-  SAR 2,000',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Color(0xFF0A8200),
+                            fontSize: 14.sp,
+                            fontFamily: 'hello',
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       )
                     ],
@@ -328,7 +334,7 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 171.w,
+                        width: 174.w,
                       ),
                       Text(
                         'Delivery Charges',
@@ -374,15 +380,17 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 240.w,
+                        width: 230.w,
                       ),
-                      Text(
-                        '₹ 48,000',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14.sp,
-                          fontFamily: 'hello',
-                          fontWeight: FontWeight.w600,
+                      SizedBox(width: 80.w,
+                        child: Text(
+                          'SAR 48,000',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.sp,
+                            fontFamily: 'hello',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       )
                     ],
@@ -400,10 +408,10 @@ class _OrderPageState extends State<OrderPage> {
               child: Row(
                 children: [
                   SizedBox(
-                    width: 40.w,
+                    width: 30.w,
                   ),
                   Text(
-                    '₹ 48,000',
+                    'SAR 48,000',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -413,7 +421,7 @@ class _OrderPageState extends State<OrderPage> {
                     ),
                   ),
                   SizedBox(
-                    width: 70.w,
+                    width: 50.w,
                   ),
                   GestureDetector(onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>PaymentPage()));

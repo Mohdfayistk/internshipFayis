@@ -244,10 +244,10 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 300.w,
+                        width: 280.w,
                       ),
                       Text(
-                        '₹ 50,000',
+                        'SAR 50,000',
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Color(0xFF6A6969),
@@ -276,10 +276,10 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 274.w,
+                        width: 254.w,
                       ),
                       Text(
-                        '- ₹ 2,000',
+                        '- SAR 2,000',
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Color(0xFF0A8200),
@@ -308,10 +308,10 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 229.w,
+                        width: 209.w,
                       ),
                       Text(
-                        '- ₹ 500',
+                        '- SAR 500',
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Color(0xFF0A8200),
@@ -389,10 +389,10 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 220.w,
+                        width: 200.w,
                       ),
                       Text(
-                        '₹ 47,500',
+                        'SAR 47,500',
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Colors.black,
@@ -416,10 +416,10 @@ class _PaymentPageState extends State<PaymentPage> {
               child: Row(
                 children: [
                   SizedBox(
-                    width: 39.w,
+                    width: 29.w,
                   ),
                   Text(
-                    '₹ 47,500',
+                    'SAR 47,500',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -429,10 +429,10 @@ class _PaymentPageState extends State<PaymentPage> {
                     ),
                   ),
                   SizedBox(
-                    width: 52.w,
+                    width: 38.w,
                   ),
                   Container(
-                    width: 197.w,
+                    width: 180.w,
                     height: 42.h,
                     decoration: ShapeDecoration(
                       color: Color(0xFFFFC113),

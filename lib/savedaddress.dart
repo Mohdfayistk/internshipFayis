@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+class SavedAddress extends StatefulWidget {
+  const SavedAddress({Key? key}) : super(key: key);
+
+  @override
+  State<SavedAddress> createState() => _SavedAddressState();
+}
+
+class _SavedAddressState extends State<SavedAddress> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+backgroundColor: Colors.white,
+      body: Column(crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 70.h,),
+          Row(
+            children: [
+              IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back)),
+              SizedBox(width: 15.w,),
+              Text(
+                'Select Delivery Address',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.sp,
+                  fontFamily: 'hello',
+                  fontWeight: FontWeight.w400,
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 40.h,),
+          Container(
+            width: 430.w,
+            height: 79.h,
+            decoration: BoxDecoration(color: Color(0xFFFCFCFC)),
+            child: Center(
+              child: Row(
+                children: [
+                  SizedBox(width: 25.w,),
+                  Icon(Icons.add),
+                  SizedBox(width: 15.w,),
+                  Text(
+                    'Add a new address',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.sp,
+                      fontFamily: 'hello',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 35.h,),
+          Padding(
+            padding:  EdgeInsets.only(left: 30.w),
+            child: Text(
+              '2 Saved Addresses',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15.sp,
+                fontFamily: 'hello',
+                fontWeight: FontWeight.w400,
+
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
