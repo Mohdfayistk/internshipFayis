@@ -20,59 +20,64 @@ class _SearchPageState extends State<SearchPage> {
             SizedBox(
               height: 75.h,
             ),
-            Center(
-              child: Container(
-                width: 397.w,
-                height: 49.h,
-                decoration: ShapeDecoration(
-                  color: Color(0xFFF3F3F3),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1.w, color: Color(0xFFE7E7E7)),
-                    borderRadius: BorderRadius.circular(10.r),
+            Row(
+              children: [
+                SizedBox(width: 10.w,),
+                IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back)),
+                SizedBox(width: 10.w,),
+                Container(
+                  width: 330.w,
+                  height: 49.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFF3F3F3),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 1.w, color: Color(0xFFE7E7E7)),
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 20.w,
+                      ),
+                      Icon(
+                        Icons.search_rounded,
+                        color: Color(0xff828282),
+                      ),
+                      SizedBox(
+                        width: 20.w,
+                      ),
+                      SizedBox(
+                        width: 255.w,
+                        child: TextFormField(
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                          controller: search,
+                          cursorColor: Color(0xFFA4A4A4),
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  Icons.close,
+                                  color: Color(0xFFA4A4A4),
+                                  size: 22.sp,
+                                ),
+                                onPressed: () {
+                                  search.clear();
+                                },
+                              ),
+                              hintText: 'search',
+                              hintStyle: TextStyle(
+                                color: Color(0xFFA4A4A4),
+                              ),
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    Icon(
-                      Icons.search_rounded,
-                      color: Color(0xff828282),
-                    ),
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    SizedBox(
-                      width: 310.w,
-                      child: TextFormField(
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                        controller: search,
-                        cursorColor: Color(0xFFA4A4A4),
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                Icons.close,
-                                color: Color(0xFFA4A4A4),
-                                size: 22.sp,
-                              ),
-                              onPressed: () {
-                                search.clear();
-                              },
-                            ),
-                            hintText: 'search',
-                            hintStyle: TextStyle(
-                              color: Color(0xFFA4A4A4),
-                            ),
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
             SizedBox(
               height: 15.h,

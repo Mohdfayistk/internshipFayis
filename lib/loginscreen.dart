@@ -107,7 +107,7 @@ SizedBox(height: 40.h,),
               style: TextStyle(
                 color: Color(0xFF264050),
                 fontSize: 15.sp,
-                fontFamily: 'home',
+                fontFamily: 'hello',
                 fontWeight: FontWeight.w400,
                 height: 0.08,
                 letterSpacing: -0.30,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intership/cartpage.dart';
+import 'package:intership/favorite.dart';
 import 'package:intership/manageaccount.dart';
 import 'package:intership/orderaccount.dart';
 import 'package:intership/savedaddress.dart';
@@ -123,7 +125,9 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 20.w,
               ),
-              InkWell(onTap: (){},
+              InkWell(onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Favorite()));
+              },
                 child: Container(
                   width: 170.w,
                   height: 55.h,
@@ -175,7 +179,9 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 33.w,
               ),
-              InkWell(onTap: (){},
+              InkWell(onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CartPage()));
+              },
                 child: Container(
                   width: 170.w,
                   height: 55.h,

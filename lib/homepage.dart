@@ -3,6 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/Tv.dart';
+import 'package:intership/cartpage.dart';
+import 'package:intership/favorite.dart';
 import 'package:intership/searchpage.dart';
 import 'package:intership/trending%20Now.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -34,12 +36,23 @@ class _HomepageState extends State<Homepage> {
           SizedBox(
             height: 75.h,
           ),
-          Padding(
-              padding: EdgeInsets.only(left: 16.w),
-              child: SizedBox(
+          Row(
+            children: [
+              SizedBox(width: 15.w,),
+              SizedBox(
                   width: 158.w,
                   height: 40.h,
-                  child: Image.asset("assets/9.png"))),
+                  child: Image.asset("assets/9.png")),
+              SizedBox(width: 120.w,),
+              IconButton(onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Favorite()));
+              }, icon: Icon(Icons.favorite_border_outlined)),
+
+              IconButton(onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CartPage()));
+              }, icon: Icon(Icons.shopping_cart_outlined)),
+            ],
+          ),
           SizedBox(
             height: 15.h,
           ),

@@ -67,7 +67,7 @@ class _OrderTrackingState extends State<OrderTracking> {
                         style: TextStyle(
                           color: Color(0xFF1D1D1B),
                           fontSize: 16.sp,
-                          fontFamily: 'Brandon Grotesque',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -79,7 +79,7 @@ class _OrderTrackingState extends State<OrderTracking> {
                         style: TextStyle(
                           color: Color(0xFF7C7C7C),
                           fontSize: 14.sp,
-                          fontFamily: 'Brandon Grotesque',
+                          fontFamily: 'hello',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -165,7 +165,7 @@ class _OrderTrackingState extends State<OrderTracking> {
                 style: TextStyle(
                   color: Color(0xFF5C5C5C),
                   fontSize: 20.sp,
-                  fontFamily: 'Open Sans',
+                  fontFamily: 'hello',
                   fontWeight: FontWeight.w600,
 
                 ),
