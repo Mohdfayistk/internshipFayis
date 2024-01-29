@@ -191,7 +191,9 @@ class _ManageAccountState extends State<ManageAccount> {
               visible: changePassword,
               child: Column(
                 children: [
-                  SizedBox(height: 27.h,),
+                  SizedBox(
+                    height: 27.h,
+                  ),
                   SizedBox(
                     width: 363.w,
                     child: TextFormField(
@@ -201,21 +203,18 @@ class _ManageAccountState extends State<ManageAccount> {
                       autofocus: false,
                       decoration: InputDecoration(
                         hintText: 'Current Password',
-                        focusedBorder:OutlineInputBorder(
+                        focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.r),
-                            borderSide: BorderSide(
-                                color: Color(0xFFEEEEEE)
-                            )) ,
+                            borderSide: BorderSide(color: Color(0xFFEEEEEE))),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.r),
-                            borderSide: BorderSide(
-                                color: Color(0xFFEEEEEE)
-                            )
+                            borderSide: BorderSide(color: Color(0xFFEEEEEE))),
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 25.h,
                   ),
-                  SizedBox(height: 25.h,),
                   SizedBox(
                     width: 363.w,
                     child: TextFormField(
@@ -224,22 +223,19 @@ class _ManageAccountState extends State<ManageAccount> {
                       controller: newpassword,
                       autofocus: false,
                       decoration: InputDecoration(
-                        hintText: 'New Password',
-                          focusedBorder:OutlineInputBorder(
+                          hintText: 'New Password',
+                          focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.r),
-                              borderSide: BorderSide(
-                                  color: Color(0xFFEEEEEE)
-                              )) ,
+                              borderSide: BorderSide(color: Color(0xFFEEEEEE))),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.r),
-                              borderSide: BorderSide(
-                                  color: Color(0xFFEEEEEE)
-                            )
-                        )
-                      ),
+                              borderSide:
+                                  BorderSide(color: Color(0xFFEEEEEE)))),
                     ),
                   ),
-                  SizedBox(height: 25.h,),
+                  SizedBox(
+                    height: 25.h,
+                  ),
                   SizedBox(
                     width: 363.w,
                     child: TextFormField(
@@ -248,47 +244,43 @@ class _ManageAccountState extends State<ManageAccount> {
                       controller: confirmpassword,
                       autofocus: false,
                       decoration: InputDecoration(
-                        hintText: 'Confirm Password',
-focusedBorder:OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10.r),
-    borderSide: BorderSide(
-        color: Color(0xFFEEEEEE)
-    )) ,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.r),
-                            borderSide: BorderSide(
-                                color: Color(0xFFEEEEEE)
-                            ))
-                      ),
+                          hintText: 'Confirm Password',
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.r),
+                              borderSide: BorderSide(color: Color(0xFFEEEEEE))),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.r),
+                              borderSide:
+                                  BorderSide(color: Color(0xFFEEEEEE)))),
                     ),
-                    ),
-
+                  ),
                 ],
               ),
             ),
-
-                SizedBox(
-                  height: 80.h,
-                ),
-                Center(
-                  child: Container(
-                    width: 363.w,
-                    height: 44.h,
-                    decoration: BoxDecoration(color: Color(0xFFFFC113)),
-                    child: Center(
-                      child: Text(
-                        'SAVE DETAILS',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15.sp,
-                          fontFamily: 'hello',
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+            SizedBox(
+              height: 80.h,
+            ),
+            Center(
+              child: Container(
+                width: 363.w,
+                height: 44.h,
+                decoration: BoxDecoration(color: Color(0xFFFFC113)),
+                child: Center(
+                  child: Text(
+                    'SAVE DETAILS',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15.sp,
+                      fontFamily: 'hello',
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
-SizedBox(height: 50.h,),
+              ),
+            ),
+            SizedBox(
+              height: 50.h,
+            ),
           ],
         ),
       ),

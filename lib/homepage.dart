@@ -16,7 +16,6 @@ class Homepage extends StatefulWidget {
   State<Homepage> createState() => _HomepageState();
 }
 
-
 int currentIndex = 0;
 
 class _HomepageState extends State<Homepage> {
@@ -38,19 +37,28 @@ class _HomepageState extends State<Homepage> {
           ),
           Row(
             children: [
-              SizedBox(width: 15.w,),
+              SizedBox(
+                width: 15.w,
+              ),
               SizedBox(
                   width: 158.w,
                   height: 40.h,
                   child: Image.asset("assets/9.png")),
-              SizedBox(width: 120.w,),
-              IconButton(onPressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Favorite()));
-              }, icon: Icon(Icons.favorite_border_outlined)),
-
-              IconButton(onPressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CartPage()));
-              }, icon: Icon(Icons.shopping_cart_outlined)),
+              SizedBox(
+                width: 120.w,
+              ),
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => Favorite()));
+                  },
+                  icon: Icon(Icons.favorite_border_outlined)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => CartPage()));
+                  },
+                  icon: Icon(Icons.shopping_cart_outlined)),
             ],
           ),
           SizedBox(

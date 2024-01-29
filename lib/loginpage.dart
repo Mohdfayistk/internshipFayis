@@ -81,7 +81,8 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 SizedBox(
                                   width: 150.w,
-                                  child: TextFormField(textInputAction: TextInputAction.next,
+                                  child: TextFormField(
+                                    textInputAction: TextInputAction.next,
                                     style: TextStyle(color: Color(0xff767676)),
                                     controller: username,
                                     autofocus: false,
@@ -150,12 +151,15 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                             )),
                       ),
-                      SizedBox(height: 58.h,),
+                      SizedBox(
+                        height: 58.h,
+                      ),
                       Center(
-                        child: GestureDetector(onTap: (){
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (_) => BottomNavigation()));
-                        },
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => BottomNavigation()));
+                          },
                           child: Container(
                             width: 363.w,
                             height: 62.h,
@@ -165,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
                             ),
-                            child:  Center(
+                            child: Center(
                               child: Text(
                                 'Login',
                                 style: TextStyle(
@@ -181,9 +185,11 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 30,),
+                      SizedBox(
+                        height: 30,
+                      ),
                       Padding(
-                        padding:  EdgeInsets.only(left: 260.w),
+                        padding: EdgeInsets.only(left: 260.w),
                         child: Text(
                           'Forgot Password?',
                           style: TextStyle(
@@ -196,22 +202,33 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 50.h,),
+                      SizedBox(
+                        height: 50.h,
+                      ),
                       Row(
                         children: [
-                          SizedBox(width: 185.w,),
-                          SizedBox(width: 30.w,
-                          height: 30.w,child: Image.asset("assets/10.png")),
-                          SizedBox(width: 30.w,
-                              height: 30.w,child: Image.asset("assets/11.png")),
+                          SizedBox(
+                            width: 185.w,
+                          ),
+                          SizedBox(
+                              width: 30.w,
+                              height: 30.w,
+                              child: Image.asset("assets/10.png")),
+                          SizedBox(
+                              width: 30.w,
+                              height: 30.w,
+                              child: Image.asset("assets/11.png")),
                         ],
                       ),
-                      SizedBox(height: 45.h,),
+                      SizedBox(
+                        height: 45.h,
+                      ),
                       Center(
-                        child: GestureDetector(onTap: (){
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (_) => Signup()));
-                        },
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => Signup()));
+                          },
                           child: Text.rich(
                             TextSpan(
                               children: [
@@ -266,7 +283,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-
             ]),
           ],
         ),

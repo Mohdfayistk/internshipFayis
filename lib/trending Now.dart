@@ -68,7 +68,7 @@ class _TrendingNowState extends State<TrendingNow> {
                     width: 100.w,
                     height: 100.h,
                     child: Padding(
-                      padding:  EdgeInsets.only(right: 20.w),
+                      padding: EdgeInsets.only(right: 20.w),
                       child: Divider(
                         color: Color(0xffF8F8F8),
                       ),
@@ -86,10 +86,12 @@ class _TrendingNowState extends State<TrendingNow> {
                       SizedBox(
                           width: 103.w,
                           height: 87.h,
-                          child: GestureDetector(onTap:(){
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (_) => Order()));
-                          },child: Image.asset("assets/TV2.png"))),
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (_) => Order()));
+                              },
+                              child: Image.asset("assets/TV2.png"))),
                       SizedBox(
                         width: 50.w,
                       ),

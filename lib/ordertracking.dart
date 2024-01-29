@@ -151,13 +151,16 @@ class _OrderTrackingState extends State<OrderTracking> {
                   ),
                 ],
               )),
-          SizedBox(height: 10.h,),
+          SizedBox(
+            height: 10.h,
+          ),
           Container(
             width: 434.w,
             height: 64.h,
             decoration: ShapeDecoration(
               color: Color(0xFFFBFBFB),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2)),
             ),
             child: Center(
               child: Text(
@@ -167,7 +170,6 @@ class _OrderTrackingState extends State<OrderTracking> {
                   fontSize: 20.sp,
                   fontFamily: 'hello',
                   fontWeight: FontWeight.w600,
-
                 ),
               ),
             ),

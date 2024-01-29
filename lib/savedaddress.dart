@@ -16,15 +16,22 @@ class _SavedAddressState extends State<SavedAddress> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 70.h,),
+          SizedBox(
+            height: 70.h,
+          ),
           Row(
             children: [
-              IconButton(onPressed: () {
-                Navigator.pop(context);
-              }, icon: Icon(Icons.arrow_back)),
-              SizedBox(width: 15.w,),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back)),
+              SizedBox(
+                width: 15.w,
+              ),
               Text(
                 'Select Delivery Address',
                 textAlign: TextAlign.center,
@@ -37,10 +44,14 @@ class _SavedAddressState extends State<SavedAddress> {
               )
             ],
           ),
-          SizedBox(height: 40.h,),
-          InkWell(onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (_)=>AddAddress()));
-          },
+          SizedBox(
+            height: 40.h,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => AddAddress()));
+            },
             child: Container(
               width: 430.w,
               height: 79.h,
@@ -48,9 +59,13 @@ class _SavedAddressState extends State<SavedAddress> {
               child: Center(
                 child: Row(
                   children: [
-                    SizedBox(width: 25.w,),
+                    SizedBox(
+                      width: 25.w,
+                    ),
                     Icon(Icons.add),
-                    SizedBox(width: 15.w,),
+                    SizedBox(
+                      width: 15.w,
+                    ),
                     Text(
                       'Add a new address',
                       style: TextStyle(
@@ -65,7 +80,9 @@ class _SavedAddressState extends State<SavedAddress> {
               ),
             ),
           ),
-          SizedBox(height: 35.h,),
+          SizedBox(
+            height: 35.h,
+          ),
           Padding(
             padding: EdgeInsets.only(left: 30.w),
             child: Text(
@@ -76,7 +93,6 @@ class _SavedAddressState extends State<SavedAddress> {
                 fontSize: 15.sp,
                 fontFamily: 'hello',
                 fontWeight: FontWeight.w400,
-
               ),
             ),
           ),
@@ -88,36 +104,33 @@ class _SavedAddressState extends State<SavedAddress> {
             child: ListView.separated(
                 separatorBuilder: (ctx, index) {
                   return Container(
-
                     height: 15.h,
                   );
                 },
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                      width: 430.w,
-                      height: 126.h,
-                      decoration: BoxDecoration(color:  Color(0xFFFCFCFC)),
-                  child: RadioListTile(
-                  hoverColor: Color(0xff264050),
-                  activeColor: Color(0xff264050),
-                  title: SizedBox(width: 295.w,
-                      height: 80.h ,child: Text("Jalan Haji Juanda No 1Paledang Kecamatan Bogor Tengah Kota Bogor Jawa Barat'")),
-                  value: "Cash on Delivery'",
-                  groupValue: gender,
-                  onChanged: (value) {
-                  setState(() {
-                  gender = value.toString();
-                  });
-                  },
-                  )
-                  ,
+                    width: 430.w,
+                    height: 126.h,
+                    decoration: BoxDecoration(color: Color(0xFFFCFCFC)),
+                    child: RadioListTile(
+                      hoverColor: Color(0xff264050),
+                      activeColor: Color(0xff264050),
+                      title: SizedBox(
+                          width: 295.w,
+                          height: 80.h,
+                          child: Text(
+                              "Jalan Haji Juanda No 1Paledang Kecamatan Bogor Tengah Kota Bogor Jawa Barat'")),
+                      value: "Cash on Delivery'",
+                      groupValue: gender,
+                      onChanged: (value) {
+                        setState(() {
+                          gender = value.toString();
+                        });
+                      },
+                    ),
                   );
-
-                }
-
-            ),
-
+                }),
           )
         ],
       ),

@@ -38,17 +38,24 @@ class _BottomNavigationState extends State<BottomNavigation> {
         },
         items: [
           BottomNavigationBarItem(
-              icon:SizedBox(width: 24.w,height: 24.h,child: Image.asset("assets/18.png")),
+              icon: SizedBox(
+                  width: 24.w, height: 24.h, child: Icon(Icons.home_outlined)),
               label: 'Home'),
           BottomNavigationBarItem(
-              icon: SizedBox(width: 24.w,height: 24.h,child: Image.asset("assets/17.png")),
+              icon: SizedBox(
+                  width: 24.w,
+                  height: 24.h,
+                  child: Icon(Icons.category_outlined)),
               label: 'Category'),
           BottomNavigationBarItem(
-              icon: SizedBox(width: 24.w,height: 24.h,child: Image.asset("assets/16.png")),
+              icon: SizedBox(
+                  width: 24.w, height: 24.h, child: Icon(Icons.shop_outlined)),
               label: 'Order'),
           BottomNavigationBarItem(
-              icon: SizedBox(width: 24.w,
-                  height: 24.h,child: Image.asset("assets/profilecircle.png")),
+              icon: SizedBox(
+                  width: 24.w,
+                  height: 24.h,
+                  child: Icon(Icons.account_circle_outlined)),
               label: 'Account'),
         ],
       ),

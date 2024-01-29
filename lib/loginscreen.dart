@@ -54,9 +54,11 @@ class _LoginscreenState extends State<Loginscreen> {
               )
             ]),
           ),
-SizedBox(height: 40.h,),
+          SizedBox(
+            height: 40.h,
+          ),
           Padding(
-            padding:  EdgeInsets.only(left: 40.w),
+            padding: EdgeInsets.only(left: 40.w),
             child: Text(
               'Let’s Start your \nnext level shopping.',
               style: TextStyle(
@@ -69,12 +71,15 @@ SizedBox(height: 40.h,),
               ),
             ),
           ),
-          SizedBox(height: 60.h,),
+          SizedBox(
+            height: 60.h,
+          ),
           Center(
-            child: GestureDetector(onTap: (){
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => LoginPage()));
-            },
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => LoginPage()));
+              },
               child: Container(
                 width: 363.w,
                 height: 62.h,
@@ -100,7 +105,9 @@ SizedBox(height: 40.h,),
               ),
             ),
           ),
-          SizedBox(height: 55.h,),
+          SizedBox(
+            height: 55.h,
+          ),
           Center(
             child: Text(
               'Dont have an account?',
@@ -114,14 +121,17 @@ SizedBox(height: 40.h,),
               ),
             ),
           ),
-          SizedBox(height: 30.h,),
+          SizedBox(
+            height: 30.h,
+          ),
           Center(
             child: Container(
               width: 144.w,
               height: 38.h,
               decoration: ShapeDecoration(
                 color: Color(0xFF264050),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(9)),
               ),
               child: Center(
                 child: Text(

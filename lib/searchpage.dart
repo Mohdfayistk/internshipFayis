@@ -22,9 +22,17 @@ class _SearchPageState extends State<SearchPage> {
             ),
             Row(
               children: [
-                SizedBox(width: 10.w,),
-                IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back)),
-                SizedBox(width: 10.w,),
+                SizedBox(
+                  width: 10.w,
+                ),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back)),
+                SizedBox(
+                  width: 10.w,
+                ),
                 Container(
                   width: 330.w,
                   height: 49.h,

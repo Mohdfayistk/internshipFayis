@@ -78,9 +78,11 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 33.w,
               ),
-              InkWell(onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>OrderAccount()));
-              },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => OrderAccount()));
+                },
                 child: Container(
                   width: 170.w,
                   height: 55.h,
@@ -125,9 +127,11 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 20.w,
               ),
-              InkWell(onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Favorite()));
-              },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => Favorite()));
+                },
                 child: Container(
                   width: 170.w,
                   height: 55.h,
@@ -179,9 +183,11 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 33.w,
               ),
-              InkWell(onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CartPage()));
-              },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => CartPage()));
+                },
                 child: Container(
                   width: 170.w,
                   height: 55.h,
@@ -226,9 +232,11 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 20.w,
               ),
-              InkWell(onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>SavedAddress()));
-              },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => SavedAddress()));
+                },
                 child: Container(
                   width: 170.w,
                   height: 55.h,
@@ -269,9 +277,11 @@ class _AccountState extends State<Account> {
             height: 20.h,
           ),
           Center(
-            child: InkWell(onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (_)=> ManageAccount()));
-            },
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => ManageAccount()));
+              },
               child: Container(
                 width: 357.w,
                 height: 70.h,

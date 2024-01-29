@@ -189,7 +189,8 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         height: 20.h,
                       ),
-                      SizedBox(width: 80.w,
+                      SizedBox(
+                        width: 80.w,
                         child: Text(
                           'SAR 50,000',
                           style: TextStyle(
@@ -268,7 +269,8 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         width: 260.w,
                       ),
-                      SizedBox(width: 100.w,
+                      SizedBox(
+                        width: 100.w,
                         child: Text(
                           'SAR 50,000',
                           textAlign: TextAlign.right,
@@ -302,7 +304,8 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         width: 235.w,
                       ),
-                      SizedBox(width: 100.w,
+                      SizedBox(
+                        width: 100.w,
                         child: Text(
                           '-  SAR 2,000',
                           textAlign: TextAlign.right,
@@ -382,7 +385,8 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         width: 230.w,
                       ),
-                      SizedBox(width: 80.w,
+                      SizedBox(
+                        width: 80.w,
                         child: Text(
                           'SAR 48,000',
                           style: TextStyle(
@@ -423,9 +427,11 @@ class _OrderPageState extends State<OrderPage> {
                   SizedBox(
                     width: 50.w,
                   ),
-                  GestureDetector(onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=>PaymentPage()));
-                  },
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => PaymentPage()));
+                    },
                     child: Container(
                       width: 197.w,
                       height: 42.h,
