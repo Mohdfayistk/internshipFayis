@@ -40,6 +40,8 @@ dependencies:
   smooth_page_indicator:
   expansion_tile_card:
   order_tracker_zen:
+  clipboard:
+  share_plus:
 
 dev_dependencies:
   flutter_test:

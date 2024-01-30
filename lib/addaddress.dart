@@ -15,6 +15,15 @@ TextEditingController state = TextEditingController();
 TextEditingController City = TextEditingController();
 TextEditingController Address = TextEditingController();
 TextEditingController road = TextEditingController();
+List<String> text = [
+  "Home",
+  "Work",
+];
+List<String> image = [
+  "assets/36.png",
+  "assets/37.png",
+];
+int current =0;
 
 class _AddAddressState extends State<AddAddress> {
   @override
@@ -297,87 +306,76 @@ class _AddAddressState extends State<AddAddress> {
             SizedBox(
               height: 10.h,
             ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 28.w,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    width: 94.w,
+            Padding(
+              padding: EdgeInsets.only(left: 26.w),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 250.w,
                     height: 33.h,
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1.w, color: Color(0xFFF1F1F1)),
-                        borderRadius: BorderRadius.circular(44.r),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 15.h,
-                        ),
-                        SizedBox(
-                            width: 14.w,
-                            height: 14.h,
-                            child: Image.asset("assets/34.png")),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Text(
-                          'Home',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13.sp,
-                            fontFamily: 'hello',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
-                    ),
+                    child: ListView.separated(
+                        separatorBuilder: (ctx, index) {
+                          return Container(
+                              width: 15.w,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 50.w),
+                              ));
+                        },
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 2,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                current = index;
+                              });
+                            },
+                            child: AnimatedContainer(
+                              duration: Duration(microseconds: 300),
+                              width: 96.w,
+                              height: 35.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: current == index
+                                          ? Colors.blue
+                                          : Color(0xffF1F1F1)),
+                                  borderRadius: current == index
+                                      ? BorderRadius.circular(44.r)
+                                      : BorderRadius.circular(44.r)),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 16.w),
+                                    child: Image.asset(
+                                      image[index],
+                                      width: 18.w,
+                                      height: 18.h,
+                                      color: current == index
+                                          ? Colors.blue
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.w),
+                                    child: Text(
+                                      text[index],
+                                      style: TextStyle(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: current == index
+                                            ? Colors.blue
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
                   ),
-                ),
-                SizedBox(
-                  width: 15.w,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    width: 94.w,
-                    height: 33.h,
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1.w, color: Color(0xFFF1F1F1)),
-                        borderRadius: BorderRadius.circular(44.r),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 15.h,
-                        ),
-                        SizedBox(
-                            width: 14.w,
-                            height: 14.h,
-                            child: Image.asset("assets/35.png")),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Text(
-                          'Work',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13.sp,
-                            fontFamily: 'hello',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
               height: 25.h,

@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/Tv.dart';
+import 'package:intership/bestoffers.dart';
 import 'package:intership/cartpage.dart';
 import 'package:intership/favorite.dart';
 import 'package:intership/searchpage.dart';
@@ -430,16 +431,22 @@ class _HomepageState extends State<Homepage> {
               SizedBox(
                 width: 240.w,
               ),
-              Text(
-                'See all',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF264050),
-                  fontSize: 20,
-                  fontFamily: 'hello',
-                  fontWeight: FontWeight.w400,
-                  height: 0,
-                  letterSpacing: -0.30,
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => BestOffers()));
+                },
+                child: Text(
+                  'See all',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF264050),
+                    fontSize: 20,
+                    fontFamily: 'hello',
+                    fontWeight: FontWeight.w400,
+                    height: 0,
+                    letterSpacing: -0.30,
+                  ),
                 ),
               ),
             ],

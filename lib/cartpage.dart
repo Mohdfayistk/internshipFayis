@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+bool isChecked = true;
+
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -17,16 +19,26 @@ class _CartPageState extends State<CartPage> {
         SizedBox(
           height: 70.h,
         ),
-        Center(
-          child: Text(
-            'Cart',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.sp,
-              fontFamily: 'hello',
-              fontWeight: FontWeight.w400,
+        Row(
+          children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back)),
+            SizedBox(
+              width: 10.h,
             ),
-          ),
+            Text(
+              'Cart',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.sp,
+                fontFamily: 'hello',
+                fontWeight: FontWeight.w400,
+              ),
+            )
+          ],
         ),
         SizedBox(
           height: 40.h,
@@ -50,10 +62,16 @@ class _CartPageState extends State<CartPage> {
               itemBuilder: (context, position) {
                 return SizedBox(
                     child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      width: 50.w,
-                    ),
+                    Checkbox(
+                        value: isChecked,
+                        activeColor: Colors.black,
+                        onChanged: (value) {
+                          setState(() {
+                            isChecked = !isChecked;
+                          });
+                        }),
                     SizedBox(
                         width: 103.w,
                         height: 87.h,

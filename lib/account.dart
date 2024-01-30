@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/cartpage.dart';
@@ -5,15 +6,18 @@ import 'package:intership/favorite.dart';
 import 'package:intership/manageaccount.dart';
 import 'package:intership/orderaccount.dart';
 import 'package:intership/savedaddress.dart';
+import 'package:share_plus/share_plus.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
 
   @override
+
   State<Account> createState() => _AccountState();
 }
 
 class _AccountState extends State<Account> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -403,10 +407,15 @@ class _AccountState extends State<Account> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(
-                          width: 24.w,
-                          height: 24.h,
-                          child: Image.asset("assets/24.png")),
+                      InkWell(onTap: (){
+                        FlutterClipboard.copy('z0EB6Mx').then(( value ) { var snackBar = SnackBar(content: Text('Copied'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);});
+                      },
+                        child: SizedBox(
+                            width: 27.w,
+                            height: 27.h,
+                            child: Image.asset("assets/24.png")),
+                      ),
                     ],
                   ),
                 ],
@@ -414,24 +423,28 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 35.w,
               ),
-              Container(
-                width: 74.w,
-                height: 25.h,
-                decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 0.25.w, color: Color(0xFF1C5B82)),
-                    borderRadius: BorderRadius.circular(6.r),
+              InkWell(onTap: (){
+                Share.share('z0EB6Mx');
+              },
+                child: Container(
+                  width: 74.w,
+                  height: 25.h,
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 0.25.w, color: Color(0xFF1C5B82)),
+                      borderRadius: BorderRadius.circular(6.r),
+                    ),
                   ),
-                ),
-                child: Center(
-                  child: Text(
-                    'Share',
-                    style: TextStyle(
-                      color: Color(0xFF104363),
-                      fontSize: 15.sp,
-                      fontFamily: 'hello',
-                      fontWeight: FontWeight.w400,
+                  child: Center(
+                    child: Text(
+                      'Share',
+                      style: TextStyle(
+                        color: Color(0xFF104363),
+                        fontSize: 15.sp,
+                        fontFamily: 'hello',
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ),
