@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/loginscreen.dart';
+import 'package:intership/UI/loginscreen.dart';
 
 class firstscreen extends StatefulWidget {
   const firstscreen({Key? key}) : super(key: key);

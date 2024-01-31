@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/order.dart';
+import 'package:intership/UI/order.dart';
 
 class TrendingNow extends StatefulWidget {
   const TrendingNow({Key? key}) : super(key: key);

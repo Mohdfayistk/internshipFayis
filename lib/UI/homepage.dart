@@ -2,12 +2,12 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/Tv.dart';
-import 'package:intership/bestoffers.dart';
-import 'package:intership/cartpage.dart';
-import 'package:intership/favorite.dart';
-import 'package:intership/searchpage.dart';
-import 'package:intership/trending%20Now.dart';
+import 'package:intership/UI/Tv.dart';
+import 'package:intership/UI/bestoffers.dart';
+import 'package:intership/UI/cartpage.dart';
+import 'package:intership/UI/favorite.dart';
+import 'package:intership/UI/searchpage.dart';
+import 'package:intership/UI/trending%20Now.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Homepage extends StatefulWidget {

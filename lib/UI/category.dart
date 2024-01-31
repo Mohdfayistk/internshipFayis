@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/Tv.dart';
+import 'package:intership/UI/Tv.dart';
 
 class Category extends StatefulWidget {
   const Category({Key? key}) : super(key: key);

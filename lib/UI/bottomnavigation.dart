@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/account.dart';
-import 'package:intership/category.dart';
-import 'package:intership/homepage.dart';
-import 'package:intership/order.dart';
+import 'package:intership/UI/account.dart';
+import 'package:intership/UI/category.dart';
+import 'package:intership/UI/homepage.dart';
+import 'package:intership/UI/order.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);

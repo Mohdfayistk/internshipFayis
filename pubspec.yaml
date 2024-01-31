@@ -42,6 +42,8 @@ dependencies:
   order_tracker_zen:
   clipboard:
   share_plus:
+  flutter_bloc:
+  http:
 
 dev_dependencies:
   flutter_test:

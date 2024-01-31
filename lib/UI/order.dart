@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/ordertracking.dart';
+import 'package:intership/UI/ordertracking.dart';
 
 class Order extends StatefulWidget {
   const Order({Key? key}) : super(key: key);

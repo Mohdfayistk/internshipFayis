@@ -1,11 +1,11 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/cartpage.dart';
-import 'package:intership/favorite.dart';
-import 'package:intership/manageaccount.dart';
-import 'package:intership/orderaccount.dart';
-import 'package:intership/savedaddress.dart';
+import 'package:intership/UI/cartpage.dart';
+import 'package:intership/UI/favorite.dart';
+import 'package:intership/UI/manageaccount.dart';
+import 'package:intership/UI/orderaccount.dart';
+import 'package:intership/UI/savedaddress.dart';
 import 'package:share_plus/share_plus.dart';
 
 class Account extends StatefulWidget {

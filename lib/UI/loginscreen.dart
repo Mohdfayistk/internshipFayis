@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/homepage.dart';
-import 'package:intership/loginpage.dart';
+import 'package:intership/UI/homepage.dart';
+import 'package:intership/UI/loginpage.dart';
+import 'package:intership/UI/signup.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({Key? key}) : super(key: key);
@@ -125,24 +126,28 @@ class _LoginscreenState extends State<Loginscreen> {
             height: 30.h,
           ),
           Center(
-            child: Container(
-              width: 144.w,
-              height: 38.h,
-              decoration: ShapeDecoration(
-                color: Color(0xFF264050),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(9)),
-              ),
-              child: Center(
-                child: Text(
-                  'Signup',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.sp,
-                    fontFamily: 'hello',
-                    fontWeight: FontWeight.w500,
-                    height: 0.06,
-                    letterSpacing: -0.30,
+            child: InkWell(onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Signup()));
+            },
+              child: Container(
+                width: 144.w,
+                height: 38.h,
+                decoration: ShapeDecoration(
+                  color: Color(0xFF264050),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(9)),
+                ),
+                child: Center(
+                  child: Text(
+                    'Signup',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontFamily: 'hello',
+                      fontWeight: FontWeight.w500,
+                      height: 0.06,
+                      letterSpacing: -0.30,
+                    ),
                   ),
                 ),
               ),
