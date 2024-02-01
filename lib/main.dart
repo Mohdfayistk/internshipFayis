@@ -5,6 +5,7 @@ import 'package:intership/UI/firstscreen.dart';
 import 'package:intership/UI/signup.dart';
 import 'package:intership/UI/signup.dart';
 
+import 'BLOC/Login/login_bloc.dart';
 import 'BLOC/Signup/signup_bloc.dart';
 
 const basePath = 'http://fursancart.rootsys.in';
@@ -25,8 +26,16 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         // Use builder only if you need to use library outside ScreenUtilInit context
         builder: (_, child) {
-          return BlocProvider(
-            create: (context) => SignupBloc(),
+          return MultiBlocProvider(
+
+            providers: [
+              BlocProvider(
+                create: (context) => SignupBloc(),
+              ),
+              BlocProvider(
+                create: (context) => LoginBloc(),
+              ),
+            ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',

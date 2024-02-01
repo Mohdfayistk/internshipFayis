@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/UI/bottomnavigation.dart';
-
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../BLOC/Signup/signup_bloc.dart';
 import '../Repository/ModelClass/SignUp.dart';
@@ -13,6 +13,7 @@ class Signup extends StatefulWidget {
   @override
   State<Signup> createState() => _SignupState();
 }
+
 late SignUp data;
 TextEditingController email = TextEditingController();
 TextEditingController username = TextEditingController();
@@ -31,17 +32,17 @@ class _SignupState extends State<Signup> {
               Padding(
                 padding: EdgeInsets.only(left: 350.w, top: 180.h),
                 child:
-                SizedBox(width: 182.w, child: Image.asset("assets/8.png")),
+                    SizedBox(width: 182.w, child: Image.asset("assets/8.png")),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 250.h, right: 365.w),
                 child:
-                SizedBox(width: 182.w, child: Image.asset("assets/5.png")),
+                    SizedBox(width: 182.w, child: Image.asset("assets/5.png")),
               ),
               Padding(
                 padding: EdgeInsets.only(right: 215.w, bottom: 150.h),
                 child:
-                SizedBox(width: 291.w, child: Image.asset("assets/6.png")),
+                    SizedBox(width: 291.w, child: Image.asset("assets/6.png")),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 282.h),
@@ -182,9 +183,9 @@ class _SignupState extends State<Signup> {
                                             : Icons.visibility),
                                         onPressed: () {
                                           setState(
-                                                () {
+                                            () {
                                               passwordVisible =
-                                              !passwordVisible;
+                                                  !passwordVisible;
                                             },
                                           );
                                         },
@@ -204,22 +205,53 @@ class _SignupState extends State<Signup> {
                       Center(
                         child: BlocListener<SignupBloc, SignupState>(
                           listener: (context, state) {
-    if (state is SignupBlocLoading) {
-    print("loading");
-    }if (state is SignupBlocError) {
-    Text('error');
-    }
-    if (state is SignupBlocLoaded) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => BottomNavigation()));
-    }
-    // TODO: implement listener
-    },
+                            if (state is SignupBlocLoading) {
+                              showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return Container(
+                                      width: 60.w,
+                                      height: 60.h,
+                                      child: Center(
+                                        child: SizedBox(
+                                          width: 60.w,
+                                          height: 60.h,
+                                          child: LoadingIndicator(
+                                            indicatorType:
+                                                Indicator.ballSpinFadeLoader,
 
+                                            /// Required, The loading type of the widget
+                                            colors: const [Colors.white],
+
+                                            /// Optional, The color collections
+                                            strokeWidth: 1.w,
+
+                                            /// Optional, The stroke of the line, only applicable to widget which contains line
+                                            // Optional, the stroke backgroundColor
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            }
+                            if (state is SignupBlocError) {
+                              Text('error');
+                            }
+                            if (state is SignupBlocLoaded) {
+                              Navigator.of(context).pop();
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => BottomNavigation()));
+                            }
+                            // TODO: implement listener
+                          },
                           child: GestureDetector(
                             onTap: () {
-                              BlocProvider.of<SignupBloc>(context)
-                                  .add(FetchSignup(username: username.text,  password: password.text, email: email.text));
+                              BlocProvider.of<SignupBloc>(context).add(
+                                  FetchSignup(
+                                      username: username.text,
+                                      password: password.text,
+                                      email: email.text));
                             },
                             child: Container(
                               width: 363.w,

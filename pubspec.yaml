@@ -44,6 +44,7 @@ dependencies:
   share_plus:
   flutter_bloc:
   http:
+  loading_indicator:
 
 dev_dependencies:
   flutter_test:

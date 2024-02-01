@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/UI/bottomnavigation.dart';
 import 'package:intership/UI/homepage.dart';
 import 'package:intership/UI/signup.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+
+import '../BLOC/Login/login_bloc.dart';
+import '../Repository/ModelClass/Login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,6 +16,16 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
+List<Color> _kDefaultRainbowColors = const [
+  Colors.red,
+  Colors.orange,
+  Colors.yellow,
+  Colors.green,
+  Colors.blue,
+  Colors.indigo,
+  Colors.purple,
+];
+late Login data;
 TextEditingController email = TextEditingController();
 TextEditingController password = TextEditingController();
 bool passwordVisible = true;
@@ -21,12 +36,13 @@ class _LoginPageState extends State<LoginPage> {
 
   void _submit() {
     final isValid = _formKey.currentState!.validate();
-    if(isValid==true){
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => BottomNavigation()));
+    if (isValid == true) {
+      BlocProvider.of<LoginBloc>(context)
+          .add(FetchLogin(password: password.text, email: email.text));
     }
     _formKey.currentState!.save();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                             topRight: Radius.circular(67.r)),
                       )),
                   child: Form(
-                    key:  _formKey,
+                    key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -96,7 +112,8 @@ class _LoginPageState extends State<LoginPage> {
                                     width: 270.w,
                                     child: TextFormField(
                                       textInputAction: TextInputAction.next,
-                                      style: TextStyle(color: Color(0xff767676)),
+                                      style:
+                                          TextStyle(color: Color(0xff767676)),
                                       controller: email,
                                       autofocus: false,
                                       decoration: InputDecoration(
@@ -149,29 +166,30 @@ class _LoginPageState extends State<LoginPage> {
                                     width: 300.w,
                                     child: TextFormField(
                                       obscureText: passwordVisible,
-                                      style: TextStyle(color: Color(0xff767676)),
+                                      style:
+                                          TextStyle(color: Color(0xff767676)),
                                       controller: password,
                                       autofocus: false,
                                       decoration: InputDecoration(
-                                        suffixIcon: IconButton(
-                                          icon: Icon(passwordVisible
-                                              ? Icons.visibility_off
-                                              : Icons.visibility),
-                                          onPressed: () {
-                                            setState(
-                                              () {
-                                                passwordVisible =
-                                                    !passwordVisible;
-                                              },
-                                            );
-                                          },
-                                        ),
-                                        hintText: 'Passsword',
-                                        focusedBorder: InputBorder.none,
-                                        enabledBorder: InputBorder.none,errorBorder: InputBorder.none,disabledBorder: InputBorder.none
-                                      ),
+                                          suffixIcon: IconButton(
+                                            icon: Icon(passwordVisible
+                                                ? Icons.visibility_off
+                                                : Icons.visibility),
+                                            onPressed: () {
+                                              setState(
+                                                () {
+                                                  passwordVisible =
+                                                      !passwordVisible;
+                                                },
+                                              );
+                                            },
+                                          ),
+                                          hintText: 'Passsword',
+                                          focusedBorder: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          disabledBorder: InputBorder.none),
                                       onFieldSubmitted: (value) {},
-
                                       validator: (value) {
                                         if (value!.isEmpty) {
                                           return 'Enter a valid password!';
@@ -187,29 +205,72 @@ class _LoginPageState extends State<LoginPage> {
                           height: 58.h,
                         ),
                         Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              _submit();
+                          child: BlocListener<LoginBloc, LoginState>(
+                            listener: (context, state) {
+                              if (state is LoginBlocLoading) {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) {
+                                      return Container(
+                                        width: 60,
+                                        height: 60,
+                                        child: Center(
+                                          child: SizedBox(
+                                            width: 60.w,
+                                            height: 60.h,
+                                            child: LoadingIndicator(
+                                              indicatorType:
+                                                  Indicator.ballSpinFadeLoader,
+
+                                              /// Required, The loading type of the widget
+                                              colors: _kDefaultRainbowColors,
+
+                                              /// Optional, The color collections
+                                              strokeWidth: 1.w,
+
+                                              /// Optional, The stroke of the line, only applicable to widget which contains line
+                                              // Optional, the stroke backgroundColor
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              }
+                              if (state is LoginBlocError) {
+                                Text('error');
+                              }
+                              if (state is LoginBlocLoaded) {
+                                Navigator.of(context).pop();
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => BottomNavigation()));
+                              }
+                              // TODO: implement listener
                             },
-                            child: Container(
-                              width: 363.w,
-                              height: 62.h,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFFFC113),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12.r),
+                            child: GestureDetector(
+                              onTap: () {
+                                _submit();
+                              },
+                              child: Container(
+                                width: 363.w,
+                                height: 62.h,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFFFC113),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.r),
+                                  ),
                                 ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    color: Color(0xFF264050),
-                                    fontSize: 24.sp,
-                                    fontFamily: 'hello',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.04,
-                                    letterSpacing: -0.30,
+                                child: Center(
+                                  child: Text(
+                                    'Login',
+                                    style: TextStyle(
+                                      color: Color(0xFF264050),
+                                      fontSize: 24.sp,
+                                      fontFamily: 'hello',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.04,
+                                      letterSpacing: -0.30,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -257,7 +318,8 @@ class _LoginPageState extends State<LoginPage> {
                         Center(
                           child: GestureDetector(
                             onTap: () {
-Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Signup()));
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (_) => Signup()));
                             },
                             child: Text.rich(
                               TextSpan(
