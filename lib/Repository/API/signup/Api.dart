@@ -7,7 +7,7 @@ import '../Api_Client.dart';
 import '../multi_file_api_client.dart';
 
 class SignUpApi {
-  MultiFileApiClient apiClient = MultiFileApiClient();
+  ApiClient apiClient = ApiClient();
 
   Future<SignUp> getSignUp(
       String email, String username, String password) async {
@@ -15,7 +15,7 @@ class SignUpApi {
     var body = {"email": email, "password": password, "username": username,};
     print(body);
     Response response =
-    await apiClient.uploadFiles(uploadPath: trendingpath, method: "POST", bodyData: body, files: []);
+    await apiClient.invokeAPI(trendingpath, 'POST', body);
 
     return SignUp.fromJson(jsonDecode(response.body));
   }

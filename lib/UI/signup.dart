@@ -237,6 +237,7 @@ class _SignupState extends State<Signup> {
                             }
                             if (state is SignupBlocError) {
                               Text('error');
+                              Navigator.of(context).pop();
                             }
                             if (state is SignupBlocLoaded) {
                               Navigator.of(context).pop();

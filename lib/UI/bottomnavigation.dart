@@ -15,7 +15,7 @@ class BottomNavigation extends StatefulWidget {
 int currentIndex = 0;
 final screens = [
   Homepage(),
-  Category(),
+  Categoryy(),
   Order(),
   Account(),
 ];

@@ -7,8 +7,9 @@ import 'package:intership/UI/signup.dart';
 
 import 'BLOC/Login/login_bloc.dart';
 import 'BLOC/Signup/signup_bloc.dart';
+import 'BLOC/category/category_bloc.dart';
 
-const basePath = 'http://fursancart.rootsys.in';
+const basePath = 'http://fursancart.rootsys.in/api';
 
 void main() {
   runApp(const MyApp());
@@ -27,8 +28,10 @@ class MyApp extends StatelessWidget {
         // Use builder only if you need to use library outside ScreenUtilInit context
         builder: (_, child) {
           return MultiBlocProvider(
-
             providers: [
+              BlocProvider(
+                create: (context) => CategoryBloc(),
+              ),
               BlocProvider(
                 create: (context) => SignupBloc(),
               ),
@@ -55,8 +58,7 @@ class MyApp extends StatelessWidget {
                 //
                 // This works for code too, not just values: Most code changes can be
                 // tested with just a hot reload.
-                colorScheme: ColorScheme.fromSeed(
-                    seedColor: Colors.deepPurple),
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
               ),
               home: firstscreen(),

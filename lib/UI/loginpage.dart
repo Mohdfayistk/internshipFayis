@@ -16,15 +16,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-List<Color> _kDefaultRainbowColors = const [
-  Colors.red,
-  Colors.orange,
-  Colors.yellow,
-  Colors.green,
-  Colors.blue,
-  Colors.indigo,
-  Colors.purple,
-];
+
 late Login data;
 TextEditingController email = TextEditingController();
 TextEditingController password = TextEditingController();
@@ -224,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   Indicator.ballSpinFadeLoader,
 
                                               /// Required, The loading type of the widget
-                                              colors: _kDefaultRainbowColors,
+                                              colors:const [Colors.white],
 
                                               /// Optional, The color collections
                                               strokeWidth: 1.w,
@@ -238,6 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                               }
                               if (state is LoginBlocError) {
+                                Navigator.of(context).pop();
                                 Text('error');
                               }
                               if (state is LoginBlocLoaded) {

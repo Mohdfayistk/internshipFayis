@@ -17,7 +17,7 @@ class MultiFileApiClient {
     Map<String, String> headerParams = {
       // "Authorization": "Bearer $token",
       "Accept": "application/json",
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/x-www-form-urlencoded",
     };
 
     print('Upload Path: $uploadPath');
@@ -39,7 +39,7 @@ class MultiFileApiClient {
         if (value is String) {
           request.fields[key] = value;
         } else {
-          request.fields[key] = value.toString();
+          request.fields[key] = value;
         }
       });
     }
