@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intership/UI/manageaccount.dart';
+import 'package:intership/UI/savedaddress.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+
+import '../BLOC/addaddress/addaddress_bloc.dart';
+
 
 class AddAddress extends StatefulWidget {
   const AddAddress({Key? key}) : super(key: key);
@@ -8,12 +15,14 @@ class AddAddress extends StatefulWidget {
   State<AddAddress> createState() => _AddAddressState();
 }
 
-TextEditingController Pincode = TextEditingController();
+
+TextEditingController address = TextEditingController();
+TextEditingController pincode = TextEditingController();
 TextEditingController fullname = TextEditingController();
-TextEditingController Phonenumber = TextEditingController();
+TextEditingController phonenumber = TextEditingController();
 TextEditingController state = TextEditingController();
-TextEditingController City = TextEditingController();
-TextEditingController Address = TextEditingController();
+TextEditingController city = TextEditingController();
+TextEditingController housenumber = TextEditingController();
 TextEditingController road = TextEditingController();
 List<String> text = [
   "Home",
@@ -23,7 +32,7 @@ List<String> image = [
   "assets/36.png",
   "assets/37.png",
 ];
-int current =0;
+int current = 0;
 
 class _AddAddressState extends State<AddAddress> {
   @override
@@ -106,7 +115,7 @@ class _AddAddressState extends State<AddAddress> {
                   padding: EdgeInsets.only(left: 25.w, right: 20.w),
                   child: TextFormField(
                     keyboardType: TextInputType.phone,
-                    controller: Phonenumber,
+                    controller: phonenumber,
                     textInputAction: TextInputAction.next,
                     style: TextStyle(color: Color(0xFF0F0F0F)),
                     autofocus: false,
@@ -142,7 +151,7 @@ class _AddAddressState extends State<AddAddress> {
                       width: 140.w,
                       child: TextFormField(
                         keyboardType: TextInputType.phone,
-                        controller: Pincode,
+                        controller: pincode,
                         textInputAction: TextInputAction.next,
                         style: TextStyle(color: Color(0xFF0F0F0F)),
                         autofocus: false,
@@ -205,7 +214,7 @@ class _AddAddressState extends State<AddAddress> {
                   padding: EdgeInsets.only(left: 25.w, right: 20.w),
                   child: TextFormField(
                     keyboardType: TextInputType.text,
-                    controller: City,
+                    controller: city,
                     textInputAction: TextInputAction.next,
                     style: TextStyle(color: Color(0xFF0F0F0F)),
                     autofocus: false,
@@ -240,7 +249,37 @@ class _AddAddressState extends State<AddAddress> {
                   padding: EdgeInsets.only(left: 25.w, right: 20.w),
                   child: TextFormField(
                     keyboardType: TextInputType.text,
-                    controller: Address,
+                    controller: address,
+                    textInputAction: TextInputAction.next,
+                    style: TextStyle(color: Color(0xFF0F0F0F)),
+                    autofocus: false,
+                    decoration: InputDecoration(
+                      hintText: 'Address',
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Center(
+              child: Container(
+                width: 377.w,
+                height: 63.h,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 1.w, color: Color(0xFFF1F1F1)),
+                    borderRadius: BorderRadius.circular(3.r),
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 25.w, right: 20.w),
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    controller: housenumber,
                     textInputAction: TextInputAction.next,
                     style: TextStyle(color: Color(0xFF0F0F0F)),
                     autofocus: false,
@@ -381,22 +420,79 @@ class _AddAddressState extends State<AddAddress> {
               height: 25.h,
             ),
             Center(
-              child: Container(
-                width: 379.w,
-                height: 63.h,
-                decoration: ShapeDecoration(
-                  color: Color(0xFFFFC113),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(3)),
-                ),
-                child: Center(
-                  child: Text(
-                    'Save Address',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.sp,
-                      fontFamily: 'hello',
-                      fontWeight: FontWeight.w600,
+              child: BlocListener<AddaddressBloc, AddaddressState>(
+                listener: (context, state) {
+                  if (state is AddaddressBlocLoading) {
+                    showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            width: 60.w,
+                            height: 60.h,
+                            child: Center(
+                              child: SizedBox(
+                                width: 60.w,
+                                height: 60.h,
+                                child: LoadingIndicator(
+                                  indicatorType: Indicator.ballSpinFadeLoader,
+
+                                  /// Required, The loading type of the widget
+                                  colors: const [Colors.white],
+
+                                  /// Optional, The color collections
+                                  strokeWidth: 1.w,
+
+                                  /// Optional, The stroke of the line, only applicable to widget which contains line
+                                  // Optional, the stroke backgroundColor
+                                ),
+                              ),
+                            ),
+                          );
+                        });
+                  }
+                  if (state is AddaddressBlocError) {
+                    Text('error');
+                    Navigator.of(context).pop();
+                  }
+                  if (state is AddaddressBlocLoaded) {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  }
+                  // TODO: implement listener
+                },
+                child: GestureDetector(
+                  onTap: () {
+                    BlocProvider.of<AddaddressBloc>(context)
+                        .add(FetchAddaddress(
+                      fullname: fullname.text,
+                      phonenumber: phonenumber.text,
+                      pincode: int.parse(pincode.text),
+                      state: state.text,
+                      city: city.text,
+                      address: address.text,
+                      housenumber: housenumber.text,
+                      road: road.text,
+                    ));
+                  },
+                  child: Container(
+                    width: 379.w,
+                    height: 63.h,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFFFC113),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Save Address',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.sp,
+                          fontFamily: 'hello',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                   ),
                 ),

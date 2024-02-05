@@ -5,6 +5,7 @@ import 'package:intership/UI/bottomnavigation.dart';
 import 'package:intership/UI/homepage.dart';
 import 'package:intership/UI/signup.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../BLOC/Login/login_bloc.dart';
 import '../Repository/ModelClass/Login.dart';
@@ -234,6 +235,8 @@ class _LoginPageState extends State<LoginPage> {
                                 Text('error');
                               }
                               if (state is LoginBlocLoaded) {
+                                data=BlocProvider.of<LoginBloc>(context).loginModel;
+                                userInfo(data.tokens!.accessToken.toString()??"",data.res!.id.toString()??"");
                                 Navigator.of(context).pop();
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => BottomNavigation()));
@@ -374,5 +377,10 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+  void userInfo(String token,String userId)async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("Token", token);
+    prefs.setString("UserId", userId);
   }
 }

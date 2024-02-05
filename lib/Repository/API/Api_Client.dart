@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart';
 import 'package:intership/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Api_exception.dart';
 
@@ -14,9 +15,18 @@ class ApiClient {
     print(url);
 
     final nullableHeaderParams = (headerParams.isEmpty) ? null : headerParams;
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token= prefs.getString("Token")!;
     print(body);
     switch (method) {
       case "POST":
+        response = await post(Uri.parse(url),
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization':'Bearer${token}'
+            },
+            body: body);
+      case "POST1":
         response = await post(Uri.parse(url),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',

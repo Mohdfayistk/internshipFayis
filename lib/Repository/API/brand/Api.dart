@@ -2,20 +2,19 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
+import '../../ModelClass/Brand.dart';
 
-
-import '../../ModelClass/Category.dart';
 import '../Api_Client.dart';
 
-class CategoryApi {
+class BrandApi {
   ApiClient apiClient = ApiClient();
 
-  Future<List<Category>> getCategory() async {
-    String trendingpath = "/category/all";
+  Future<List<Brand>> getBrand() async {
+    String trendingpath = "/brand/all";
     var body = {};
     print(body);
     Response response = await apiClient.invokeAPI(trendingpath, 'GET', body);
 
-    return Category.listFromJson(jsonDecode(response.body));
+    return Brand.listFromJson(jsonDecode(response.body));
   }
 }
