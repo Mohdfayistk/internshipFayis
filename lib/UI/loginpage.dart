@@ -28,12 +28,7 @@ class _LoginPageState extends State<LoginPage> {
   var isLoading = false;
 
   void _submit() {
-    final isValid = _formKey.currentState!.validate();
-    if (isValid == true) {
-      BlocProvider.of<LoginBloc>(context)
-          .add(FetchLogin(password: password.text, email: email.text));
-    }
-    _formKey.currentState!.save();
+
   }
 
   @override
@@ -245,7 +240,12 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             child: GestureDetector(
                               onTap: () {
-                                _submit();
+                                final isValid = _formKey.currentState!.validate();
+                                if (isValid == true) {
+                                  BlocProvider.of<LoginBloc>(context)
+                                      .add(FetchLogin(password: password.text, email: email.text));
+                                }
+                                _formKey.currentState!.save();
                               },
                               child: Container(
                                 width: 363.w,

@@ -26,14 +26,14 @@ TextEditingController housenumber = TextEditingController();
 TextEditingController road = TextEditingController();
 List<String> text = [
   "Home",
-  "Work",
+  "Office",
 ];
 List<String> image = [
   "assets/36.png",
   "assets/37.png",
 ];
 int current = 0;
-
+String addresstype ='';
 class _AddAddressState extends State<AddAddress> {
   @override
   Widget build(BuildContext context) {
@@ -367,6 +367,7 @@ class _AddAddressState extends State<AddAddress> {
                             onTap: () {
                               setState(() {
                                 current = index;
+                                addresstype=text[index];
                               });
                             },
                             child: AnimatedContainer(
@@ -473,6 +474,7 @@ class _AddAddressState extends State<AddAddress> {
                       address: address.text,
                       housenumber: housenumber.text,
                       road: road.text,
+                      addresstype: addresstype,
                     ));
                   },
                   child: Container(

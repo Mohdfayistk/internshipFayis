@@ -19,7 +19,9 @@ class AddaddressApi {
       String city ,
       String address,
       String housenumber,
-      String road) async {
+      String road,
+      String addresstype
+  ) async {
     String trendingpath = "/user/add-delivery-address";
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String userId=prefs.getString("UserId")!;
@@ -33,7 +35,7 @@ class AddaddressApi {
       "houseNoOrBuildingName": housenumber,
       "landmark": road,
       "address": address,
-      "type":"Office"
+      "type":addresstype,
     };
     print(body);
     Response response = await apiClient.invokeAPI(trendingpath, 'POST', jsonEncode(body));

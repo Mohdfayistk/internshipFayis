@@ -12,6 +12,7 @@ class FetchAddaddress extends AddaddressEvent {
   final String address;
   final String road;
   final String housenumber;
+  final String addresstype;
 
   FetchAddaddress(
       {required this.fullname,
@@ -21,5 +22,6 @@ class FetchAddaddress extends AddaddressEvent {
       required this.state,
       required this.address,
       required this.city,
-      required this.housenumber});
+      required this.housenumber,
+      required this.addresstype});
 }

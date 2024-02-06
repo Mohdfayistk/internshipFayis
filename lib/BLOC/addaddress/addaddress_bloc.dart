@@ -19,7 +19,7 @@ class AddaddressBloc extends Bloc<AddaddressEvent, AddaddressState> {
       emit(AddaddressBlocLoading());
       try {
          await addaddressApi.getAddaddress(event.fullname,
-            event.phonenumber, event.pincode,  event.state, event.city,event.address,event.housenumber,event.road);
+            event.phonenumber, event.pincode,  event.state, event.city,event.address,event.housenumber,event.road,event.addresstype);
         emit(AddaddressBlocLoaded());
       } catch (e) {
         print(e);

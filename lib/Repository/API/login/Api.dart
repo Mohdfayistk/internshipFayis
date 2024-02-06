@@ -16,7 +16,8 @@ class LoginApi {
     var body = {"email": email, "password": password, };
     print(body);
     Response response =
-await    apiClient.invokeAPI(trendingpath, 'POST1', body);
+await    apiClient.invokeAPI(trendingpath, 'POST1', body
+);
 
     return Login.fromJson(jsonDecode(response.body));
   }

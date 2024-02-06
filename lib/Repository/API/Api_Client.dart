@@ -16,13 +16,13 @@ class ApiClient {
 
     final nullableHeaderParams = (headerParams.isEmpty) ? null : headerParams;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token= prefs.getString("Token")!;
+    String token= prefs.getString("Token")??"";
     print(body);
     switch (method) {
       case "POST":
         response = await post(Uri.parse(url),
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
+              'content-Type': 'application/json',
               'Authorization':'Bearer${token}'
             },
             body: body);
