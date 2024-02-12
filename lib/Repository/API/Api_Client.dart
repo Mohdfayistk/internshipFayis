@@ -73,7 +73,7 @@ class ApiClient {
       case "PATCH":
         response = await patch(
           Uri.parse(url),
-          headers: {'Content-Type': 'application/json'},
+          headers: {},
           body: body,
         );
         break;

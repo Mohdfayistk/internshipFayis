@@ -3,13 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/BLOC/addaddress/addaddress_bloc.dart';
 import 'package:intership/UI/firstscreen.dart';
-import 'package:intership/UI/signup.dart';
-import 'package:intership/UI/signup.dart';
 
 import 'BLOC/Login/login_bloc.dart';
 import 'BLOC/Signup/signup_bloc.dart';
 import 'BLOC/brand/brand_bloc.dart';
 import 'BLOC/category/category_bloc.dart';
+import 'BLOC/changepassword/changepassword_bloc.dart';
 
 const basePath = 'http://fursancart.rootsys.in/api';
 
@@ -45,6 +44,9 @@ class MyApp extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => AddaddressBloc(),
+              ),
+              BlocProvider(
+                create: (context) => ChangePasswordBloc(),
               ),
             ],
             child: MaterialApp(
