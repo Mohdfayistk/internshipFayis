@@ -1,12 +1,16 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intership/Repository/ModelClass/Profile.dart';
 import 'package:intership/UI/cartpage.dart';
 import 'package:intership/UI/favorite.dart';
 import 'package:intership/UI/manageaccount.dart';
 import 'package:intership/UI/orderaccount.dart';
 import 'package:intership/UI/savedaddress.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../BLOC/profile/profile_bloc.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -15,13 +19,31 @@ class Account extends StatefulWidget {
 
   State<Account> createState() => _AccountState();
 }
-
+late Profile data;
 class _AccountState extends State<Account> {
-
+  @override
+  void initState() {
+    BlocProvider.of<ProfileBloc>(context).add(FetchProfile());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: BlocBuilder<ProfileBloc, ProfileState>(
+  builder: (context, state) {
+    if (state is ProfileBlocLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    if (state is ProfileBlocError) {
+      return Text('error');
+    }
+    if (state is ProfileBlocLoaded) {
+      data = BlocProvider
+          .of<ProfileBloc>(context)
+          .profileModel;
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
@@ -63,7 +85,7 @@ class _AccountState extends State<Account> {
                   width: 58.w,
                 ),
                 Text(
-                  ' Shafeek',
+                  data.username.toString(),
                   style: TextStyle(
                     color: Color(0xFF463507),
                     fontSize: 24.sp,
@@ -407,9 +429,11 @@ class _AccountState extends State<Account> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      InkWell(onTap: (){
-                        FlutterClipboard.copy('z0EB6Mx').then(( value ) { var snackBar = SnackBar(content: Text('Copied'));
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);});
+                      InkWell(onTap: () {
+                        FlutterClipboard.copy('z0EB6Mx').then((value) {
+                          var snackBar = SnackBar(content: Text('Copied'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        });
                       },
                         child: SizedBox(
                             width: 27.w,
@@ -423,7 +447,7 @@ class _AccountState extends State<Account> {
               SizedBox(
                 width: 35.w,
               ),
-              InkWell(onTap: (){
+              InkWell(onTap: () {
                 Share.share('z0EB6Mx');
               },
                 child: Container(
@@ -538,7 +562,12 @@ class _AccountState extends State<Account> {
             ),
           )
         ],
-      ),
+      );
+    }
+    else {
+      return SizedBox();
+    }
+  }),
     );
   }
 }

@@ -6,9 +6,11 @@ import 'package:intership/UI/firstscreen.dart';
 
 import 'BLOC/Login/login_bloc.dart';
 import 'BLOC/Signup/signup_bloc.dart';
+import 'BLOC/address/address_bloc.dart';
 import 'BLOC/brand/brand_bloc.dart';
 import 'BLOC/category/category_bloc.dart';
 import 'BLOC/changepassword/changepassword_bloc.dart';
+import 'BLOC/profile/profile_bloc.dart';
 
 const basePath = 'http://fursancart.rootsys.in/api';
 
@@ -30,6 +32,12 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MultiBlocProvider(
             providers: [
+              BlocProvider(
+                create: (context) => AddressBloc(),
+              ),
+              BlocProvider(
+                create: (context) => ProfileBloc(),
+              ),
               BlocProvider(
                 create: (context) => CategoryBloc(),
               ),
