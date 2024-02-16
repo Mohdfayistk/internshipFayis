@@ -143,7 +143,7 @@ class _SavedAddressState extends State<SavedAddress> {
                               width: 295.w,
                               height: 80.h,
                               child: Text(
-                                  'name:${data[index].fullName},place:${data[index].address},number:${data[index].phone}')),
+                                  '${data[index].fullName},${data[index].address},${data[index].phone}')),
                           value: "Cash on Delivery'",
                           groupValue: gender,
                           onChanged: (value) {

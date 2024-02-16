@@ -19,7 +19,7 @@ class Account extends StatefulWidget {
 
   State<Account> createState() => _AccountState();
 }
-late Profile data;
+late Profile data1;
 class _AccountState extends State<Account> {
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _AccountState extends State<Account> {
       return Text('error');
     }
     if (state is ProfileBlocLoaded) {
-      data = BlocProvider
+      data1 = BlocProvider
           .of<ProfileBloc>(context)
           .profileModel;
       return Column(
@@ -85,7 +85,7 @@ class _AccountState extends State<Account> {
                   width: 58.w,
                 ),
                 Text(
-                  data.username.toString(),
+                  data1.username.toString(),
                   style: TextStyle(
                     color: Color(0xFF463507),
                     fontSize: 24.sp,
@@ -306,7 +306,11 @@ class _AccountState extends State<Account> {
             child: InkWell(
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => ManageAccount()));
+                    .push(MaterialPageRoute(builder: (_) => ManageAccount(
+                    Username:data1.username.toString(),
+                  Phonenumber: data1.phone.toString(),
+                  Email: data1.email.toString()
+                )));
               },
               child: Container(
                 width: 357.w,
@@ -421,7 +425,7 @@ class _AccountState extends State<Account> {
                         ),
                       ),
                       Text(
-                        'z0EB6Mx',
+                        data1.referralCode.toString(),
                         style: TextStyle(
                           color: Color(0xFF104363),
                           fontSize: 15.sp,
@@ -430,7 +434,7 @@ class _AccountState extends State<Account> {
                         ),
                       ),
                       InkWell(onTap: () {
-                        FlutterClipboard.copy('z0EB6Mx').then((value) {
+                        FlutterClipboard.copy(data1.referralCode.toString(),).then((value) {
                           var snackBar = SnackBar(content: Text('Copied'));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         });
@@ -448,7 +452,7 @@ class _AccountState extends State<Account> {
                 width: 35.w,
               ),
               InkWell(onTap: () {
-                Share.share('z0EB6Mx');
+                Share.share(data1.referralCode.toString(),);
               },
                 child: Container(
                   width: 74.w,

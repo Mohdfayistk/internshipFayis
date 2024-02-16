@@ -7,7 +7,15 @@ import '../BLOC/changepassword/changepassword_bloc.dart';
 import '../Repository/ModelClass/ChangePassword.dart';
 
 class ManageAccount extends StatefulWidget {
-  const ManageAccount({Key? key}) : super(key: key);
+  final String Username;
+  final String Phonenumber;
+  final String Email;
+
+  const ManageAccount({Key? key,
+  required this.Username,
+    required this.Phonenumber,
+    required this.Email
+  }) : super(key: key);
 
   @override
   State<ManageAccount> createState() => _ManageAccountState();
@@ -23,6 +31,18 @@ TextEditingController newpassword = TextEditingController();
 TextEditingController confirmpassword = TextEditingController();
 
 class _ManageAccountState extends State<ManageAccount> {
+  void dispose() {
+    currentpassword.clear();
+    newpassword.clear();
+    super.dispose();
+  }
+  @override
+  void initState() {
+    fullname.text =widget.Username;
+    phonenumber.text=widget.Phonenumber;
+    email.text=widget.Email;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
