@@ -11,7 +11,7 @@ part 'banner_event.dart';
 part 'banner_state.dart';
 
 class BannerBloc extends Bloc<BannerEvent, BannerState> {
-  late List<Banner> bannerModel;
+  late List<BannerModel> bannerModel;
   BannerApi bannerApi = BannerApi();
 
   BannerBloc() : super(BannerInitial()) {

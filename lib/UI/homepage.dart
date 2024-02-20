@@ -1,8 +1,9 @@
-import 'package:carousel_slider/carousel_options.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intership/Repository/ModelClass/Banner.dart';
 import 'package:intership/UI/Tv.dart';
 import 'package:intership/UI/bestoffers.dart';
 import 'package:intership/UI/cartpage.dart';
@@ -11,8 +12,11 @@ import 'package:intership/UI/searchpage.dart';
 import 'package:intership/UI/trending%20Now.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../BLOC/banner/banner_bloc.dart';
 import '../BLOC/brand/brand_bloc.dart';
+import '../BLOC/trendingnow/trendingnow_bloc.dart';
 import '../Repository/ModelClass/Brand.dart';
+import '../Repository/ModelClass/TrendingNow.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -20,6 +24,8 @@ class Homepage extends StatefulWidget {
   @override
   State<Homepage> createState() => _HomepageState();
 }
+late List<TrendingModel> data2;
+late List<BannerModel> data1;
 late List<Brand> data;
 int currentIndex = 0;
 
@@ -30,10 +36,12 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     controller = PageController(initialPage: currentIndex);
 
-      BlocProvider.of<BrandBloc>(context).add(FetchBrand());
+    BlocProvider.of<BrandBloc>(context).add(FetchBrand());
 
-
+    BlocProvider.of<BannerBloc>(context).add(FetchBanner());
+    BlocProvider.of<TrendingNowBloc>(context).add(FetchTrendingNow());
     super.initState();
+
   }
 
   @override
@@ -134,64 +142,85 @@ class _HomepageState extends State<Homepage> {
           SizedBox(
             height: 30.h,
           ),
-          Stack(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => Tv()));
-                },
-                child: CarouselSlider.builder(
-                  //Slider Container properties
-                  options: CarouselOptions(
-                    onPageChanged: (index, a) {
-                      setState(() {
-                        currentIndex = index;
-                      });
-                    },
-                    height: 200.h,
-                    enlargeCenterPage: true,
-                    enlargeStrategy: CenterPageEnlargeStrategy.height,
-                    autoPlay: true,
-                    aspectRatio: 16 / 9,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 300),
-                    viewportFraction: 1.0,
-                  ),
-                  itemCount: 5,
-                  itemBuilder:
-                      (BuildContext context, int index, int realIndex) {
-                    return Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: AssetImage("assets/12.png"),
+          BlocBuilder<BannerBloc, BannerState>(
+            builder: (context, state) {
+              if (state is BannerBlocLoading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state is BannerBlocError) {
+                return Text('error');
+              }
+              if (state is BannerBlocLoaded) {
+                data1 = BlocProvider.of<BannerBloc>(context).bannerModel;
+                return Stack(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) => Tv()));
+                      },
+                      child: CarouselSlider.builder(
+                        //Slider Container properties
+                        options: CarouselOptions(
+                          onPageChanged: (index, a) {
+                            setState(() {
+                              currentIndex = index;
+                            });
+                          },
+                          height: 200.h,
+                          enlargeCenterPage: true,
+                          enlargeStrategy: CenterPageEnlargeStrategy.height,
+                          autoPlay: true,
+                          aspectRatio: 16 / 9,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enableInfiniteScroll: true,
+                          autoPlayAnimationDuration: Duration(
+                              milliseconds: 300),
+                          viewportFraction: 1.0,
                         ),
+                        itemCount: data1.length,
+                        itemBuilder:
+                            (BuildContext context, int index, int realIndex) {
+                          return Container(
+                            margin: EdgeInsets.all(6.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              image: DecorationImage(
+                                image: NetworkImage(data1[index]
+                                    .banner![0].url
+                                    .toString()),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 180.h),
-                child: Center(
-                  child: Container(
-                      decoration: ShapeDecoration(
-                          color: Color(0x7FF1F1F1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          )),
-                      child: AnimatedSmoothIndicator(
-                        activeIndex: currentIndex,
-                        count: 5,
-                        effect: WormEffect(dotHeight: 7.h, dotWidth: 7.w),
-                      )),
-                ),
-              ),
-            ],
-          ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 180.h),
+                      child: Center(
+                        child: Container(
+                            decoration: ShapeDecoration(
+                                color: Color(0x7FF1F1F1),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                )),
+                            child: AnimatedSmoothIndicator(
+                              activeIndex: currentIndex,
+                              count: data1.length,
+                              effect: WormEffect(dotHeight: 7.h, dotWidth: 7.w),
+                            )),
+                      ),
+                    ),
+                  ],
+                );
+
+              }
+              else {
+                return SizedBox();
+              }
+            } ),
           SizedBox(
             height: 20.h,
           ),
@@ -213,53 +242,54 @@ class _HomepageState extends State<Homepage> {
           Padding(
             padding: EdgeInsets.only(left: 18.w),
             child: SizedBox(
-              height: 105.h,
-              width: 500.w,
-              child: BlocBuilder<BrandBloc, BrandState>(
-                builder: (context, state) {
-                  if (state is BrandBlocLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  if (state is BrandBlocError) {
-                    return Text('error');
-                  }
-                  if (state is BrandBlocLoaded) {
-                    data = BlocProvider
-                        .of<BrandBloc>(context)
-                        .brandModel;
-                    return ListView.separated(
-                        separatorBuilder: (ctx, index) {
-                          return SizedBox(
-                            width: 16.w,
-                          );
-                        },
-                        scrollDirection: Axis.horizontal,
-                        itemCount: data.length,
-                        itemBuilder: (context, index) {
-                          return SizedBox(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 15.w),
-                              child: SizedBox(
-                                width: 87.w,
-                                height: 87.h,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(16.r),
-                                    child: Image.network(data[index].image![0].url.toString())),
+                height: 105.h,
+                width: 500.w,
+                child: BlocBuilder<BrandBloc, BrandState>(
+                    builder: (context, state) {
+                      if (state is BrandBlocLoading) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (state is BrandBlocError) {
+                        return Text('error');
+                      }
+                      if (state is BrandBlocLoaded) {
+                        data = BlocProvider
+                            .of<BrandBloc>(context)
+                            .brandModel;
+                        return ListView.separated(
+                          separatorBuilder: (ctx, index) {
+                            return SizedBox(
+                              width: 16.w,
+                            );
+                          },
+                          scrollDirection: Axis.horizontal,
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            return SizedBox(
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 15.w),
+                                child: SizedBox(
+                                  width: 87.w,
+                                  height: 87.h,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(16.r),
+                                      child: data[index].image!.isEmpty
+                                          ? Image.asset('name')
+                                          : Image.network(data[index]
+                                          .image![0]
+                                          .url
+                                          .toString())),
+                                ),
                               ),
-                            ),
-                          );
-                        },
-
-
-                    ); }
-
-
-               else {
-              return SizedBox();
-                }})
-            ),
+                            );
+                          },
+                        );
+                      } else {
+                        return SizedBox();
+                      }
+                    })),
           ),
           SizedBox(
             height: 20.h,
@@ -312,129 +342,148 @@ class _HomepageState extends State<Homepage> {
             child: SizedBox(
               width: 500.w,
               height: 190.h,
-              child: ListView.separated(
-                separatorBuilder: (ctx, index) {
-                  return SizedBox(
-                    width: 14.w,
-                  );
-                },
-                scrollDirection: Axis.horizontal,
-                itemCount: 8,
-                itemBuilder: (context, position) {
-                  return SizedBox(
-                    child: Padding(
-                        padding: EdgeInsets.only(top: 15.w),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (_) => Tv()));
-                          },
-                          child: Container(
-                            width: 149.w,
-                            height: 190.h,
-                            decoration: ShapeDecoration(
-                              color: Color(0xFFEFEEEE),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+              child: BlocBuilder<TrendingNowBloc, TrendingNowState>(
+  builder: (context, state) {
+    if (state is TrendingNowBlocLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    if (state is TrendingNowBlocError) {
+      return Text('error');
+    }
+    if (state is TrendingNowBlocLoaded) {
+      data2 = BlocProvider
+          .of<TrendingNowBloc>(context)
+          .trendingModel;
+      return ListView.separated(
+        separatorBuilder: (ctx, index) {
+          return SizedBox(
+            width: 14.w,
+          );
+        },
+        scrollDirection: Axis.horizontal,
+        itemCount: data2.length,
+        itemBuilder: (context, index) {
+          return SizedBox(
+            child: Padding(
+                padding: EdgeInsets.only(top: 15.w),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => Tv()));
+                  },
+                  child: Container(
+                    width: 149.w,
+                    height: 190.h,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFEFEEEE),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Image.network(data2[index].images[0].),
+                        Container(
+                          width: 141.w,
+                          height: 53.h,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  width: 1, color: Color(0xFFF3F3F3)),
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
                               ),
                             ),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                                Image.asset("assets/TV.png"),
-                                Container(
-                                  width: 141.w,
-                                  height: 53.h,
-                                  decoration: ShapeDecoration(
-                                    color: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          width: 1, color: Color(0xFFF3F3F3)),
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10.w),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  Text(
+                                    data2[index].name.toString(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13.sp,
+                                      fontFamily: 'hello',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                      letterSpacing: -0.30,
                                     ),
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10.w),
-                                    child: SingleChildScrollView(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: 5.h,
-                                          ),
-                                          Text(
-                                            'Samsung Tv',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 13.sp,
-                                              fontFamily: 'hello',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0,
-                                              letterSpacing: -0.30,
-                                            ),
-                                          ),
-                                          Text(
-                                            '32” Full HD',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color(0xFF999595),
-                                              fontSize: 10.sp,
-                                              fontFamily: 'hello',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0,
-                                              letterSpacing: -0.30,
-                                            ),
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                '45000',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Color(0xFF999595),
-                                                  fontSize: 10,
-                                                  fontFamily: 'hello',
-                                                  fontWeight: FontWeight.w400,
-                                                  height: 0,
-                                                  letterSpacing: -0.30,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 5.w,
-                                              ),
-                                              Text(
-                                                '40000',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Color(0xFF999595),
-                                                  fontSize: 10,
-                                                  fontFamily: 'hello',
-                                                  fontWeight: FontWeight.w400,
-                                                  height: 0,
-                                                  letterSpacing: -0.30,
-                                                ),
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                  Text(
+                                    data2[index].description.toString(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFF999595),
+                                      fontSize: 10.sp,
+                                      fontFamily: 'hello',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                      letterSpacing: -0.30,
                                     ),
                                   ),
-                                )
-                              ],
+                                  Row(
+                                    children: [
+                                      Text(
+                                        data2[index].price.toString(),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF999595),
+                                          fontSize: 10,
+                                          fontFamily: 'hello',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0,
+                                          letterSpacing: -0.30,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5.w,
+                                      ),
+                                      Text(
+                                        data2[index].discountedAmount.toString(),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFF999595),
+                                          fontSize: 10,
+                                          fontFamily: 'hello',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0,
+                                          letterSpacing: -0.30,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        )),
-                  );
-                },
-              ),
+                        )
+                      ],
+                    ),
+                  ),
+                )),
+          );
+        },
+      );
+    }
+    else {
+      return SizedBox();
+    }
+  }),
             ),
           ),
           SizedBox(

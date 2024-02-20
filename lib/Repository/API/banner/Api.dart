@@ -11,12 +11,12 @@ import '../Api_Client.dart';
 class BannerApi {
   ApiClient apiClient = ApiClient();
 
-  Future<List<Banner>> getBanner() async {
+  Future<List<BannerModel>> getBanner() async {
     String trendingpath = "/banner/all";
     var body = {};
     print(body);
     Response response = await apiClient.invokeAPI(trendingpath, 'GET', body);
 
-    return Banner.listFromJson(jsonDecode(response.body));
+    return BannerModel.listFromJson(jsonDecode(response.body));
   }
 }

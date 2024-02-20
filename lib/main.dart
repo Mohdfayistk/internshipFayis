@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/BLOC/addaddress/addaddress_bloc.dart';
+import 'package:intership/BLOC/banner/banner_bloc.dart';
 import 'package:intership/UI/firstscreen.dart';
 
 import 'BLOC/Login/login_bloc.dart';
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MultiBlocProvider(
             providers: [
+              BlocProvider(
+                create: (context) => BannerBloc(),
+              ),
               BlocProvider(
                 create: (context) => AddressBloc(),
               ),

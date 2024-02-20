@@ -1,92 +1,113 @@
-class Banner {
-  Banner({
-      this.id, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.bannerTitle, 
-      this.tags, 
-      this.categoryId, 
-      this.productId, 
-      this.subCategoryId, 
-      this.type, 
-      this.banner, 
-      this.category, 
-      this.subCategory, 
-      this.product,});
 
-  Banner.fromJson(dynamic json) {
-    id = json['id'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    bannerTitle = json['bannerTitle'];
-    tags = json['tags'];
-    categoryId = json['categoryId'];
-    productId = json['productId'];
-    subCategoryId = json['subCategoryId'];
-    type = json['type'];
-    if (json['banner'] != null) {
-      banner = [];
-      json['banner'].forEach((v) {
-        banner?.add(Banner.fromJson(v));
-      });
-    }
-    category = json['Category'];
-    subCategory = json['subCategory'];
-    product = json['Product'];
-  }
+class BannerModel {
   String? id;
   String? createdAt;
   String? updatedAt;
   String? bannerTitle;
-  dynamic tags;
-  dynamic categoryId;
-  dynamic productId;
-  dynamic subCategoryId;
   String? type;
   List<Banner>? banner;
-  dynamic category;
-  dynamic subCategory;
-  dynamic product;
+  String? categoryId;
+  String? subCategoryId;
+  Category? category;
+  SubCategory? subCategory;
+
+  BannerModel({this.id, this.createdAt, this.updatedAt, this.bannerTitle, this.type, this.banner, this.categoryId, this.subCategoryId, this.category, this.subCategory});
+
+  BannerModel.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    createdAt = json["createdAt"];
+    updatedAt = json["updatedAt"];
+    bannerTitle = json["bannerTitle"];
+    type = json["type"];
+    banner = json["banner"] == null ? null : (json["banner"] as List).map((e) => Banner.fromJson(e)).toList();
+    categoryId = json["categoryId"];
+    subCategoryId = json["subCategoryId"];
+    category = json["Category"] == null ? null : Category.fromJson(json["Category"]);
+    subCategory = json["subCategory"] == null ? null : SubCategory.fromJson(json["subCategory"]);
+  }
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['createdAt'] = createdAt;
-    map['updatedAt'] = updatedAt;
-    map['bannerTitle'] = bannerTitle;
-    map['tags'] = tags;
-    map['categoryId'] = categoryId;
-    map['productId'] = productId;
-    map['subCategoryId'] = subCategoryId;
-    map['type'] = type;
-    if (banner != null) {
-      map['banner'] = banner?.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["createdAt"] = createdAt;
+    _data["updatedAt"] = updatedAt;
+    _data["bannerTitle"] = bannerTitle;
+    _data["type"] = type;
+    if(banner != null) {
+      _data["banner"] = banner?.map((e) => e.toJson()).toList();
     }
-    map['Category'] = category;
-    map['subCategory'] = subCategory;
-    map['Product'] = product;
-    return map;
+    _data["categoryId"] = categoryId;
+    _data["subCategoryId"] = subCategoryId;
+    if(category != null) {
+      _data["Category"] = category?.toJson();
+    }
+    if(subCategory != null) {
+      _data["subCategory"] = subCategory?.toJson();
+    }
+    return _data;
   }
-  static List<Banner> listFromJson(List<dynamic> json) {
+  static List<BannerModel> listFromJson(List<dynamic> json) {
     return json == null
         ? []
-        : json.map((value) => Banner.fromJson(value)).toList();
+        : json.map((value) => BannerModel.fromJson(value)).toList();
   }
 }
 
-class Banner1 {
-  Banner1({
-      this.url,});
+class SubCategory {
+  String? id;
+  String? name;
+  List<dynamic>? products;
 
-  Banner1.fromJson(dynamic json) {
-    url = json['url'];
+  SubCategory({this.id, this.name, this.products});
+
+  SubCategory.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    name = json["name"];
+    products = json["products"] ?? [];
   }
-  String? url;
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['url'] = url;
-    return map;
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["name"] = name;
+    if(products != null) {
+      _data["products"] = products;
+    }
+    return _data;
+  }
+}
+
+class Category {
+  String? id;
+  String? name;
+
+  Category({this.id, this.name});
+
+  Category.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    name = json["name"];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["name"] = name;
+    return _data;
+  }
+}
+
+class Banner {
+  String? url;
+
+  Banner({this.url});
+
+  Banner.fromJson(Map<String, dynamic> json) {
+    url = json["url"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["url"] = url;
+    return _data;
+  }
 }
