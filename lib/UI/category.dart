@@ -209,7 +209,7 @@ class _CategoryyState extends State<Categoryy> {
                                                   Navigator.of(context).push(
                                                       MaterialPageRoute(
                                                           builder: (_) =>
-                                                              Tv()));
+                                                              Tv(id:'',)));
                                                 },
                                                 child: CircleAvatar(
                                                   radius: 40.r,

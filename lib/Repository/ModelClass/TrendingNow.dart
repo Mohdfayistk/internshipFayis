@@ -1,102 +1,5 @@
-class TrendingModel {
-  TrendingModel({
-      this.id, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.name, 
-      this.description, 
-      this.price, 
-      this.discountedAmount, 
-      this.stockQuantity, 
-      this.sku, 
-      this.slug, 
-      this.rating, 
-      this.weight, 
-      this.discountPercent, 
-      this.specifications, 
-      this.highlights, 
-      this.tags, 
-      this.returnDays, 
-      this.refund, 
-      this.replace, 
-      this.unit, 
-      this.brandsId, 
-      this.categoryId, 
-      this.subCategoryId, 
-      this.status, 
-      this.creatorId, 
-      this.madeBy, 
-      this.deleted, 
-      this.deletedBy, 
-      this.referalBonus, 
-      this.belongsTo, 
-      this.brands, 
-      this.category, 
-      this.discPerQtt, 
-      this.images, 
-      this.review, 
-      this.variants, 
-      this.subCategory,});
 
-  TrendingModel.fromJson(dynamic json) {
-    id = json['id'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    name = json['name'];
-    description = json['description'];
-    price = json['price'];
-    discountedAmount = json['discountedAmount'];
-    stockQuantity = json['stockQuantity'];
-    sku = json['sku'];
-    slug = json['slug'];
-    rating = json['rating'];
-    weight = json['weight'];
-    discountPercent = json['discount_percent'];
-    specifications = json['specifications'];
-    highlights = json['highlights'];
-    tags = json['tags'] != null ? json['tags'].cast<String>() : [];
-    returnDays = json['returnDays'];
-    refund = json['refund'];
-    replace = json['replace'];
-    unit = json['unit'];
-    brandsId = json['brandsId'];
-    categoryId = json['categoryId'];
-    subCategoryId = json['subCategoryId'];
-    status = json['status'];
-    creatorId = json['creatorId'];
-    madeBy = json['madeBy'];
-    deleted = json['deleted'];
-    deletedBy = json['deletedBy'];
-    referalBonus = json['referalBonus'];
-    belongsTo = json['belongsTo'] != null ? BelongsTo.fromJson(json['belongsTo']) : null;
-    brands = json['Brands'] != null ? Brands.fromJson(json['Brands']) : null;
-    category = json['category'] != null ? Category.fromJson(json['category']) : null;
-    if (json['discPerQtt'] != null) {
-      discPerQtt = [];
-      json['discPerQtt'].forEach((v) {
-        discPerQtt?.add(DiscPerQtt.fromJson(v));
-      });
-    }
-    if (json['images'] != null) {
-      images = [];
-      json['images'].forEach((v) {
-        images?.add(v);
-      });
-    }
-    if (json['Review'] != null) {
-      review = [];
-      json['Review'].forEach((v) {
-        review?.add(v);
-      });
-    }
-    if (json['variants'] != null) {
-      variants = [];
-      json['variants'].forEach((v) {
-        variants?.add(v);
-      });
-    }
-    subCategory = json['SubCategory'];
-  }
+class TrendingModel {
   String? id;
   String? createdAt;
   String? updatedAt;
@@ -119,76 +22,111 @@ class TrendingModel {
   String? unit;
   String? brandsId;
   String? categoryId;
-  dynamic subCategoryId;
   String? status;
   String? creatorId;
   String? madeBy;
   bool? deleted;
-  dynamic deletedBy;
   String? referalBonus;
   BelongsTo? belongsTo;
   Brands? brands;
   Category? category;
   List<DiscPerQtt>? discPerQtt;
-  List<dynamic>? images;
+  List<Images>? images;
   List<dynamic>? review;
-  List<dynamic>? variants;
-  dynamic subCategory;
+  List<Variants>? variants;
+
+  TrendingModel({this.id, this.createdAt, this.updatedAt, this.name, this.description, this.price, this.discountedAmount, this.stockQuantity, this.sku, this.slug, this.rating, this.weight, this.discountPercent, this.specifications, this.highlights, this.tags, this.returnDays, this.refund, this.replace, this.unit, this.brandsId, this.categoryId, this.status, this.creatorId, this.madeBy, this.deleted, this.referalBonus, this.belongsTo, this.brands, this.category, this.discPerQtt, this.images, this.review, this.variants});
+
+  TrendingModel.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    createdAt = json["createdAt"];
+    updatedAt = json["updatedAt"];
+    name = json["name"];
+    description = json["description"];
+    price = json["price"];
+    discountedAmount = json["discountedAmount"];
+    stockQuantity = json["stockQuantity"];
+    sku = json["sku"];
+    slug = json["slug"];
+    rating = json["rating"];
+    weight = json["weight"];
+    discountPercent = json["discount_percent"];
+    specifications = json["specifications"];
+    highlights = json["highlights"];
+    tags = json["tags"] == null ? null : List<String>.from(json["tags"]);
+    returnDays = json["returnDays"];
+    refund = json["refund"];
+    replace = json["replace"];
+    unit = json["unit"];
+    brandsId = json["brandsId"];
+    categoryId = json["categoryId"];
+    status = json["status"];
+    creatorId = json["creatorId"];
+    madeBy = json["madeBy"];
+    deleted = json["deleted"];
+    referalBonus = json["referalBonus"];
+    belongsTo = json["belongsTo"] == null ? null : BelongsTo.fromJson(json["belongsTo"]);
+    brands = json["Brands"] == null ? null : Brands.fromJson(json["Brands"]);
+    category = json["category"] == null ? null : Category.fromJson(json["category"]);
+    discPerQtt = json["discPerQtt"] == null ? null : (json["discPerQtt"] as List).map((e) => DiscPerQtt.fromJson(e)).toList();
+    images = json["images"] == null ? null : (json["images"] as List).map((e) => Images.fromJson(e)).toList();
+    review = json["Review"] ?? [];
+    variants = json["variants"] == null ? null : (json["variants"] as List).map((e) => Variants.fromJson(e)).toList();
+  }
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['createdAt'] = createdAt;
-    map['updatedAt'] = updatedAt;
-    map['name'] = name;
-    map['description'] = description;
-    map['price'] = price;
-    map['discountedAmount'] = discountedAmount;
-    map['stockQuantity'] = stockQuantity;
-    map['sku'] = sku;
-    map['slug'] = slug;
-    map['rating'] = rating;
-    map['weight'] = weight;
-    map['discount_percent'] = discountPercent;
-    map['specifications'] = specifications;
-    map['highlights'] = highlights;
-    map['tags'] = tags;
-    map['returnDays'] = returnDays;
-    map['refund'] = refund;
-    map['replace'] = replace;
-    map['unit'] = unit;
-    map['brandsId'] = brandsId;
-    map['categoryId'] = categoryId;
-    map['subCategoryId'] = subCategoryId;
-    map['status'] = status;
-    map['creatorId'] = creatorId;
-    map['madeBy'] = madeBy;
-    map['deleted'] = deleted;
-    map['deletedBy'] = deletedBy;
-    map['referalBonus'] = referalBonus;
-    if (belongsTo != null) {
-      map['belongsTo'] = belongsTo?.toJson();
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["createdAt"] = createdAt;
+    _data["updatedAt"] = updatedAt;
+    _data["name"] = name;
+    _data["description"] = description;
+    _data["price"] = price;
+    _data["discountedAmount"] = discountedAmount;
+    _data["stockQuantity"] = stockQuantity;
+    _data["sku"] = sku;
+    _data["slug"] = slug;
+    _data["rating"] = rating;
+    _data["weight"] = weight;
+    _data["discount_percent"] = discountPercent;
+    _data["specifications"] = specifications;
+    _data["highlights"] = highlights;
+    if(tags != null) {
+      _data["tags"] = tags;
     }
-    if (brands != null) {
-      map['Brands'] = brands?.toJson();
+    _data["returnDays"] = returnDays;
+    _data["refund"] = refund;
+    _data["replace"] = replace;
+    _data["unit"] = unit;
+    _data["brandsId"] = brandsId;
+    _data["categoryId"] = categoryId;
+    _data["status"] = status;
+    _data["creatorId"] = creatorId;
+    _data["madeBy"] = madeBy;
+    _data["deleted"] = deleted;
+    _data["referalBonus"] = referalBonus;
+    if(belongsTo != null) {
+      _data["belongsTo"] = belongsTo?.toJson();
     }
-    if (category != null) {
-      map['category'] = category?.toJson();
+    if(brands != null) {
+      _data["Brands"] = brands?.toJson();
     }
-    if (discPerQtt != null) {
-      map['discPerQtt'] = discPerQtt?.map((v) => v.toJson()).toList();
+    if(category != null) {
+      _data["category"] = category?.toJson();
     }
-    if (images != null) {
-      map['images'] = images?.map((v) => v.toJson()).toList();
+    if(discPerQtt != null) {
+      _data["discPerQtt"] = discPerQtt?.map((e) => e.toJson()).toList();
     }
-    if (review != null) {
-      map['Review'] = review?.map((v) => v.toJson()).toList();
+    if(images != null) {
+      _data["images"] = images?.map((e) => e.toJson()).toList();
     }
-    if (variants != null) {
-      map['variants'] = variants?.map((v) => v.toJson()).toList();
+    if(review != null) {
+      _data["Review"] = review;
     }
-    map['SubCategory'] = subCategory;
-    return map;
+    if(variants != null) {
+      _data["variants"] = variants?.map((e) => e.toJson()).toList();
+    }
+    return _data;
   }
   static List<TrendingModel> listFromJson(List<dynamic> json) {
     return json == null
@@ -197,166 +135,199 @@ class TrendingModel {
   }
 }
 
-class DiscPerQtt {
-  DiscPerQtt({
-      this.id, 
-      this.discFlatAmnt, 
-      this.discPercent, 
-      this.qttFrom, 
-      this.qttTo,});
+class Variants {
+  String? id;
+  String? name;
+  String? value;
+  String? sku;
+  String? productId;
+  int? stockQuantity;
+  dynamic wishListItem;
+  List<dynamic>? images;
+  bool? wishlist;
 
-  DiscPerQtt.fromJson(dynamic json) {
-    id = json['id'];
-    discFlatAmnt = json['discFlatAmnt'];
-    discPercent = json['discPercent'];
-    qttFrom = json['qttFrom'];
-    qttTo = json['qttTo'];
+  Variants({this.id, this.name, this.value, this.sku, this.productId, this.stockQuantity, this.wishListItem, this.images, this.wishlist});
+
+  Variants.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    name = json["name"];
+    value = json["value"];
+    sku = json["sku"];
+    productId = json["productId"];
+    stockQuantity = json["stockQuantity"];
+    wishListItem = json["WishListItem"];
+    images = json["images"] ?? [];
+    wishlist = json["Wishlist"];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["name"] = name;
+    _data["value"] = value;
+    _data["sku"] = sku;
+    _data["productId"] = productId;
+    _data["stockQuantity"] = stockQuantity;
+    _data["WishListItem"] = wishListItem;
+    if(images != null) {
+      _data["images"] = images;
+    }
+    _data["Wishlist"] = wishlist;
+    return _data;
+  }
+}
+
+class Images {
+  String? id;
+  String? url;
+
+  Images({this.id, this.url});
+
+  Images.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    url = json["url"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["url"] = url;
+    return _data;
+  }
+}
+
+class DiscPerQtt {
   String? id;
   String? discFlatAmnt;
   String? discPercent;
   int? qttFrom;
   int? qttTo;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['discFlatAmnt'] = discFlatAmnt;
-    map['discPercent'] = discPercent;
-    map['qttFrom'] = qttFrom;
-    map['qttTo'] = qttTo;
-    return map;
+  DiscPerQtt({this.id, this.discFlatAmnt, this.discPercent, this.qttFrom, this.qttTo});
+
+  DiscPerQtt.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    discFlatAmnt = json["discFlatAmnt"];
+    discPercent = json["discPercent"];
+    qttFrom = json["qttFrom"];
+    qttTo = json["qttTo"];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["discFlatAmnt"] = discFlatAmnt;
+    _data["discPercent"] = discPercent;
+    _data["qttFrom"] = qttFrom;
+    _data["qttTo"] = qttTo;
+    return _data;
+  }
 }
 
 class Category {
-  Category({
-      this.id, 
-      this.name, 
-      this.image,});
-
-  Category.fromJson(dynamic json) {
-    id = json['id'];
-    name = json['name'];
-    if (json['image'] != null) {
-      image = [];
-      json['image'].forEach((v) {
-        image?.add(Image1.fromJson(v));
-      });
-    }
-  }
   String? id;
   String? name;
   List<Image1>? image;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['name'] = name;
-    if (image != null) {
-      map['image'] = image?.map((v) => v.toJson()).toList();
-    }
-    return map;
+  Category({this.id, this.name, this.image});
+
+  Category.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    name = json["name"];
+    image = json["image"] == null ? null : (json["image"] as List).map((e) => Image1.fromJson(e)).toList();
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["name"] = name;
+    if(image != null) {
+      _data["image"] = image?.map((e) => e.toJson()).toList();
+    }
+    return _data;
+  }
 }
 
 class Image1 {
-  Image1({
-      this.id, 
-      this.url,});
-
-  Image1.fromJson(dynamic json) {
-    id = json['id'];
-    url = json['url'];
-  }
   String? id;
   String? url;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['url'] = url;
-    return map;
+  Image1({this.id, this.url});
+
+  Image1.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    url = json["url"];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["url"] = url;
+    return _data;
+  }
 }
 
 class Brands {
-  Brands({
-      this.id, 
-      this.name, 
-      this.image,});
-
-  Brands.fromJson(dynamic json) {
-    id = json['id'];
-    name = json['name'];
-    if (json['image'] != null) {
-      image = [];
-      json['image'].forEach((v) {
-        image?.add(Image1.fromJson(v));
-      });
-    }
-  }
   String? id;
   String? name;
-  List<Image1>? image;
+  List<Image2>? image;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['name'] = name;
-    if (image != null) {
-      map['image'] = image?.map((v) => v.toJson()).toList();
-    }
-    return map;
+  Brands({this.id, this.name, this.image});
+
+  Brands.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    name = json["name"];
+    image = json["image"] == null ? null : (json["image"] as List).map((e) => Image2.fromJson(e)).toList();
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["name"] = name;
+    if(image != null) {
+      _data["image"] = image?.map((e) => e.toJson()).toList();
+    }
+    return _data;
+  }
 }
 
 class Image2 {
-  Image2({
-      this.id, 
-      this.url,});
-
-  Image2.fromJson(dynamic json) {
-    id = json['id'];
-    url = json['url'];
-  }
   String? id;
   String? url;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['url'] = url;
-    return map;
+  Image2({this.id, this.url});
+
+  Image2.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    url = json["url"];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["url"] = url;
+    return _data;
+  }
 }
 
 class BelongsTo {
-  BelongsTo({
-      this.id, 
-      this.username, 
-      this.role,});
-
-  BelongsTo.fromJson(dynamic json) {
-    id = json['id'];
-    username = json['username'];
-    role = json['role'];
-  }
   String? id;
   String? username;
   String? role;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['username'] = username;
-    map['role'] = role;
-    return map;
+  BelongsTo({this.id, this.username, this.role});
+
+  BelongsTo.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    username = json["username"];
+    role = json["role"];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["username"] = username;
+    _data["role"] = role;
+    return _data;
+  }
 }

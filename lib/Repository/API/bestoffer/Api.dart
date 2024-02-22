@@ -4,18 +4,19 @@ import 'package:http/http.dart';
 
 
 
-import '../../ModelClass/TrendingNow.dart';
+import '../../ModelClass/BestofferModel.dart';
+
 import '../Api_Client.dart';
 
-class TrendingApi {
+class BestOfferApi {
   ApiClient apiClient = ApiClient();
 
-  Future<List<TrendingModel>> getTrending() async {
-    String trendingpath = "/product/all?tag=trending";
+  Future<List<BestOfferModel>> getBestOffer() async {
+    String trendingpath = "/product/all?tag=bestOffer";
     var body = {};
     print(body);
     Response response = await apiClient.invokeAPI(trendingpath, 'GET', body);
 
-    return TrendingModel.listFromJson(jsonDecode(response.body));
+    return BestOfferModel.listFromJson(jsonDecode(response.body));
   }
 }

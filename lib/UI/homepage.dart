@@ -159,7 +159,7 @@ class _HomepageState extends State<Homepage> {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (_) => Tv()));
+                            .push(MaterialPageRoute(builder: (_) => Tv(id: '',)));
                       },
                       child: CarouselSlider.builder(
                         //Slider Container properties
@@ -371,7 +371,7 @@ class _HomepageState extends State<Homepage> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => Tv()));
+                        .push(MaterialPageRoute(builder: (_) => Tv(id: data2[index].id.toString(),)));
                   },
                   child: Container(
                     width: 149.w,
@@ -387,7 +387,8 @@ class _HomepageState extends State<Homepage> {
                         SizedBox(
                           height: 10.h,
                         ),
-                        Image.network(data2[index].images[0].),
+                        SizedBox(height: 110
+                            .h,width: 140.w,child: Image.network(data2[index].images![0].url.toString())),
                         Container(
                           width: 141.w,
                           height: 53.h,
@@ -550,7 +551,7 @@ class _HomepageState extends State<Homepage> {
                         child: GestureDetector(
                           onTap: () {
                             Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (_) => Tv()));
+                                .push(MaterialPageRoute(builder: (_) => Tv(id: '',)));
                           },
                           child: Stack(
                             children: [

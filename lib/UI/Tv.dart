@@ -1,12 +1,17 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/UI/Orderpage.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../BLOC/productdetails/product_details_bloc.dart';
+import '../Repository/ModelClass/ProductDetailsModel.dart';
+
 class Tv extends StatefulWidget {
-  const Tv({Key? key}) : super(key: key);
+  final String id;
+  const Tv({Key? key,required this.id,}) : super(key: key);
 
   @override
   State<Tv> createState() => _TvState();
@@ -14,13 +19,14 @@ class Tv extends StatefulWidget {
 
 int count = 1;
 int currentIndex = 0;
-
+late ProductDetailsModel data;
 class _TvState extends State<Tv> {
   var controller;
 
   @override
   void initState() {
     controller = PageController(initialPage: currentIndex);
+    BlocProvider.of<ProductDetailsBloc>(context).add(FetchProductDetails(id: widget.id));
     super.initState();
   }
 
@@ -28,7 +34,19 @@ class _TvState extends State<Tv> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-            child: Column(
+            child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
+  builder: (context, state) {
+      if (state is ProductDetailsBlocLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+      if (state is ProductDetailsBlocError) {
+        return Text('error');
+      }
+      if (state is ProductDetailsBlocLoaded) {
+        data = BlocProvider.of<ProductDetailsBloc>(context).productDetailsmodel;
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
@@ -96,23 +114,24 @@ class _TvState extends State<Tv> {
           children: [
             Padding(
               padding: EdgeInsets.only(left: 35.w),
-              child: Text(
-                'Television 32’’ Smart TV',
-                style: TextStyle(
-                  color: Color(0xFF1D1D1B),
-                  fontSize: 25.sp,
-                  fontFamily: 'hello',
-                  fontWeight: FontWeight.w400,
-                  height: 0.03,
-                  letterSpacing: 0.10,
+              child: SizedBox(width: 270.w,
+                child: Text(
+                  data.product!.name.toString()??'',
+                  style: TextStyle(
+                    color: Color(0xFF1D1D1B),
+                    fontSize: 25.sp,
+                    fontFamily: 'hello',
+                    fontWeight: FontWeight.w400,
+
+                  ),
                 ),
               ),
             ),
             SizedBox(
-              width: 35.w,
+              width: 20.w,
             ),
             Text(
-              '₹ 50,000',
+              data.product!.price.toString(),
               style: TextStyle(
                 color: Color(0xFF7C7C7C),
                 fontSize: 16.sp,
@@ -593,6 +612,12 @@ class _TvState extends State<Tv> {
           height: 40.h,
         ),
       ],
-    )));
+    );
+  }
+      else {
+        return SizedBox();
+      }
+  }
+)));
   }
 }
