@@ -10,6 +10,7 @@ import 'BLOC/Signup/signup_bloc.dart';
 import 'BLOC/address/address_bloc.dart';
 import 'BLOC/bestoffer/bestoffer_bloc.dart';
 import 'BLOC/brand/brand_bloc.dart';
+import 'BLOC/cart/cart_bloc.dart';
 import 'BLOC/category/category_bloc.dart';
 import 'BLOC/changepassword/changepassword_bloc.dart';
 import 'BLOC/productdetails/product_details_bloc.dart';
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MultiBlocProvider(
             providers: [
+              BlocProvider(
+                create: (context) => CartBloc(),
+              ),
               BlocProvider(
                 create: (context) => ProductDetailsBloc(),
               ),
