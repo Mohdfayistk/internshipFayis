@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../ModelClass/CartModel.dart';
+
 
 import '../Api_Client.dart';
 
@@ -11,19 +12,20 @@ import '../Api_Client.dart';
 class CartApi {
   ApiClient apiClient = ApiClient();
 
-  Future<CartModel> getCart(String varientId,int quantity,
+  Future<void> getCart(String varientId,int quantity,
       ) async {
     String trendingpath ="/product/add-to-cart";
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId=prefs.getString("UserId")!;
     var body = {
-      "userId": "cls1eb6mg0006y9m22gtc827q",
-      "varientId": "clswpot1q005ly9m2t5ycpjpd",
-      "quantity": 1
+      "userId": userId,
+      "varientId":varientId,
+      "quantity": quantity
     };
     print(body);
-    Response response =
-    await    apiClient.invokeAPI(trendingpath, 'POST', body
+
+    await    apiClient.invokeAPI(trendingpath, 'POST', jsonEncode(body)
     );
 
-    return CartModel.fromJson(jsonDecode(response.body));
   }
 }

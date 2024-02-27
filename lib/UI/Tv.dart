@@ -6,11 +6,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intership/UI/Orderpage.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../BLOC/cart/cart_bloc.dart';
 import '../BLOC/productdetails/product_details_bloc.dart';
-import '../Repository/ModelClass/CartModel.dart';
+
 import '../Repository/ModelClass/ProductDetailsModel.dart';
 
 class Tv extends StatefulWidget {
@@ -28,7 +29,7 @@ class Tv extends StatefulWidget {
 int count = 1;
 int currentIndex = 0;
 late ProductDetailsModel data;
-late CartModel data1;
+
 class _TvState extends State<Tv> {
   var controller;
 
@@ -48,7 +49,6 @@ class _TvState extends State<Tv> {
       if (state is ProductDetailsBlocLoading) {
         return Center(
           child: CircularProgressIndicator(),
-
         );
       }
       if (state is ProductDetailsBlocError) {
@@ -94,8 +94,8 @@ class _TvState extends State<Tv> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             image: DecorationImage(
-                              image: NetworkImage(data.product!
-                                  .images.toString()),
+                              image:
+                                  NetworkImage(data.product!.images.toString()),
                             ),
                           ),
                         );
@@ -407,49 +407,95 @@ class _TvState extends State<Tv> {
             SizedBox(height: 21.h),
             Center(
               child: BlocListener<CartBloc, CartState>(
-  listener: (context, state) {
-    if (state is CartBlocLoading) {
-;
-    }
-    if (state is CartBlocError) {
-    Navigator.of(context).pop();
-    Text('error');
-    }
-    if (state is CartBlocLoaded) {
+                listener: (context, state) {
+                  if (state is CartBlocLoading) {
+                    showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            width: 60,
+                            height: 60,
+                            child: Center(
+                              child: SizedBox(
+                                width: 60.w,
+                                height: 60.h,
+                                child: LoadingIndicator(
+                                  indicatorType:
+                                  Indicator.ballSpinFadeLoader,
 
-    }
-    },
+                                  /// Required, The loading type of the widget
+                                  colors:const [Colors.white],
 
-  child: InkWell(onTap: (){  BlocProvider.of<CartBloc>(context)
-      .add(FetchCart(varientId: data.product!.variants![0].id.toString(),quantity: count,)
-  );
+                                  /// Optional, The color collections
+                                  strokeWidth: 1.w,
 
-              },
-                child: Container(
-                  width: 343.w,
-                  height: 63.h,
-                  decoration: ShapeDecoration(
-                    color: Color(0xFF264050),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(19.r),
+                                  /// Optional, The stroke of the line, only applicable to widget which contains line
+                                  // Optional, the stroke backgroundColor
+                                ),
+                              ),
+                            ),
+                          );
+                        });
+                  }
+                  if (state is CartBlocError) {
+                    Navigator.of(context).pop();
+                    Fluttertoast.showToast(
+                        msg: "Something went wrong  ",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                    Text('error');
+                  }
+                  if (state is CartBlocLoaded) {
+                    Navigator.of(context).pop();
+                    Fluttertoast.showToast(
+                        msg: "Cart updated successfully ",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.black54,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                  }
+                },
+                child: InkWell(
+                  onTap: () {
+                    BlocProvider.of<CartBloc>(context).add(FetchCart(
+                      varientId: data.product!.variants![0].id.toString(),
+                      quantity: count,
+                    ));
+                  },
+                  child: Container(
+                    width: 343.w,
+                    height: 63.h,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFF264050),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19.r),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'ADD TO CART',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17.sp,
-                        fontFamily: 'hello',
-                        fontWeight: FontWeight.w500,
-                        height: 0.06,
+                    child: Center(
+                      child: Text(
+                        'ADD TO CART',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17.sp,
+                          fontFamily: 'hello',
+                          fontWeight: FontWeight.w500,
+                          height: 0.06,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-),
             ),
             SizedBox(
               height: 5.h,
