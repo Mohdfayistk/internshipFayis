@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/BLOC/addaddress/addaddress_bloc.dart';
 import 'package:intership/BLOC/banner/banner_bloc.dart';
+import 'package:intership/BLOC/favorite/favorite_bloc.dart';
 import 'package:intership/UI/firstscreen.dart';
 
 import 'BLOC/Login/login_bloc.dart';
@@ -14,8 +15,11 @@ import 'BLOC/cart/cart_bloc.dart';
 import 'BLOC/category/category_bloc.dart';
 import 'BLOC/changepassword/changepassword_bloc.dart';
 import 'BLOC/getcart/get_cart_bloc.dart';
+import 'BLOC/getfavorite/get_favorite_bloc.dart';
 import 'BLOC/productdetails/product_details_bloc.dart';
 import 'BLOC/profile/profile_bloc.dart';
+import 'BLOC/removefavorite/remove_favorite_bloc.dart';
+import 'BLOC/trending/trending_bloc.dart';
 import 'BLOC/trendingnow/trendingnow_bloc.dart';
 
 const basePath = 'http://fursancart.rootsys.in/api';
@@ -38,6 +42,17 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MultiBlocProvider(
             providers: [
+              BlocProvider(
+                create: (context) => RemoveFavoriteBloc(),
+              ),
+              BlocProvider(
+                create: (context) => GetFavoriteBloc(),
+              ),
+              BlocProvider(
+                create: (context) => TrendingBloc(),
+              ),   BlocProvider(
+                create: (context) => FavoriteBloc(),
+              ),
               BlocProvider(
                 create: (context) => GetCartBloc(),
               ),
