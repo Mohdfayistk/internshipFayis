@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import '../Api_Client.dart';
 
-class RemoveFavoriteApi {
+class RemoveCartApi {
   ApiClient apiClient = ApiClient();
 
-  Future<void> getRemoveFavorite(
+  Future<void> getRemoveCart(
       String id,
       ) async {
-    String trendingpath = "/product/wishlist/delete/$id";
+    String trendingpath = "/product/remove-from-cart/$id";
 
     var body = {
       "Id": 'id',
@@ -19,4 +19,3 @@ class RemoveFavoriteApi {
     await apiClient.invokeAPI(trendingpath, 'DELETE', jsonEncode(body));
   }
 }
-

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intership/UI/Tv.dart';
+
+import '../BLOC/search/search_bloc.dart';
+import '../Repository/ModelClass/SearchModel.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -8,6 +13,7 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
+late List<SearchModel> data;
 TextEditingController search = TextEditingController();
 
 class _SearchPageState extends State<SearchPage> {
@@ -80,6 +86,10 @@ class _SearchPageState extends State<SearchPage> {
                               ),
                               focusedBorder: InputBorder.none,
                               enabledBorder: InputBorder.none),
+                          onFieldSubmitted: (value) {
+                            BlocProvider.of<SearchBloc>(context)
+                                .add(FetchSearch(id: search.text));
+                          },
                         ),
                       ),
                     ],
@@ -92,80 +102,94 @@ class _SearchPageState extends State<SearchPage> {
             ),
             SizedBox(
               height: 740.h,
-              child: ListView.separated(
-                  separatorBuilder: (ctx, index) {
-                    return Container(
-                      width: 100.w,
-                      height: 100.h,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 20.w),
-                        child: Divider(
-                          color: Color(0xffF8F8F8),
-                        ),
-                      ),
-                    );
-                  },
-                  itemCount: 5,
-                  itemBuilder: (context, position) {
-                    return SizedBox(
-                        child: Row(
-                      children: [
-                        SizedBox(
-                          width: 50.w,
-                        ),
-                        SizedBox(
-                            width: 103.w,
-                            height: 87.h,
-                            child: GestureDetector(
-                                onTap: () {},
-                                child: Image.asset("assets/TV2.png"))),
-                        SizedBox(
-                          width: 50.w,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+              child: BlocBuilder<SearchBloc, SearchState>(
+                  builder: (context, state) {
+                if (state is SearchBlocLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (state is SearchBlocError) {
+                  return Text('error');
+                }
+                if (state is SearchBlocLoaded) {
+                  data = BlocProvider.of<SearchBloc>(context).searchModel;
+                  return ListView.separated(
+                      separatorBuilder: (ctx, index) {
+                        return Container(
+                          width: 100.w,
+                          height: 100.h,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 20.w),
+                            child: Divider(
+                              color: Color(0xffF8F8F8),
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        return SizedBox(
+                            child: Row(
                           children: [
-                            Row(
+                            SizedBox(
+                              width: 50.w,
+                            ),
+                            SizedBox(
+                                width: 103.w,
+                                height: 87.h,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (_) => Tv(
+                                                  id: data[index]
+                                                      .id
+                                                      .toString())));
+                                    },
+                                    child: Image.network(
+                                        data[index].url.toString()))),
+                            SizedBox(
+                              width: 50.w,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Television 32’’ Smart TV',
-                                  style: TextStyle(
-                                    color: Color(0xFF1D1D1B),
-                                    fontSize: 14.sp,
-                                    fontFamily: 'hello',
-                                    fontWeight: FontWeight.w400,
-                                    height: 0.09,
-                                    letterSpacing: 0.10,
-                                  ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 140.w,
+                                      child: Text(
+                                        data[index].name.toString(),
+                                        style: TextStyle(
+                                          color: Color(0xFF1D1D1B),
+                                          fontSize: 14.sp,
+                                          fontFamily: 'hello',
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 30.w,
+                                    ),
+                                    Icon(Icons.favorite_border_outlined),
+                                  ],
                                 ),
                                 SizedBox(
-                                  width: 30.w,
+                                  height: 12.h,
                                 ),
-                                Icon(Icons.favorite_border_outlined),
+                                SizedBox(
+                                  height: 12.h,
+                                ),
                               ],
                             ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            Image.asset("assets/star.png"),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            Text(
-                              '₹ 50,000',
-                              style: TextStyle(
-                                color: Color(0xFF7C7C7C),
-                                fontSize: 14.sp,
-                                fontFamily: 'hello',
-                                fontWeight: FontWeight.w400,
-                                height: 0.09,
-                              ),
-                            ),
                           ],
-                        ),
-                      ],
-                    ));
-                  }),
+                        ));
+                      });
+                } else {
+                  return SizedBox();
+                }
+              }),
             ),
           ],
         ),

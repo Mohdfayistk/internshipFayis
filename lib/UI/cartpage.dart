@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../BLOC/getcart/get_cart_bloc.dart';
+import '../BLOC/removecart/remove_cart_bloc.dart';
 import '../Repository/ModelClass/GetCartModel.dart';
 
 bool isChecked = true;
@@ -119,7 +122,6 @@ class _CartPageState extends State<CartPage> {
                                   child: Text(
                                     data.cartProducts![index].productVarient!
                                         .product!.name
-
                                         .toString(),
                                     style: TextStyle(
                                       color: Color(0xFF1D1D1B),
@@ -132,7 +134,84 @@ class _CartPageState extends State<CartPage> {
                                 SizedBox(
                                   width: 30.w,
                                 ),
-                                Icon(Icons.favorite_border_outlined),
+                                Column(
+                                  children: [
+                                    BlocListener<RemoveCartBloc, RemoveCartState>(
+  listener: (context, state) {
+    if (state is RemoveCartBlocLoading) {
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (context) {
+            return Container(
+              width: 60,
+              height: 60,
+              child: Center(
+                child: SizedBox(
+                  width: 60.w,
+                  height: 60.h,
+                  child: LoadingIndicator(
+                    indicatorType:
+                    Indicator.ballSpinFadeLoader,
+
+                    /// Required, The loading type of the widget
+                    colors: const [Colors.white],
+
+                    /// Optional, The color collections
+                    strokeWidth: 1.w,
+
+                    /// Optional, The stroke of the line, only applicable to widget which contains line
+                    // Optional, the stroke backgroundColor
+                  ),
+                ),
+              ),
+            );
+          });
+    }
+    if (state is RemoveCartBlocError) {
+      Navigator.of(context).pop();
+      Fluttertoast.showToast(
+          msg: "Something went wrong",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      Text('error');
+    }
+    if (state is RemoveCartBlocLoaded) {
+      BlocProvider.of<GetCartBloc>(context).add(FetchGetCart());
+      Navigator.of(context).pop();
+      Fluttertoast.showToast(
+          msg: "Removed Form cart Successfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black54,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
+  },
+  child: InkWell(
+                                        onTap: () { BlocProvider.of<RemoveCartBloc>(context).add(
+                                            FetchRemoveCart(id: data.cartProducts![0].id.toString(),));
+                                          
+                                        },
+                                        child: Icon(
+                                          Icons.clear_rounded,
+                                          size: 18.sp,
+                                          color: Color(0xFF7C7C7C),
+                                        )),
+),
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                    Icon(Icons.favorite_border_outlined),
+                                  ],
+                                ),
                               ],
                             ),
                             SizedBox(
@@ -176,7 +255,6 @@ class _CartPageState extends State<CartPage> {
                                 fontSize: 14.sp,
                                 fontFamily: 'hello',
                                 fontWeight: FontWeight.w400,
-                                height: 0.09,
                               ),
                             ),
                             SizedBox(

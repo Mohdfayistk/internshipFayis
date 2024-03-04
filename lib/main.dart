@@ -18,7 +18,9 @@ import 'BLOC/getcart/get_cart_bloc.dart';
 import 'BLOC/getfavorite/get_favorite_bloc.dart';
 import 'BLOC/productdetails/product_details_bloc.dart';
 import 'BLOC/profile/profile_bloc.dart';
+import 'BLOC/removecart/remove_cart_bloc.dart';
 import 'BLOC/removefavorite/remove_favorite_bloc.dart';
+import 'BLOC/search/search_bloc.dart';
 import 'BLOC/trending/trending_bloc.dart';
 import 'BLOC/trendingnow/trendingnow_bloc.dart';
 
@@ -42,6 +44,12 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MultiBlocProvider(
             providers: [
+              BlocProvider(
+                create: (context) => SearchBloc(),
+              ),
+              BlocProvider(
+                create: (context) => RemoveCartBloc(),
+              ),
               BlocProvider(
                 create: (context) => RemoveFavoriteBloc(),
               ),

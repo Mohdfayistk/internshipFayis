@@ -167,6 +167,7 @@ class _FavoriteState extends State<Favorite> {
     Text('error');
     }
     if (state is RemoveFavoriteBlocLoaded) {
+      BlocProvider.of<GetFavoriteBloc>(context).add(FetchGetFavorite());
     Navigator.of(context).pop();
     Fluttertoast.showToast(
     msg: "Removed from wishlist",
