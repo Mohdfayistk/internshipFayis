@@ -11,7 +11,6 @@ class RemoveCartApi {
     String trendingpath = "/product/remove-from-cart/$id";
 
     var body = {
-      "Id": 'id',
 
     };
     print(body);

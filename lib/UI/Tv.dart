@@ -504,7 +504,13 @@ class _TvState extends State<Tv> {
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => OrderPage()));
+                      .push(MaterialPageRoute(builder: (_) => OrderPage(
+                     name: data.product!.name.toString(),
+                    rating: data.product!.rating.toString(),
+                    image: data.product!.images![0].url.toString(),
+                    price: data.product!.price.toString(),
+                    discount: data.product!.discountedAmount.toString(),
+                  )));
                 },
                 child: Container(
                   width: 343.w,

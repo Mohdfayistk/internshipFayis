@@ -1,15 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/UI/PaymentPage.dart';
+import 'package:intership/UI/addaddress.dart';
+
+import '../BLOC/address/address_bloc.dart';
+import '../Repository/ModelClass/Address.dart';
 
 class OrderPage extends StatefulWidget {
-  const OrderPage({Key? key}) : super(key: key);
+  final String name;
+  final String rating;
+  final String image;
+  final String price;
+  final String discount;
+
+  const OrderPage({Key? key,
+    required this.name,
+    required this.rating,
+    required this.image,
+    required this.price,
+    required this.discount})
+      : super(key: key);
 
   @override
   State<OrderPage> createState() => _OrderPageState();
 }
 
+late List<Address> data;
+
 class _OrderPageState extends State<OrderPage> {
+  @override
+  void initState() {
+    BlocProvider.of<AddressBloc>(context).add(FetchAddress());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +68,6 @@ class _OrderPageState extends State<OrderPage> {
                         fontSize: 20.sp,
                         fontFamily: 'hello',
                         fontWeight: FontWeight.w400,
-                        height: 0,
                       ),
                     ),
                   ],
@@ -82,33 +107,38 @@ class _OrderPageState extends State<OrderPage> {
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 240.w,
-                          child: Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Hunais Muhammed\n',
+                          width: 200.w,
+                          child: BlocBuilder<AddressBloc, AddressState>(
+                            builder: (context, state) {
+                              if (state is AddressBlocLoading) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              if (state is AddressBlocError) {
+                                return Text('error');
+                              }
+                              if (state is AddressBlocLoaded) {
+                                data = BlocProvider
+                                    .of<AddressBloc>(context)
+                                    .addressModel;
+                                return Text(
+                                    '${data[0].fullName},${data[0].address},${data[0].phone}',
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 20.sp,
-                                    fontFamily: 'hello',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: 'House,Place,State,\nPin,Phone number',
-                                  style: TextStyle(
-                                    color: Color(0xFF264050),
                                     fontSize: 18.sp,
                                     fontFamily: 'hello',
                                     fontWeight: FontWeight.w400,
-                                    height: 0,
                                   ),
-                                ),
-                              ],
-                            ),
+                                  maxLines: 2,
+                                );
+                              }
+                              else {
+                                return SizedBox();
+                              }
+                            }
                           ),
+
                         ),
                         SizedBox(
                           width: 30.w,
@@ -153,12 +183,14 @@ class _OrderPageState extends State<OrderPage> {
               child: Row(
                 children: [
                   SizedBox(
-                    width: 20.w,
+                    width: 40.w,
                   ),
                   SizedBox(
-                      width: 163.w,
-                      height: 140.h,
-                      child: Image.asset("assets/TV3.png")),
+                      width: 120.w,
+                      height: 120.h,
+                      child: Image.asset(
+                        widget.image,
+                      )),
                   SizedBox(
                     width: 40.w,
                   ),
@@ -168,37 +200,55 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         height: 70.h,
                       ),
-                      Text(
-                        'Television 32’’ Smart TV',
-                        style: TextStyle(
-                          color: Color(0xFF1D1D1B),
-                          fontSize: 14.sp,
-                          fontFamily: 'hello',
-                          fontWeight: FontWeight.w400,
-                          height: 0.09,
-                          letterSpacing: 0.10,
+                      SizedBox(
+                        width: 100.w,
+                        child: Text(
+                          widget.name,
+                          style: TextStyle(
+                            color: Color(0xFF1D1D1B),
+                            fontSize: 14.sp,
+                            fontFamily: 'hello',
+                            fontWeight: FontWeight.w400,
+                          ),
+                          maxLines: 1,
                         ),
                       ),
                       SizedBox(
                         height: 15.h,
                       ),
                       SizedBox(
-                          width: 76.20.w,
-                          height: 10.99.h,
-                          child: Image.asset("assets/star1.png")),
+                          width: 150.w,
+                          child: RatingBar.builder(
+                            initialRating: double.parse(widget.rating),
+                            minRating: 0,
+                            itemSize: 20.sp,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            ignoreGestures: true,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (context, _) =>
+                                Icon(
+                                  Icons.star,
+                                  size: 5.sp,
+                                  color: Colors.deepOrange,
+                                ),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                          )),
                       SizedBox(
-                        height: 20.h,
+                        height: 10.h,
                       ),
                       SizedBox(
                         width: 80.w,
                         child: Text(
-                          'SAR 50,000',
+                          widget.price,
                           style: TextStyle(
                             color: Color(0xFF7C7C7C),
                             fontSize: 14.sp,
                             fontFamily: 'hello',
                             fontWeight: FontWeight.w400,
-                            height: 0.09,
                           ),
                         ),
                       ),
@@ -272,7 +322,7 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         width: 100.w,
                         child: Text(
-                          'SAR 50,000',
+                          widget.price,
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             color: Color(0xFF6A6969),
@@ -293,7 +343,7 @@ class _OrderPageState extends State<OrderPage> {
                         width: 22.w,
                       ),
                       Text(
-                        'Discount',
+                        'discountedPrice',
                         style: TextStyle(
                           color: Color(0xFF6A6969),
                           fontSize: 14.sp,
@@ -302,12 +352,12 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 235.w,
+                        width: 190.w,
                       ),
                       SizedBox(
                         width: 100.w,
                         child: Text(
-                          '-  SAR 2,000',
+                          widget.discount,
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             color: Color(0xFF0A8200),

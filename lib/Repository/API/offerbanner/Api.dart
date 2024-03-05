@@ -8,11 +8,11 @@ import '../../ModelClass/Banner.dart';
 
 import '../Api_Client.dart';
 
-class BannerApi {
+class OfferBannerApi {
   ApiClient apiClient = ApiClient();
 
-  Future<List<BannerModel>> getBanner() async {
-    String trendingpath = "/banner/all";
+  Future<List<BannerModel>> getOfferBanner() async {
+    String trendingpath = "/banner/all?tag=bestOffer";
     var body = {};
     print(body);
     Response response = await apiClient.invokeAPI(trendingpath, 'GET', body);

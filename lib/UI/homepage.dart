@@ -14,6 +14,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../BLOC/banner/banner_bloc.dart';
 import '../BLOC/brand/brand_bloc.dart';
+import '../BLOC/offerbanner/offer_banner_bloc.dart';
 import '../BLOC/trendingnow/trendingnow_bloc.dart';
 import '../Repository/ModelClass/Brand.dart';
 import '../Repository/ModelClass/TrendingNow.dart';
@@ -27,6 +28,7 @@ class Homepage extends StatefulWidget {
 late List<TrendingModel> data2;
 late List<BannerModel> data1;
 late List<Brand> data;
+late List<BannerModel> data3;
 int currentIndex = 0;
 
 class _HomepageState extends State<Homepage> {
@@ -37,7 +39,7 @@ class _HomepageState extends State<Homepage> {
     controller = PageController(initialPage: currentIndex);
 
     BlocProvider.of<BrandBloc>(context).add(FetchBrand());
-
+    BlocProvider.of<OfferBannerBloc>(context).add(FetchOfferBanner());
     BlocProvider.of<BannerBloc>(context).add(FetchBanner());
     BlocProvider.of<TrendingNowBloc>(context).add(FetchTrendingNow());
     super.initState();
@@ -538,15 +540,29 @@ class _HomepageState extends State<Homepage> {
             child: SizedBox(
               width: 500.w,
               height: 210.h,
-              child: ListView.separated(
+              child: BlocBuilder<OfferBannerBloc, OfferBannerState>(
+  builder: (context, state) {
+    if (state is OfferBannerBlocLoading) {
+    return Center(
+    child: CircularProgressIndicator(),
+    );
+    }
+    if (state is OfferBannerBlocError) {
+    return Text('error');
+    }
+    if (state is OfferBannerBlocLoaded) {
+    data3 = BlocProvider
+        .of<OfferBannerBloc>(context)
+        .offerBannerModel;
+    return ListView.separated(
                   separatorBuilder: (ctx, index) {
                     return SizedBox(
                       width: 14.w,
                     );
                   },
                   scrollDirection: Axis.horizontal,
-                  itemCount: 8,
-                  itemBuilder: (context, position) {
+                  itemCount: data3.length,
+                  itemBuilder: (context, index) {
                     return SizedBox(
                         child: GestureDetector(
                           onTap: () {
@@ -562,8 +578,9 @@ class _HomepageState extends State<Homepage> {
                                       topRight: Radius.circular(14.r),
                                       topLeft: Radius.circular(14.r),
                                     ),
-                                    child: Image.asset(
-                                      "assets/TV1.png",
+                                    child: Image.network(
+                                      data3[index].banner![0].url
+                                          .toString(),
                                       width: 145.w,
                                       height: 130.h,
                                     ),
@@ -702,7 +719,14 @@ class _HomepageState extends State<Homepage> {
                             ],
                           ),
                         ));
-                  }),
+                  });
+  }
+    else {
+      return SizedBox();
+    }
+    }
+
+),
             ),
           ),
           SizedBox(
