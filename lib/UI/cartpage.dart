@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:lottie/lottie.dart';
 
 import '../BLOC/getcart/get_cart_bloc.dart';
 import '../BLOC/removecart/remove_cart_bloc.dart';
@@ -72,9 +73,9 @@ class _CartPageState extends State<CartPage> {
             }
             if (state is GetCartBlocLoaded) {
               data = BlocProvider.of<GetCartBloc>(context).getCartModel;
-              return ListView.separated(
+              return data.cartProducts!.length==0? Center(child: Lottie.asset('assets/nodata1.json'),widthFactor: 40.w,heightFactor: 40.h,):  ListView.separated(
                   separatorBuilder: (ctx, index) {
-                    return Container(
+                    return  Container(
                       width: 100.w,
                       height: 100.h,
                       child: Padding(

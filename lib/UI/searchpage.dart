@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intership/UI/Tv.dart';
+import 'package:intership/UI/Productdetails.dart';
 
 import '../BLOC/search/search_bloc.dart';
 import '../Repository/ModelClass/SearchModel.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/UI/PaymentPage.dart';
-import 'package:intership/UI/addaddress.dart';
+
 
 import '../BLOC/address/address_bloc.dart';
 import '../Repository/ModelClass/Address.dart';
@@ -14,13 +14,16 @@ class OrderPage extends StatefulWidget {
   final String image;
   final String price;
   final String discount;
+  final String id;
 
   const OrderPage({Key? key,
     required this.name,
     required this.rating,
     required this.image,
     required this.price,
-    required this.discount})
+    required this.discount,
+  required this.id
+  })
       : super(key: key);
 
   @override
@@ -480,7 +483,7 @@ class _OrderPageState extends State<OrderPage> {
                   GestureDetector(
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => PaymentPage()));
+                          MaterialPageRoute(builder: (_) => PaymentPage(id: widget.id,)));
                     },
                     child: Container(
                       width: 197.w,

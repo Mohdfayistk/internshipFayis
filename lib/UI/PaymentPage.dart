@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+
+import '../BLOC/coupon/coupon_bloc.dart';
+import '../Repository/ModelClass/CouponModel.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({Key? key}) : super(key: key);
+  final String id;
+
+  const PaymentPage({Key? key,
+    required this.id
+  }) : super(key: key);
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
 }
 
+ dynamic amount=0;
 TextEditingController ApplyCoupon = TextEditingController();
 String gender = "male";
 
@@ -172,14 +182,63 @@ class _PaymentPageState extends State<PaymentPage> {
                         SizedBox(
                           width: 16.w,
                         ),
-                        Text(
-                          'Apply',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15.sp,
-                            fontFamily: 'hello',
-                            fontWeight: FontWeight.w400,
+                        BlocListener<CouponBloc, CouponState>(
+                          listener: (context, state) {
+                            if (state is CouponBlocLoading) {
+                              showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return Container(
+                                      width: 60.w,
+                                      height: 60.h,
+                                      child: Center(
+                                        child: SizedBox(
+                                          width: 60.w,
+                                          height: 60.h,
+                                          child: LoadingIndicator(
+                                            indicatorType: Indicator.ballSpinFadeLoader,
+
+                                            /// Required, The loading type of the widget
+                                            colors: const [Colors.white],
+
+                                            /// Optional, The color collections
+                                            strokeWidth: 1.w,
+
+                                            /// Optional, The stroke of the line, only applicable to widget which contains line
+                                            // Optional, the stroke backgroundColor
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            }
+                            if (state is CouponBlocError) {
+
+                              Navigator.of(context).pop();
+
+                            }
+                            if (state is CouponBlocLoaded) {
+                              amount=BlocProvider.of<CouponBloc>(context).couponModel.discountedAmount.toString();
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pop();
+
+                            }
+                          },
+                          child: InkWell(onTap: () {
+                            BlocProvider.of<CouponBloc>(context)
+                                .add(FetchCoupon(coupon: ApplyCoupon.text, id: widget.id)
+                            );},
+                            child: Text(
+                              'Apply',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.sp,
+                                fontFamily: 'hello',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
                           ),
                         )
                       ],
@@ -311,7 +370,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         width: 209.w,
                       ),
                       Text(
-                        '- SAR 500',
+                        '- SAR ${amount}',
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Color(0xFF0A8200),

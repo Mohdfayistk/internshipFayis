@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/Repository/ModelClass/Banner.dart';
-import 'package:intership/UI/Tv.dart';
+import 'package:intership/UI/Productdetails.dart';
 import 'package:intership/UI/bestoffers.dart';
 import 'package:intership/UI/cartpage.dart';
 import 'package:intership/UI/favorite.dart';

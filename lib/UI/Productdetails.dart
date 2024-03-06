@@ -510,6 +510,7 @@ class _TvState extends State<Tv> {
                     image: data.product!.images![0].url.toString(),
                     price: data.product!.price.toString(),
                     discount: data.product!.discountedAmount.toString(),
+                    id:data.product!.id.toString()
                   )));
                 },
                 child: Container(

@@ -14,6 +14,7 @@ import 'BLOC/brand/brand_bloc.dart';
 import 'BLOC/cart/cart_bloc.dart';
 import 'BLOC/category/category_bloc.dart';
 import 'BLOC/changepassword/changepassword_bloc.dart';
+import 'BLOC/coupon/coupon_bloc.dart';
 import 'BLOC/getcart/get_cart_bloc.dart';
 import 'BLOC/getfavorite/get_favorite_bloc.dart';
 import 'BLOC/offerbanner/offer_banner_bloc.dart';
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MultiBlocProvider(
             providers: [
+              BlocProvider(
+                create: (context) => CouponBloc(),
+              ),
               BlocProvider(
                 create: (context) => OfferBannerBloc(),
               ),
