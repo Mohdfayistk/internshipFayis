@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/UI/Productdetails.dart';
+import 'package:intership/UI/cartpage.dart';
+import 'package:intership/UI/favorite.dart';
 
 
 import '../BLOC/category/category_bloc.dart';
@@ -57,23 +59,31 @@ class _CategoryyState extends State<Categoryy> {
               SizedBox(
                 width: 105.w,
               ),
-              Icon(
-                Icons.search,
-                color: Color(0xff828282),
+              // Icon(
+              //   Icons.search,
+              //   color: Color(0xff828282),
+              // ),
+              SizedBox(
+                width: 45.w,
+              ),
+              InkWell(onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Favorite()));
+              },
+                child: Icon(
+                  Icons.favorite_border_outlined,
+                  color: Color(0xff636363),
+                ),
               ),
               SizedBox(
-                width: 20.w,
+                width: 30.w,
               ),
-              Icon(
-                Icons.favorite_border_outlined,
-                color: Color(0xff636363),
-              ),
-              SizedBox(
-                width: 20.w,
-              ),
-              Icon(
-                Icons.shopping_cart_outlined,
-                color: Color(0xff636363),
+              InkWell(onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CartPage()));
+              },
+                child: Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Color(0xff636363),
+                ),
               ),
             ],
           ),
@@ -86,7 +96,7 @@ class _CategoryyState extends State<Categoryy> {
                   builder: (context, state) {
                 if (state is CategoryBlocLoading) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child:  SizedBox(),
                   );
                 }
                 if (state is CategoryBlocError) {

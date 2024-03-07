@@ -33,7 +33,7 @@ class _AccountState extends State<Account> {
   builder: (context, state) {
     if (state is ProfileBlocLoading) {
       return Center(
-        child: CircularProgressIndicator(),
+        child:  SizedBox(),
       );
     }
     if (state is ProfileBlocError) {

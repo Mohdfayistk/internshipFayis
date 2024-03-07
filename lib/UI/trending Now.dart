@@ -65,7 +65,7 @@ class _TrendingNowState extends State<TrendingNow> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 25.w),
-            child: Icon(Icons.search),
+            // child: Icon(Icons.search),
           ),
           Padding(
             padding: EdgeInsets.only(right: 25.w),

@@ -325,7 +325,7 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         width: 100.w,
                         child: Text(
-                          widget.price,
+                         'SAR ${widget.price}',
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             color: Color(0xFF6A6969),
@@ -360,7 +360,7 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         width: 100.w,
                         child: Text(
-                          widget.discount,
+                          'SAR ${widget.discount}',
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             color: Color(0xFF0A8200),
@@ -483,7 +483,7 @@ class _OrderPageState extends State<OrderPage> {
                   GestureDetector(
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => PaymentPage(id: widget.id,)));
+                          MaterialPageRoute(builder: (_) => PaymentPage(id: widget.id,price: widget.price,discount: widget.discount,)));
                     },
                     child: Container(
                       width: 197.w,

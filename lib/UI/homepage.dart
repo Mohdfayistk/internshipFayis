@@ -148,7 +148,7 @@ class _HomepageState extends State<Homepage> {
             builder: (context, state) {
               if (state is BannerBlocLoading) {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: SizedBox(),
                 );
               }
               if (state is BannerBlocError) {
@@ -250,7 +250,7 @@ class _HomepageState extends State<Homepage> {
                     builder: (context, state) {
                       if (state is BrandBlocLoading) {
                         return Center(
-                          child: CircularProgressIndicator(),
+                          child: SizedBox(),
                         );
                       }
                       if (state is BrandBlocError) {
@@ -348,7 +348,7 @@ class _HomepageState extends State<Homepage> {
   builder: (context, state) {
     if (state is TrendingNowBlocLoading) {
       return Center(
-        child: CircularProgressIndicator(),
+        child: SizedBox(),
       );
     }
     if (state is TrendingNowBlocError) {
@@ -544,7 +544,7 @@ class _HomepageState extends State<Homepage> {
   builder: (context, state) {
     if (state is OfferBannerBlocLoading) {
     return Center(
-    child: CircularProgressIndicator(),
+    child:  SizedBox(),
     );
     }
     if (state is OfferBannerBlocError) {

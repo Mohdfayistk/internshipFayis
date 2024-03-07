@@ -8,9 +8,12 @@ import '../Repository/ModelClass/CouponModel.dart';
 
 class PaymentPage extends StatefulWidget {
   final String id;
-
+final String price;
+final String discount;
   const PaymentPage({Key? key,
-    required this.id
+    required this.id,
+    required this.price,
+    required this.discount
   }) : super(key: key);
 
   @override
@@ -303,10 +306,10 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 280.w,
+                        width: 270.w,
                       ),
                       Text(
-                        'SAR 50,000',
+                        'SAR ${widget.price}',
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Color(0xFF6A6969),
@@ -335,10 +338,10 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 254.w,
+                        width: 215.w,
                       ),
                       Text(
-                        '- SAR 2,000',
+                        '- SAR ${widget.discount}',
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Color(0xFF0A8200),
