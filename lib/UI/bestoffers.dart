@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../BLOC/offerbanner/offer_banner_bloc.dart';
+import '../Repository/ModelClass/Banner.dart';
 class BestOffers extends StatefulWidget {
   const BestOffers({Key? key}) : super(key: key);
 
   @override
   State<BestOffers> createState() => _BestOffersState();
 }
-
+late List<BannerModel> data;
 class _BestOffersState extends State<BestOffers> {
   @override
+  void initState() {
+    BlocProvider.of<OfferBannerBloc>(context).add(FetchOfferBanner());
+    super.initState();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
 body: SingleChildScrollView(scrollDirection: Axis.vertical,
@@ -40,13 +48,27 @@ body: SingleChildScrollView(scrollDirection: Axis.vertical,
       ),
       SizedBox(height: 30.h,),
       SizedBox(height: 750.h,
-        child: GridView.count(
+        child: BlocBuilder<OfferBannerBloc, OfferBannerState>(
+  builder: (context, state) {
+    if (state is OfferBannerBlocLoading) {
+    return Center(
+    child:  SizedBox(),
+    );
+    }
+    if (state is OfferBannerBlocError) {
+    return Text('error');
+    }
+    if (state is OfferBannerBlocLoaded) {
+    data = BlocProvider
+        .of<OfferBannerBloc>(context)
+        .offerBannerModel;
+    return GridView.count(
           crossAxisCount: 2,
           crossAxisSpacing: 10.0,
           mainAxisSpacing: 10.0,
           shrinkWrap: true,
           children: List.generate(
-            10,
+            data.length,
                 (index) {
               return Padding(
                 padding:  EdgeInsets.only(left: 30.w),
@@ -63,7 +85,7 @@ body: SingleChildScrollView(scrollDirection: Axis.vertical,
                               topLeft: Radius.circular(14.r),
                             ),
                             child: Image.asset(
-                              "assets/TV1.png",
+                              data[0].banner![0].url.toString(),
                               width: 145.w,
                               height: 130.h,
                             ),
@@ -205,7 +227,13 @@ body: SingleChildScrollView(scrollDirection: Axis.vertical,
               );
             },
           ),
-        ),
+        );
+  }
+    else{
+    return SizedBox();
+    }
+  }
+),
       )
     ],
   ),
