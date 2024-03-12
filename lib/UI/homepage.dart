@@ -10,6 +10,7 @@ import 'package:intership/UI/cartpage.dart';
 import 'package:intership/UI/favorite.dart';
 import 'package:intership/UI/searchpage.dart';
 import 'package:intership/UI/trending%20Now.dart';
+import 'package:intership/main.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../BLOC/banner/banner_bloc.dart';
@@ -156,6 +157,7 @@ class _HomepageState extends State<Homepage> {
               }
               if (state is BannerBlocLoaded) {
                 data1 = BlocProvider.of<BannerBloc>(context).bannerModel;
+
                 return Stack(
                   children: [
                     GestureDetector(
@@ -182,17 +184,19 @@ class _HomepageState extends State<Homepage> {
                               milliseconds: 300),
                           viewportFraction: 1.0,
                         ),
-                        itemCount: data1.length,
+                        itemCount: data1[0].banner!.length,
                         itemBuilder:
                             (BuildContext context, int index, int realIndex) {
+                              String url =data1[0]
+                                  .banner![index].url
+                                  .toString();
+                              String newUrl = url.replaceFirst("http://127.0.0.1/api", "");
                           return Container(
                             margin: EdgeInsets.all(6.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
                               image: DecorationImage(
-                                image: NetworkImage(data1[index]
-                                    .banner![0].url
-                                    .toString()),
+                                image: NetworkImage(basePath+newUrl),
                               ),
                             ),
                           );
@@ -210,7 +214,7 @@ class _HomepageState extends State<Homepage> {
                                 )),
                             child: AnimatedSmoothIndicator(
                               activeIndex: currentIndex,
-                              count: data1.length,
+                              count: data1[0].banner!.length,
                               effect: WormEffect(dotHeight: 7.h, dotWidth: 7.w),
                             )),
                       ),
@@ -260,8 +264,10 @@ class _HomepageState extends State<Homepage> {
                         data = BlocProvider
                             .of<BrandBloc>(context)
                             .brandModel;
+
                         return ListView.separated(
                           separatorBuilder: (ctx, index) {
+
                             return SizedBox(
                               width: 16.w,
                             );
@@ -269,6 +275,9 @@ class _HomepageState extends State<Homepage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: data.length,
                           itemBuilder: (context, index) {
+
+
+
                             return SizedBox(
                               child: Padding(
                                 padding: EdgeInsets.only(top: 15.w),
@@ -277,12 +286,13 @@ class _HomepageState extends State<Homepage> {
                                   height: 87.h,
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(16.r),
-                                      child: data[index].image!.isEmpty
+                                      child: data[index]
+                                          .image!.isEmpty
                                           ? Image.asset('name')
-                                          : Image.network(data[index]
+                                          : Image.network(basePath+data[index]
                                           .image![0]
                                           .url
-                                          .toString())),
+                                          .toString().replaceFirst("http://127.0.0.1/api", ""))),
                                 ),
                               ),
                             );
@@ -358,6 +368,7 @@ class _HomepageState extends State<Homepage> {
       data2 = BlocProvider
           .of<TrendingNowBloc>(context)
           .trendingModel;
+
       return ListView.separated(
         separatorBuilder: (ctx, index) {
           return SizedBox(
@@ -367,6 +378,7 @@ class _HomepageState extends State<Homepage> {
         scrollDirection: Axis.horizontal,
         itemCount: data2.length,
         itemBuilder: (context, index) {
+
           return SizedBox(
             child: Padding(
                 padding: EdgeInsets.only(top: 15.w),
@@ -390,7 +402,7 @@ class _HomepageState extends State<Homepage> {
                           height: 10.h,
                         ),
                         SizedBox(height: 110
-                            .h,width: 140.w,child: Image.network(data2[index].images![0].url.toString())),
+                            .h,width: 140.w,child:data2[index].images!.isEmpty?Image.asset('name') :Image.network(basePath+ data2[index].images![0].url.toString().replaceFirst("http://127.0.0.1/api", ""))),
                         Container(
                           width: 141.w,
                           height: 53.h,
@@ -554,6 +566,7 @@ class _HomepageState extends State<Homepage> {
     data3 = BlocProvider
         .of<OfferBannerBloc>(context)
         .offerBannerModel;
+
     return ListView.separated(
                   separatorBuilder: (ctx, index) {
                     return SizedBox(
@@ -563,6 +576,9 @@ class _HomepageState extends State<Homepage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: data3.length,
                   itemBuilder: (context, index) {
+                    String url =  data3[index].banner![0].url
+                        .toString();
+                    String newUrl = url.replaceFirst("http://127.0.0.1/api", "");
                     return SizedBox(
                         child: GestureDetector(
                           onTap: () {
@@ -579,8 +595,7 @@ class _HomepageState extends State<Homepage> {
                                       topLeft: Radius.circular(14.r),
                                     ),
                                     child: Image.network(
-                                      data3[index].banner![0].url
-                                          .toString(),
+                                   basePath+newUrl,
                                       width: 145.w,
                                       height: 130.h,
                                     ),

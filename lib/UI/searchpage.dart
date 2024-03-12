@@ -18,6 +18,14 @@ TextEditingController search = TextEditingController();
 
 class _SearchPageState extends State<SearchPage> {
   @override
+  void dispose() {
+    search.clear();
+    data.clear();
+    // TODO: implement dispose
+    super.dispose();
+
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -105,9 +113,7 @@ class _SearchPageState extends State<SearchPage> {
               child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
                 if (state is SearchBlocLoading) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return SizedBox();
                 }
                 if (state is SearchBlocError) {
                   return Text('error');
@@ -130,61 +136,61 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: data.length,
                       itemBuilder: (context, index) {
                         return SizedBox(
-                            child: Row(
-                          children: [
-                            SizedBox(
-                              width: 50.w,
-                            ),
-                            SizedBox(
-                                width: 103.w,
-                                height: 87.h,
-                                child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (_) => Tv(
-                                                  id: data[index]
-                                                      .id
-                                                      .toString())));
-                                    },
-                                    child: Image.network(
-                                        data[index].url.toString()))),
-                            SizedBox(
-                              width: 50.w,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 140.w,
-                                      child: Text(
-                                        data[index].name.toString(),
-                                        style: TextStyle(
-                                          color: Color(0xFF1D1D1B),
-                                          fontSize: 14.sp,
-                                          fontFamily: 'hello',
-                                          fontWeight: FontWeight.w400,
+                            child: GestureDetector(onTap: (){
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (_) => Tv(
+                                          id: data[index]
+                                              .id
+                                              .toString())));
+                            },
+                              child: Row(
+                                                        children: [
+                              SizedBox(
+                                width: 50.w,
+                              ),
+                              SizedBox(
+                                  width: 103.w,
+                                  height: 87.h,
+                                  child: Image.network(
+                                      data[index].url.toString())),
+                              SizedBox(
+                                width: 50.w,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 140.w,
+                                        child: Text(
+                                          data[index].name.toString(),
+                                          style: TextStyle(
+                                            color: Color(0xFF1D1D1B),
+                                            fontSize: 14.sp,
+                                            fontFamily: 'hello',
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      width: 30.w,
-                                    ),
-                                    Icon(Icons.favorite_border_outlined),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 12.h,
-                                ),
-                                SizedBox(
-                                  height: 12.h,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ));
+                                      SizedBox(
+                                        width: 30.w,
+                                      ),
+                                      Icon(Icons.favorite_border_outlined),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                ],
+                              ),
+                                                        ],
+                                                      ),
+                            ));
                       });
                 } else {
                   return SizedBox();

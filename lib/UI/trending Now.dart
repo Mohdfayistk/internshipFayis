@@ -126,7 +126,7 @@ class _TrendingNowState extends State<TrendingNow> {
                       SizedBox(
                           width: 103.w,
                           height: 87.h,
-                          child: Image.asset(data[index].images![0].url.toString())),
+                          child: data[index].images!.isEmpty? Image.asset("name"):Image.network(data[index].images![0].url.toString())),
                       SizedBox(
                         width: 50.w,
                       ),

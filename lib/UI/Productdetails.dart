@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intership/UI/Orderpage.dart';
+import 'package:intership/main.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -86,16 +87,18 @@ class _TvState extends State<Tv> {
                         autoPlayAnimationDuration: Duration(milliseconds: 300),
                         viewportFraction: 1.0,
                       ),
-                      itemCount: 3,
+                      itemCount: data.product!.images!.length,
                       itemBuilder:
                           (BuildContext context, int index, int realIndex) {
+                            String url =data.product!.images![index].url.toString();
+                            String newUrl = url.replaceFirst("http://127.0.0.1/api", "");
                         return Container(
                           margin: EdgeInsets.all(6.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             image: DecorationImage(
                               image:
-                                  NetworkImage(data.product!.images.toString()),
+                                  NetworkImage(basePath+newUrl),
                             ),
                           ),
                         );
@@ -112,7 +115,7 @@ class _TvState extends State<Tv> {
                                 )),
                             child: AnimatedSmoothIndicator(
                               activeIndex: currentIndex,
-                              count: 3,
+                              count: data.product!.images!.length,
                               effect: WormEffect(dotHeight: 7.h, dotWidth: 7.w),
                             )),
                       ),
