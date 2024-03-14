@@ -457,7 +457,7 @@ class _AccountState extends State<Account> {
                     ],
                   ),
                   SizedBox(
-                    width: 35.w,
+                    width: 15.w,
                   ),
                   InkWell(
                     onTap: () {

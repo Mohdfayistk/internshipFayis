@@ -275,9 +275,6 @@ class _HomepageState extends State<Homepage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: data.length,
                           itemBuilder: (context, index) {
-
-
-
                             return SizedBox(
                               child: Padding(
                                 padding: EdgeInsets.only(top: 15.w),
@@ -324,7 +321,7 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               SizedBox(
-                width: 195.w,
+                width: 180.w,
               ),
               TextButton(
                 onPressed: () {

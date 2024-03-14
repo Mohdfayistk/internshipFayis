@@ -157,7 +157,7 @@ class _OrderState extends State<Order> {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: 30.w,
+                                    width: 15.w,
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
