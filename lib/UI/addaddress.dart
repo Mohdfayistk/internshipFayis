@@ -7,14 +7,12 @@ import 'package:loading_indicator/loading_indicator.dart';
 
 import '../BLOC/addaddress/addaddress_bloc.dart';
 
-
 class AddAddress extends StatefulWidget {
   const AddAddress({Key? key}) : super(key: key);
 
   @override
   State<AddAddress> createState() => _AddAddressState();
 }
-
 
 TextEditingController address = TextEditingController();
 TextEditingController pincode = TextEditingController();
@@ -33,7 +31,8 @@ List<String> image = [
   "assets/37.png",
 ];
 int current = 0;
-String addresstype ='';
+String addresstype = '';
+
 class _AddAddressState extends State<AddAddress> {
   @override
   Widget build(BuildContext context) {
@@ -367,7 +366,7 @@ class _AddAddressState extends State<AddAddress> {
                             onTap: () {
                               setState(() {
                                 current = index;
-                                addresstype=text[index];
+                                addresstype = text[index];
                               });
                             },
                             child: AnimatedContainer(

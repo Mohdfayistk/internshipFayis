@@ -8,7 +8,6 @@ part 'product_details_event.dart';
 
 part 'product_details_state.dart';
 
-
 class ProductDetailsBloc
     extends Bloc<ProductDetailsEvent, ProductDetailsState> {
   late ProductDetailsModel productDetailsmodel;
@@ -18,7 +17,8 @@ class ProductDetailsBloc
     on<FetchProductDetails>((event, emit) async {
       emit(ProductDetailsBlocLoading());
       try {
-        productDetailsmodel = await productDetailsApi.getProductDetails(event.id);
+        productDetailsmodel =
+            await productDetailsApi.getProductDetails(event.id);
         emit(ProductDetailsBlocLoaded());
       } catch (e) {
         print(e);

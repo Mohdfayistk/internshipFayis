@@ -4,6 +4,7 @@ part of 'remove_cart_bloc.dart';
 abstract class RemoveCartState {}
 
 class RemoveCartInitial extends RemoveCartState {}
+
 class RemoveCartBlocLoading extends RemoveCartState {}
 
 class RemoveCartBlocLoaded extends RemoveCartState {}

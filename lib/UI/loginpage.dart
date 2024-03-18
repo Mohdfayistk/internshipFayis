@@ -17,7 +17,6 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-
 late Login data;
 TextEditingController email = TextEditingController();
 TextEditingController password = TextEditingController();
@@ -27,9 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   var _formKey = GlobalKey<FormState>();
   var isLoading = false;
 
-  void _submit() {
-
-  }
+  void _submit() {}
 
   @override
   Widget build(BuildContext context) {
@@ -212,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   Indicator.ballSpinFadeLoader,
 
                                               /// Required, The loading type of the widget
-                                              colors:const [Colors.white],
+                                              colors: const [Colors.white],
 
                                               /// Optional, The color collections
                                               strokeWidth: 1.w,
@@ -230,8 +227,11 @@ class _LoginPageState extends State<LoginPage> {
                                 Text('error');
                               }
                               if (state is LoginBlocLoaded) {
-                                data=BlocProvider.of<LoginBloc>(context).loginModel;
-                                userInfo(data.tokens!.accessToken.toString()??"",data.res!.id.toString()??"");
+                                data = BlocProvider.of<LoginBloc>(context)
+                                    .loginModel;
+                                userInfo(
+                                    data.tokens!.accessToken.toString() ?? "",
+                                    data.res!.id.toString() ?? "");
                                 Navigator.of(context).pop();
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => BottomNavigation()));
@@ -240,10 +240,13 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             child: GestureDetector(
                               onTap: () {
-                                final isValid = _formKey.currentState!.validate();
+                                final isValid =
+                                    _formKey.currentState!.validate();
                                 if (isValid == true) {
-                                  BlocProvider.of<LoginBloc>(context)
-                                      .add(FetchLogin(password: password.text, email: email.text));
+                                  BlocProvider.of<LoginBloc>(context).add(
+                                      FetchLogin(
+                                          password: password.text,
+                                          email: email.text));
                                 }
                                 _formKey.currentState!.save();
                               },
@@ -378,7 +381,8 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  void userInfo(String token,String userId)async{
+
+  void userInfo(String token, String userId) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString("Token", token);
     prefs.setString("UserId", userId);

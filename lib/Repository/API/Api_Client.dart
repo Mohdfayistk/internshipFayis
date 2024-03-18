@@ -11,18 +11,19 @@ class ApiClient {
     Map<String, String> headerParams = {};
     Response response;
 
-    String url =basePath+path;
+    String url = basePath + path;
     print(url);
 
     final nullableHeaderParams = (headerParams.isEmpty) ? null : headerParams;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token= prefs.getString("Token")??"";
+    String token = prefs.getString("Token") ?? "";
     print(body);
     switch (method) {
       case "POST":
         response = await post(Uri.parse(url),
             headers: {
-              'Authorization':'Bearer${token}', 'Content-Type': 'application/json',
+              'Authorization': 'Bearer${token}',
+              'Content-Type': 'application/json',
             },
             body: body);
       case "POST1":

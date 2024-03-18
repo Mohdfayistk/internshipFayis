@@ -11,11 +11,14 @@ class SignUpApi {
 
   Future<SignUp> getSignUp(
       String email, String username, String password) async {
-    String trendingpath ="/auth/local/user/sign-up";
-    var body = {"email": email, "password": password, "username": username,};
+    String trendingpath = "/auth/local/user/sign-up";
+    var body = {
+      "email": email,
+      "password": password,
+      "username": username,
+    };
     print(body);
-    Response response =
-    await apiClient.invokeAPI(trendingpath, 'POST', body);
+    Response response = await apiClient.invokeAPI(trendingpath, 'POST', body);
 
     return SignUp.fromJson(jsonDecode(response.body));
   }

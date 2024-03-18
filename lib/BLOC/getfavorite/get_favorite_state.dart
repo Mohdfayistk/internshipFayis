@@ -4,6 +4,7 @@ part of 'get_favorite_bloc.dart';
 abstract class GetFavoriteState {}
 
 class GetFavoriteInitial extends GetFavoriteState {}
+
 class GetFavoriteBlocLoading extends GetFavoriteState {}
 
 class GetFavoriteBlocLoaded extends GetFavoriteState {}

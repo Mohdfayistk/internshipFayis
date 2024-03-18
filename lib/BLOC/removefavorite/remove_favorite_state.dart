@@ -4,6 +4,7 @@ part of 'remove_favorite_bloc.dart';
 abstract class RemoveFavoriteState {}
 
 class RemoveFavoriteInitial extends RemoveFavoriteState {}
+
 class RemoveFavoriteBlocLoading extends RemoveFavoriteState {}
 
 class RemoveFavoriteBlocLoaded extends RemoveFavoriteState {}

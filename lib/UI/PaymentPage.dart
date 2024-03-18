@@ -8,19 +8,18 @@ import '../Repository/ModelClass/CouponModel.dart';
 
 class PaymentPage extends StatefulWidget {
   final String id;
-final String price;
-final String discount;
-  const PaymentPage({Key? key,
-    required this.id,
-    required this.price,
-    required this.discount
-  }) : super(key: key);
+  final String price;
+  final String discount;
+
+  const PaymentPage(
+      {Key? key, required this.id, required this.price, required this.discount})
+      : super(key: key);
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
 }
 
- dynamic amount=0;
+dynamic amount = 0;
 TextEditingController ApplyCoupon = TextEditingController();
 String gender = "male";
 
@@ -200,7 +199,8 @@ class _PaymentPageState extends State<PaymentPage> {
                                           width: 60.w,
                                           height: 60.h,
                                           child: LoadingIndicator(
-                                            indicatorType: Indicator.ballSpinFadeLoader,
+                                            indicatorType:
+                                                Indicator.ballSpinFadeLoader,
 
                                             /// Required, The loading type of the widget
                                             colors: const [Colors.white],
@@ -217,21 +217,23 @@ class _PaymentPageState extends State<PaymentPage> {
                                   });
                             }
                             if (state is CouponBlocError) {
-
                               Navigator.of(context).pop();
-
                             }
                             if (state is CouponBlocLoaded) {
-                              amount=BlocProvider.of<CouponBloc>(context).couponModel.discountedAmount.toString();
+                              amount = BlocProvider.of<CouponBloc>(context)
+                                  .couponModel
+                                  .discountedAmount
+                                  .toString();
                               Navigator.of(context).pop();
                               Navigator.of(context).pop();
-
                             }
                           },
-                          child: InkWell(onTap: () {
-                            BlocProvider.of<CouponBloc>(context)
-                                .add(FetchCoupon(coupon: ApplyCoupon.text, id: widget.id)
-                            );},
+                          child: InkWell(
+                            onTap: () {
+                              BlocProvider.of<CouponBloc>(context).add(
+                                  FetchCoupon(
+                                      coupon: ApplyCoupon.text, id: widget.id));
+                            },
                             child: Text(
                               'Apply',
                               textAlign: TextAlign.center,

@@ -8,13 +8,15 @@ import '../../Repository/API/address/Api.dart';
 import '../../Repository/ModelClass/Address.dart';
 
 part 'address_event.dart';
+
 part 'address_state.dart';
 
 class AddressBloc extends Bloc<AddressEvent, AddressState> {
   late List<Address> addressModel;
   AddressApi addressApi = AddressApi();
+
   AddressBloc() : super(AddressInitial()) {
-    on<FetchAddress>((event, emit) async{
+    on<FetchAddress>((event, emit) async {
       emit(AddressBlocLoading());
       try {
         addressModel = await addressApi.getAddress();
@@ -22,6 +24,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       } catch (e) {
         print(e);
         emit(AddressBlocError());
-      } });
+      }
+    });
   }
 }

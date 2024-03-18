@@ -126,9 +126,11 @@ class _LoginscreenState extends State<Loginscreen> {
             height: 30.h,
           ),
           Center(
-            child: InkWell(onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Signup()));
-            },
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => Signup()));
+              },
               child: Container(
                 width: 144.w,
                 height: 38.h,

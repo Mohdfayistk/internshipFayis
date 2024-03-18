@@ -4,6 +4,7 @@ part of 'offer_banner_bloc.dart';
 abstract class OfferBannerState {}
 
 class OfferBannerInitial extends OfferBannerState {}
+
 class OfferBannerBlocLoading extends OfferBannerState {}
 
 class OfferBannerBlocLoaded extends OfferBannerState {}

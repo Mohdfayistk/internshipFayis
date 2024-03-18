@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-
-
 import '../../ModelClass/BestofferModel.dart';
 
 import '../Api_Client.dart';

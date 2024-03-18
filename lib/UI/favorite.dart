@@ -61,7 +61,7 @@ class _FavoriteState extends State<Favorite> {
                 builder: (context, state) {
               if (state is GetFavoriteBlocLoading) {
                 return Center(
-                  child:  SizedBox(),
+                  child: SizedBox(),
                 );
               }
               if (state is GetFavoriteBlocError) {
@@ -73,7 +73,10 @@ class _FavoriteState extends State<Favorite> {
 
                 return data.items!.length == 0
                     ? Center(
-                        child: SizedBox(width: 200.w,height: 200.h,child: Lottie.asset('assets/nodata3.json')),
+                        child: SizedBox(
+                            width: 200.w,
+                            height: 200.h,
+                            child: Lottie.asset('assets/nodata3.json')),
                         widthFactor: 10.w,
                         heightFactor: 10.h,
                       )
@@ -117,7 +120,8 @@ class _FavoriteState extends State<Favorite> {
                                       SizedBox(
                                         width: 140.w,
                                         child: Text(
-                                          data.items![0].variant!.product!.name.toString(),
+                                          data.items![0].variant!.product!.name
+                                              .toString(),
                                           style: TextStyle(
                                             color: Color(0xFF1D1D1B),
                                             fontSize: 14.sp,

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-
 import '../../ModelClass/TrendingModel.dart';
 import '../Api_Client.dart';
 

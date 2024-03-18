@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -12,8 +10,9 @@ part 'get_favorite_state.dart';
 class GetFavoriteBloc extends Bloc<GetFavoriteEvent, GetFavoriteState> {
   late GetFavoriteModel getFavoriteModel;
   GetFavoriteApi getFavoriteApi = GetFavoriteApi();
+
   GetFavoriteBloc() : super(GetFavoriteInitial()) {
-    on<FetchGetFavorite>((event, emit) async{
+    on<FetchGetFavorite>((event, emit) async {
       emit(GetFavoriteBlocLoading());
       try {
         getFavoriteModel = await getFavoriteApi.getGetFavorite();

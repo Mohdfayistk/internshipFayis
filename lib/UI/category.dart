@@ -1,12 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/UI/Productdetails.dart';
 import 'package:intership/UI/cartpage.dart';
 import 'package:intership/UI/favorite.dart';
-
 
 import '../BLOC/category/category_bloc.dart';
 import '../Repository/ModelClass/Category.dart';
@@ -27,6 +24,7 @@ class _CategoryyState extends State<Categoryy> {
     BlocProvider.of<CategoryBloc>(context).add(FetchCategory());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,9 +64,11 @@ class _CategoryyState extends State<Categoryy> {
               SizedBox(
                 width: 45.w,
               ),
-              InkWell(onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Favorite()));
-              },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => Favorite()));
+                },
                 child: Icon(
                   Icons.favorite_border_outlined,
                   color: Color(0xff636363),
@@ -77,9 +77,11 @@ class _CategoryyState extends State<Categoryy> {
               SizedBox(
                 width: 30.w,
               ),
-              InkWell(onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CartPage()));
-              },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => CartPage()));
+                },
                 child: Icon(
                   Icons.shopping_cart_outlined,
                   color: Color(0xff636363),
@@ -96,7 +98,7 @@ class _CategoryyState extends State<Categoryy> {
                   builder: (context, state) {
                 if (state is CategoryBlocLoading) {
                   return Center(
-                    child:  SizedBox(),
+                    child: SizedBox(),
                   );
                 }
                 if (state is CategoryBlocError) {
@@ -149,8 +151,10 @@ class _CategoryyState extends State<Categoryy> {
                                     SizedBox(
                                         width: 71.w,
                                         height: 71.h,
-                                        child: Image.network(
-                                            data[index].image![0].url.toString())),
+                                        child: Image.network(data[index]
+                                            .image![0]
+                                            .url
+                                            .toString())),
                                     SizedBox(
                                       width: 25.w,
                                     ),
@@ -216,18 +220,23 @@ class _CategoryyState extends State<Categoryy> {
                                                   const EdgeInsets.all(10.0),
                                               child: GestureDetector(
                                                 onTap: () {
-                                                  Navigator.of(context).push(
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              Tv(id:'',)));
+                                                  Navigator.of(context)
+                                                      .push(MaterialPageRoute(
+                                                          builder: (_) => Tv(
+                                                                id: '',
+                                                              )));
                                                 },
                                                 child: CircleAvatar(
                                                   radius: 40.r,
                                                   backgroundColor:
                                                       Color(0x35FFC012),
                                                   backgroundImage: NetworkImage(
-                                                    data[index].subCategories![0].image![0].url.toString(),
-                                                      ),
+                                                    data[index]
+                                                        .subCategories![0]
+                                                        .image![0]
+                                                        .url
+                                                        .toString(),
+                                                  ),
                                                 ),
                                               ),
                                             );

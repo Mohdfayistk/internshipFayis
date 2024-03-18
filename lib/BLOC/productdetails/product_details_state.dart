@@ -4,6 +4,7 @@ part of 'product_details_bloc.dart';
 abstract class ProductDetailsState {}
 
 class ProductDetailsInitial extends ProductDetailsState {}
+
 class ProductDetailsBlocLoading extends ProductDetailsState {}
 
 class ProductDetailsBlocLoaded extends ProductDetailsState {}

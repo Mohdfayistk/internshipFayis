@@ -7,13 +7,15 @@ import '../../Repository/API/brand/Api.dart';
 import '../../Repository/ModelClass/Brand.dart';
 
 part 'brand_event.dart';
+
 part 'brand_state.dart';
 
 class BrandBloc extends Bloc<BrandEvent, BrandState> {
   late List<Brand> brandModel;
   BrandApi brandApi = BrandApi();
+
   BrandBloc() : super(BrandInitial()) {
-    on<FetchBrand>((event, emit)async {
+    on<FetchBrand>((event, emit) async {
       emit(BrandBlocLoading());
       try {
         brandModel = await brandApi.getBrand();
@@ -21,6 +23,7 @@ class BrandBloc extends Bloc<BrandEvent, BrandState> {
       } catch (e) {
         print(e);
         emit(BrandBlocError());
-    }});
+      }
+    });
   }
 }

@@ -4,7 +4,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intership/UI/PaymentPage.dart';
 
-
 import '../BLOC/address/address_bloc.dart';
 import '../Repository/ModelClass/Address.dart';
 
@@ -16,14 +15,14 @@ class OrderPage extends StatefulWidget {
   final String discount;
   final String id;
 
-  const OrderPage({Key? key,
-    required this.name,
-    required this.rating,
-    required this.image,
-    required this.price,
-    required this.discount,
-  required this.id
-  })
+  const OrderPage(
+      {Key? key,
+      required this.name,
+      required this.rating,
+      required this.image,
+      required this.price,
+      required this.discount,
+      required this.id})
       : super(key: key);
 
   @override
@@ -112,36 +111,32 @@ class _OrderPageState extends State<OrderPage> {
                         SizedBox(
                           width: 200.w,
                           child: BlocBuilder<AddressBloc, AddressState>(
-                            builder: (context, state) {
-                              if (state is AddressBlocLoading) {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                              if (state is AddressBlocError) {
-                                return Text('error');
-                              }
-                              if (state is AddressBlocLoaded) {
-                                data = BlocProvider
-                                    .of<AddressBloc>(context)
-                                    .addressModel;
-                                return Text(
-                                    '${data[0].fullName},${data[0].address},${data[0].phone}',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18.sp,
-                                    fontFamily: 'hello',
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  maxLines: 2,
-                                );
-                              }
-                              else {
-                                return SizedBox();
-                              }
+                              builder: (context, state) {
+                            if (state is AddressBlocLoading) {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
                             }
-                          ),
-
+                            if (state is AddressBlocError) {
+                              return Text('error');
+                            }
+                            if (state is AddressBlocLoaded) {
+                              data = BlocProvider.of<AddressBloc>(context)
+                                  .addressModel;
+                              return Text(
+                                '${data[0].fullName},${data[0].address},${data[0].phone}',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.sp,
+                                  fontFamily: 'hello',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                maxLines: 2,
+                              );
+                            } else {
+                              return SizedBox();
+                            }
+                          }),
                         ),
                         SizedBox(
                           width: 30.w,
@@ -230,12 +225,11 @@ class _OrderPageState extends State<OrderPage> {
                             itemCount: 5,
                             ignoreGestures: true,
                             itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                            itemBuilder: (context, _) =>
-                                Icon(
-                                  Icons.star,
-                                  size: 5.sp,
-                                  color: Colors.deepOrange,
-                                ),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              size: 5.sp,
+                              color: Colors.deepOrange,
+                            ),
                             onRatingUpdate: (rating) {
                               print(rating);
                             },
@@ -325,7 +319,7 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         width: 100.w,
                         child: Text(
-                         'SAR ${widget.price}',
+                          'SAR ${widget.price}',
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             color: Color(0xFF6A6969),
@@ -482,8 +476,14 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => PaymentPage(id: widget.id,price: widget.price,discount: widget.discount,)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => PaymentPage(
+                                    id: widget.id,
+                                    price: widget.price,
+                                    discount: widget.discount,
+                                  )));
                     },
                     child: Container(
                       width: 197.w,

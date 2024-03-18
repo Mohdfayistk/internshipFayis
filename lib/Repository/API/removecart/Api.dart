@@ -6,13 +6,11 @@ class RemoveCartApi {
   ApiClient apiClient = ApiClient();
 
   Future<void> getRemoveCart(
-      String id,
-      ) async {
+    String id,
+  ) async {
     String trendingpath = "/product/remove-from-cart/$id";
 
-    var body = {
-
-    };
+    var body = {};
     print(body);
 
     await apiClient.invokeAPI(trendingpath, 'DELETE', jsonEncode(body));

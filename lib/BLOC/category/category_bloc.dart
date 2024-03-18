@@ -7,13 +7,15 @@ import '../../Repository/API/category/Api.dart';
 import '../../Repository/ModelClass/Category.dart';
 
 part 'category_event.dart';
+
 part 'category_state.dart';
 
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   late List<Category> categoryModel;
   CategoryApi categoryApi = CategoryApi();
+
   CategoryBloc() : super(CategoryInitial()) {
-    on<FetchCategory>((event, emit) async{
+    on<FetchCategory>((event, emit) async {
       emit(CategoryBlocLoading());
       try {
         categoryModel = await categoryApi.getCategory();
@@ -21,6 +23,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       } catch (e) {
         print(e);
         emit(CategoryBlocError());
-    }});
+      }
+    });
   }
 }

@@ -66,7 +66,8 @@ class MyApp extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => TrendingBloc(),
-              ),   BlocProvider(
+              ),
+              BlocProvider(
                 create: (context) => FavoriteBloc(),
               ),
               BlocProvider(

@@ -5,8 +5,6 @@ abstract class AddaddressState {}
 
 class AddaddressInitial extends AddaddressState {}
 
-
-
 class AddaddressBlocLoading extends AddaddressState {}
 
 class AddaddressBlocLoaded extends AddaddressState {}

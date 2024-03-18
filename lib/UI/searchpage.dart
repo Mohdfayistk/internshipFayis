@@ -23,8 +23,8 @@ class _SearchPageState extends State<SearchPage> {
     data.clear();
     // TODO: implement dispose
     super.dispose();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,16 +136,14 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: data.length,
                       itemBuilder: (context, index) {
                         return SizedBox(
-                            child: GestureDetector(onTap: (){
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => Tv(
-                                          id: data[index]
-                                              .id
-                                              .toString())));
-                            },
-                              child: Row(
-                                                        children: [
+                            child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) =>
+                                    Tv(id: data[index].id.toString())));
+                          },
+                          child: Row(
+                            children: [
                               SizedBox(
                                 width: 50.w,
                               ),
@@ -188,9 +186,9 @@ class _SearchPageState extends State<SearchPage> {
                                   ),
                                 ],
                               ),
-                                                        ],
-                                                      ),
-                            ));
+                            ],
+                          ),
+                        ));
                       });
                 } else {
                   return SizedBox();

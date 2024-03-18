@@ -4,6 +4,7 @@ part of 'trending_bloc.dart';
 abstract class TrendingState {}
 
 class TrendingInitial extends TrendingState {}
+
 class TrendingBlocLoading extends TrendingState {}
 
 class TrendingBlocLoaded extends TrendingState {}

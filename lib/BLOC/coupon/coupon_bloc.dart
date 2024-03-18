@@ -7,6 +7,7 @@ import '../../Repository/API/coupon/Api.dart';
 import '../../Repository/ModelClass/CouponModel.dart';
 
 part 'coupon_event.dart';
+
 part 'coupon_state.dart';
 
 class CouponBloc extends Bloc<CouponEvent, CouponState> {
@@ -14,10 +15,11 @@ class CouponBloc extends Bloc<CouponEvent, CouponState> {
   CouponModelApi couponModelApi = CouponModelApi();
 
   CouponBloc() : super(CouponInitial()) {
-    on<FetchCoupon>((event, emit) async{
+    on<FetchCoupon>((event, emit) async {
       emit(CouponBlocLoading());
       try {
-        couponModel = await couponModelApi.getCouponModel(event.coupon,event.id);
+        couponModel =
+            await couponModelApi.getCouponModel(event.coupon, event.id);
         emit(CouponBlocLoaded());
       } catch (e) {
         print(e);

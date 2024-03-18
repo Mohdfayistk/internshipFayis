@@ -7,7 +7,5 @@ class FetchCoupon extends CouponEvent {
   final String coupon;
   final String id;
 
-  FetchCoupon({required this.coupon,
-  required this.id
-  });
+  FetchCoupon({required this.coupon, required this.id});
 }

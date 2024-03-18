@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -67,7 +65,7 @@ class _CartPageState extends State<CartPage> {
               BlocBuilder<GetCartBloc, GetCartState>(builder: (context, state) {
             if (state is GetCartBlocLoading) {
               return Center(
-                child:  SizedBox(),
+                child: SizedBox(),
               );
             }
             if (state is GetCartBlocError) {

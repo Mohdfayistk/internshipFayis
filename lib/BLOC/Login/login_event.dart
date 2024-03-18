@@ -8,6 +8,5 @@ class FetchLogin extends LoginEvent {
 
   final String password;
 
-  FetchLogin(
-      { required this.password, required this.email});
+  FetchLogin({required this.password, required this.email});
 }

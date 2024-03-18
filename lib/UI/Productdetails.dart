@@ -90,15 +90,16 @@ class _TvState extends State<Tv> {
                       itemCount: data.product!.images!.length,
                       itemBuilder:
                           (BuildContext context, int index, int realIndex) {
-                            String url =data.product!.images![index].url.toString();
-                            String newUrl = url.replaceFirst("http://127.0.0.1/api", "");
+                        String url =
+                            data.product!.images![index].url.toString();
+                        String newUrl =
+                            url.replaceFirst("http://127.0.0.1/api", "");
                         return Container(
                           margin: EdgeInsets.all(6.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             image: DecorationImage(
-                              image:
-                                  NetworkImage(basePath+newUrl),
+                              image: NetworkImage(basePath + newUrl),
                             ),
                           ),
                         );
@@ -424,11 +425,10 @@ class _TvState extends State<Tv> {
                                 width: 60.w,
                                 height: 60.h,
                                 child: LoadingIndicator(
-                                  indicatorType:
-                                  Indicator.ballSpinFadeLoader,
+                                  indicatorType: Indicator.ballSpinFadeLoader,
 
                                   /// Required, The loading type of the widget
-                                  colors:const [Colors.white],
+                                  colors: const [Colors.white],
 
                                   /// Optional, The color collections
                                   strokeWidth: 1.w,
@@ -450,8 +450,7 @@ class _TvState extends State<Tv> {
                         timeInSecForIosWeb: 1,
                         backgroundColor: Colors.red,
                         textColor: Colors.white,
-                        fontSize: 16.0
-                    );
+                        fontSize: 16.0);
                     Text('error');
                   }
                   if (state is CartBlocLoaded) {
@@ -463,8 +462,7 @@ class _TvState extends State<Tv> {
                         timeInSecForIosWeb: 1,
                         backgroundColor: Colors.black54,
                         textColor: Colors.white,
-                        fontSize: 16.0
-                    );
+                        fontSize: 16.0);
                   }
                 },
                 child: InkWell(
@@ -506,15 +504,14 @@ class _TvState extends State<Tv> {
             Center(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => OrderPage(
-                     name: data.product!.name.toString(),
-                    rating: data.product!.rating.toString(),
-                    image: data.product!.images![0].url.toString(),
-                    price: data.product!.price.toString(),
-                    discount: data.product!.discountedAmount.toString(),
-                    id:data.product!.id.toString()
-                  )));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => OrderPage(
+                          name: data.product!.name.toString(),
+                          rating: data.product!.rating.toString(),
+                          image: data.product!.images![0].url.toString(),
+                          price: data.product!.price.toString(),
+                          discount: data.product!.discountedAmount.toString(),
+                          id: data.product!.id.toString())));
                 },
                 child: Container(
                   width: 343.w,

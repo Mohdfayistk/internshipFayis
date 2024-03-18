@@ -2,24 +2,15 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-
-
-
 import '../../ModelClass/SearchModel.dart';
 import '../Api_Client.dart';
 
 class SearchApi {
-  ApiClient apiClient = ApiClient(
+  ApiClient apiClient = ApiClient();
 
-  );
-
-  Future<List<SearchModel>> getSearch(
-      String id
-      ) async {
+  Future<List<SearchModel>> getSearch(String id) async {
     String trendingpath = "/product/search?s=$id";
-    var body = {
-
-    };
+    var body = {};
     print(body);
     Response response = await apiClient.invokeAPI(trendingpath, 'GET', body);
 
