@@ -117,8 +117,7 @@ class _FavoriteState extends State<Favorite> {
                                       SizedBox(
                                         width: 140.w,
                                         child: Text(
-                                          data.items![0].variant!.product!.name
-                                              .toString(),
+                                          data.items![0].variant!.product!.name.toString(),
                                           style: TextStyle(
                                             color: Color(0xFF1D1D1B),
                                             fontSize: 14.sp,

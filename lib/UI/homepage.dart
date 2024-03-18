@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +25,7 @@ class Homepage extends StatefulWidget {
   @override
   State<Homepage> createState() => _HomepageState();
 }
+
 late List<TrendingModel> data2;
 late List<BannerModel> data1;
 late List<Brand> data;
@@ -44,7 +44,6 @@ class _HomepageState extends State<Homepage> {
     BlocProvider.of<BannerBloc>(context).add(FetchBanner());
     BlocProvider.of<TrendingNowBloc>(context).add(FetchTrendingNow());
     super.initState();
-
   }
 
   @override
@@ -145,88 +144,85 @@ class _HomepageState extends State<Homepage> {
           SizedBox(
             height: 30.h,
           ),
-          BlocBuilder<BannerBloc, BannerState>(
-            builder: (context, state) {
-              if (state is BannerBlocLoading) {
-                return Center(
-                  child: SizedBox(),
-                );
-              }
-              if (state is BannerBlocError) {
-                return Text('error');
-              }
-              if (state is BannerBlocLoaded) {
-                data1 = BlocProvider.of<BannerBloc>(context).bannerModel;
+          BlocBuilder<BannerBloc, BannerState>(builder: (context, state) {
+            if (state is BannerBlocLoading) {
+              return Center(
+                child: SizedBox(),
+              );
+            }
+            if (state is BannerBlocError) {
+              return Text('error');
+            }
+            if (state is BannerBlocLoaded) {
+              data1 = BlocProvider.of<BannerBloc>(context).bannerModel;
 
-                return Stack(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (_) => Tv(id: '',)));
-                      },
-                      child: CarouselSlider.builder(
-                        //Slider Container properties
-                        options: CarouselOptions(
-                          onPageChanged: (index, a) {
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          },
-                          height: 200.h,
-                          enlargeCenterPage: true,
-                          enlargeStrategy: CenterPageEnlargeStrategy.height,
-                          autoPlay: true,
-                          aspectRatio: 16 / 9,
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enableInfiniteScroll: true,
-                          autoPlayAnimationDuration: Duration(
-                              milliseconds: 300),
-                          viewportFraction: 1.0,
-                        ),
-                        itemCount: data1[0].banner!.length,
-                        itemBuilder:
-                            (BuildContext context, int index, int realIndex) {
-                              String url =data1[0]
-                                  .banner![index].url
-                                  .toString();
-                              String newUrl = url.replaceFirst("http://127.0.0.1/api", "");
-                          return Container(
-                            margin: EdgeInsets.all(6.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              image: DecorationImage(
-                                image: NetworkImage(basePath+newUrl),
-                              ),
-                            ),
-                          );
+              return Stack(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => Tv(
+                                id: '',
+                              )));
+                    },
+                    child: CarouselSlider.builder(
+                      //Slider Container properties
+                      options: CarouselOptions(
+                        onPageChanged: (index, a) {
+                          setState(() {
+                            currentIndex = index;
+                          });
                         },
+                        height: 200.h,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        autoPlay: true,
+                        aspectRatio: 16 / 9,
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enableInfiniteScroll: true,
+                        autoPlayAnimationDuration: Duration(milliseconds: 300),
+                        viewportFraction: 1.0,
                       ),
+                      itemCount: data1[0].banner!.length,
+                      itemBuilder:
+                          (BuildContext context, int index, int realIndex) {
+                        String url = data1[0].banner![index].url.toString();
+                        String newUrl =
+                            url.replaceFirst("http://127.0.0.1/api", "");
+                        return Container(
+                          margin: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            image: DecorationImage(
+                              image: NetworkImage(basePath + newUrl),
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 180.h),
-                      child: Center(
-                        child: Container(
-                            decoration: ShapeDecoration(
-                                color: Color(0x7FF1F1F1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                )),
-                            child: AnimatedSmoothIndicator(
-                              activeIndex: currentIndex,
-                              count: data1[0].banner!.length,
-                              effect: WormEffect(dotHeight: 7.h, dotWidth: 7.w),
-                            )),
-                      ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 180.h),
+                    child: Center(
+                      child: Container(
+                          decoration: ShapeDecoration(
+                              color: Color(0x7FF1F1F1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              )),
+                          child: AnimatedSmoothIndicator(
+                            activeIndex: currentIndex,
+                            count: data1[0].banner!.length,
+                            effect: WormEffect(dotHeight: 7.h, dotWidth: 7.w),
+                          )),
                     ),
-                  ],
-                );
-
-              }
-              else {
-                return SizedBox();
-              }
-            } ),
+                  ),
+                ],
+              );
+            } else {
+              return SizedBox();
+            }
+          }),
           SizedBox(
             height: 20.h,
           ),
@@ -252,53 +248,52 @@ class _HomepageState extends State<Homepage> {
                 width: 500.w,
                 child: BlocBuilder<BrandBloc, BrandState>(
                     builder: (context, state) {
-                      if (state is BrandBlocLoading) {
-                        return Center(
-                          child: SizedBox(),
-                        );
-                      }
-                      if (state is BrandBlocError) {
-                        return Text('error');
-                      }
-                      if (state is BrandBlocLoaded) {
-                        data = BlocProvider
-                            .of<BrandBloc>(context)
-                            .brandModel;
+                  if (state is BrandBlocLoading) {
+                    return Center(
+                      child: SizedBox(),
+                    );
+                  }
+                  if (state is BrandBlocError) {
+                    return Text('error');
+                  }
+                  if (state is BrandBlocLoaded) {
+                    data = BlocProvider.of<BrandBloc>(context).brandModel;
 
-                        return ListView.separated(
-                          separatorBuilder: (ctx, index) {
-
-                            return SizedBox(
-                              width: 16.w,
-                            );
-                          },
-                          scrollDirection: Axis.horizontal,
-                          itemCount: data.length,
-                          itemBuilder: (context, index) {
-                            return SizedBox(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 15.w),
-                                child: SizedBox(
-                                  width: 87.w,
-                                  height: 87.h,
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(16.r),
-                                      child: data[index]
-                                          .image!.isEmpty
-                                          ? Image.asset('name')
-                                          : Image.network(basePath+data[index]
-                                          .image![0]
-                                          .url
-                                          .toString().replaceFirst("http://127.0.0.1/api", ""))),
-                                ),
-                              ),
-                            );
-                          },
+                    return ListView.separated(
+                      separatorBuilder: (ctx, index) {
+                        return SizedBox(
+                          width: 16.w,
                         );
-                      } else {
-                        return SizedBox();
-                      }
-                    })),
+                      },
+                      scrollDirection: Axis.horizontal,
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        return SizedBox(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 15.w),
+                            child: SizedBox(
+                              width: 87.w,
+                              height: 87.h,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(16.r),
+                                  child: data[index].image!.isEmpty
+                                      ? Image.asset('name')
+                                      : Image.network(basePath +
+                                          data[index]
+                                              .image![0]
+                                              .url
+                                              .toString()
+                                              .replaceFirst(
+                                                  "http://127.0.0.1/api", ""))),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return SizedBox();
+                  }
+                })),
           ),
           SizedBox(
             height: 20.h,
@@ -352,150 +347,169 @@ class _HomepageState extends State<Homepage> {
               width: 500.w,
               height: 190.h,
               child: BlocBuilder<TrendingNowBloc, TrendingNowState>(
-  builder: (context, state) {
-    if (state is TrendingNowBlocLoading) {
-      return Center(
-        child: SizedBox(),
-      );
-    }
-    if (state is TrendingNowBlocError) {
-      return Text('error');
-    }
-    if (state is TrendingNowBlocLoaded) {
-      data2 = BlocProvider
-          .of<TrendingNowBloc>(context)
-          .trendingModel;
+                  builder: (context, state) {
+                if (state is TrendingNowBlocLoading) {
+                  return Center(
+                    child: SizedBox(),
+                  );
+                }
+                if (state is TrendingNowBlocError) {
+                  return Text('error');
+                }
+                if (state is TrendingNowBlocLoaded) {
+                  data2 =
+                      BlocProvider.of<TrendingNowBloc>(context).trendingModel;
 
-      return ListView.separated(
-        separatorBuilder: (ctx, index) {
-          return SizedBox(
-            width: 14.w,
-          );
-        },
-        scrollDirection: Axis.horizontal,
-        itemCount: data2.length,
-        itemBuilder: (context, index) {
-
-          return SizedBox(
-            child: Padding(
-                padding: EdgeInsets.only(top: 15.w),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => Tv(id: data2[index].id.toString(),)));
-                  },
-                  child: Container(
-                    width: 149.w,
-                    height: 190.h,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFEFEEEE),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        SizedBox(height: 110
-                            .h,width: 140.w,child:data2[index].images!.isEmpty?Image.asset('name') :Image.network(basePath+ data2[index].images![0].url.toString().replaceFirst("http://127.0.0.1/api", ""))),
-                        Container(
-                          width: 141.w,
-                          height: 53.h,
-                          decoration: ShapeDecoration(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1, color: Color(0xFFF3F3F3)),
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10),
-                              ),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 10.w),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 5.h,
+                  return ListView.separated(
+                    separatorBuilder: (ctx, index) {
+                      return SizedBox(
+                        width: 14.w,
+                      );
+                    },
+                    scrollDirection: Axis.horizontal,
+                    itemCount: data2.length,
+                    itemBuilder: (context, index) {
+                      return SizedBox(
+                        child: Padding(
+                            padding: EdgeInsets.only(top: 15.w),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Tv(
+                                          id: data2[index].id.toString(),
+                                        )));
+                              },
+                              child: Container(
+                                width: 149.w,
+                                height: 190.h,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFEFEEEE),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  Text(
-                                    data2[index].name.toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 13.sp,
-                                      fontFamily: 'hello',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                      letterSpacing: -0.30,
+                                ),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 10.h,
                                     ),
-                                  ),
-                                  Text(
-                                    data2[index].description.toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFF999595),
-                                      fontSize: 10.sp,
-                                      fontFamily: 'hello',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                      letterSpacing: -0.30,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        data2[index].price.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color(0xFF999595),
-                                          fontSize: 10,
-                                          fontFamily: 'hello',
-                                          fontWeight: FontWeight.w400,
-                                          height: 0,
-                                          letterSpacing: -0.30,
+                                    SizedBox(
+                                        height: 110.h,
+                                        width: 140.w,
+                                        child: data2[index].images!.isEmpty
+                                            ? Image.asset('name')
+                                            : Image.network(basePath +
+                                                data2[index]
+                                                    .images![0]
+                                                    .url
+                                                    .toString()
+                                                    .replaceFirst(
+                                                        "http://127.0.0.1/api",
+                                                        ""))),
+                                    Container(
+                                      width: 141.w,
+                                      height: 53.h,
+                                      decoration: ShapeDecoration(
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              width: 1,
+                                              color: Color(0xFFF3F3F3)),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10),
+                                          ),
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      Text(
-                                        data2[index].discountedAmount.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color(0xFF999595),
-                                          fontSize: 10,
-                                          fontFamily: 'hello',
-                                          fontWeight: FontWeight.w400,
-                                          height: 0,
-                                          letterSpacing: -0.30,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 10.w),
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 5.h,
+                                              ),
+                                              Text(
+                                                data2[index].name.toString(),
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 13.sp,
+                                                  fontFamily: 'hello',
+                                                  fontWeight: FontWeight.w400,
+                                                  height: 0,
+                                                  letterSpacing: -0.30,
+                                                ),
+                                              ),
+                                              Text(
+                                                data2[index]
+                                                    .description
+                                                    .toString(),
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: Color(0xFF999595),
+                                                  fontSize: 10.sp,
+                                                  fontFamily: 'hello',
+                                                  fontWeight: FontWeight.w400,
+                                                  height: 0,
+                                                  letterSpacing: -0.30,
+                                                ),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    data2[index]
+                                                        .price
+                                                        .toString(),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: Color(0xFF999595),
+                                                      fontSize: 10,
+                                                      fontFamily: 'hello',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      height: 0,
+                                                      letterSpacing: -0.30,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5.w,
+                                                  ),
+                                                  Text(
+                                                    data2[index]
+                                                        .discountedAmount
+                                                        .toString(),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: Color(0xFF999595),
+                                                      fontSize: 10,
+                                                      fontFamily: 'hello',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      height: 0,
+                                                      letterSpacing: -0.30,
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      )
-                                    ],
-                                  )
-                                ],
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )),
-          );
-        },
-      );
-    }
-    else {
-      return SizedBox();
-    }
-  }),
+                            )),
+                      );
+                    },
+                  );
+                } else {
+                  return SizedBox();
+                }
+              }),
             ),
           ),
           SizedBox(
@@ -550,37 +564,38 @@ class _HomepageState extends State<Homepage> {
               width: 500.w,
               height: 210.h,
               child: BlocBuilder<OfferBannerBloc, OfferBannerState>(
-  builder: (context, state) {
-    if (state is OfferBannerBlocLoading) {
-    return Center(
-    child:  SizedBox(),
-    );
-    }
-    if (state is OfferBannerBlocError) {
-    return Text('error');
-    }
-    if (state is OfferBannerBlocLoaded) {
-    data3 = BlocProvider
-        .of<OfferBannerBloc>(context)
-        .offerBannerModel;
+                  builder: (context, state) {
+                if (state is OfferBannerBlocLoading) {
+                  return Center(
+                    child: SizedBox(),
+                  );
+                }
+                if (state is OfferBannerBlocError) {
+                  return Text('error');
+                }
+                if (state is OfferBannerBlocLoaded) {
+                  data3 = BlocProvider.of<OfferBannerBloc>(context)
+                      .offerBannerModel;
 
-    return ListView.separated(
-                  separatorBuilder: (ctx, index) {
-                    return SizedBox(
-                      width: 14.w,
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                  itemCount: data3.length,
-                  itemBuilder: (context, index) {
-                    String url =  data3[index].banner![0].url
-                        .toString();
-                    String newUrl = url.replaceFirst("http://127.0.0.1/api", "");
-                    return SizedBox(
-                        child: GestureDetector(
+                  return ListView.separated(
+                      separatorBuilder: (ctx, index) {
+                        return SizedBox(
+                          width: 14.w,
+                        );
+                      },
+                      scrollDirection: Axis.horizontal,
+                      itemCount: data3.length,
+                      itemBuilder: (context, index) {
+                        String url = data3[index].banner![0].url.toString();
+                        String newUrl =
+                            url.replaceFirst("http://127.0.0.1/api", "");
+                        return SizedBox(
+                            child: GestureDetector(
                           onTap: () {
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (_) => Tv(id: '',)));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => Tv(
+                                      id: '',
+                                    )));
                           },
                           child: Stack(
                             children: [
@@ -592,7 +607,7 @@ class _HomepageState extends State<Homepage> {
                                       topLeft: Radius.circular(14.r),
                                     ),
                                     child: Image.network(
-                                   basePath+newUrl,
+                                      basePath + newUrl,
                                       width: 145.w,
                                       height: 130.h,
                                     ),
@@ -601,7 +616,7 @@ class _HomepageState extends State<Homepage> {
                                     width: 146.w,
                                     height: 3.h,
                                     decoration:
-                                    BoxDecoration(color: Color(0xFFFFC113)),
+                                        BoxDecoration(color: Color(0xFFFFC113)),
                                   ),
                                   Container(
                                     width: 146.w,
@@ -679,8 +694,8 @@ class _HomepageState extends State<Homepage> {
                                   width: 128.w,
                                   height: 26.h,
                                   decoration: ShapeDecoration(
-                                    color:
-                                    Colors.black.withOpacity(0.800000011920929),
+                                    color: Colors.black
+                                        .withOpacity(0.800000011920929),
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8)),
                                   ),
@@ -709,8 +724,8 @@ class _HomepageState extends State<Homepage> {
                                             shape: RoundedRectangleBorder(
                                               side: BorderSide(
                                                 width: 0.50,
-                                                strokeAlign:
-                                                BorderSide.strokeAlignCenter,
+                                                strokeAlign: BorderSide
+                                                    .strokeAlignCenter,
                                                 color: Color(0xFFFFC113),
                                               ),
                                             ),
@@ -731,14 +746,11 @@ class _HomepageState extends State<Homepage> {
                             ],
                           ),
                         ));
-                  });
-  }
-    else {
-      return SizedBox();
-    }
-    }
-
-),
+                      });
+                } else {
+                  return SizedBox();
+                }
+              }),
             ),
           ),
           SizedBox(
